@@ -2,6 +2,15 @@
 
 All notable changes to Lynx PDF Studio are documented here.
 
+## 0.2.5 — PDF → Markdown + Marketplace listing
+
+- **`pdf_to_markdown`** — convert a PDF to a Markdown (`.md`) file, discoverable
+  under **Convert from PDF** (alias: `pdf_to_md`). Reuses the same engine as
+  `extract_markdown` (pymupdf4llm / markitdown / PyMuPDF). OPW is now at **63 ops**.
+- **Marketplace listing** — a visual README (hero, an in-action shot, the Operations
+  panel, and the guided flow), with images and public docs hosted at
+  [github.com/LynxDI/pdf-studio](https://github.com/LynxDI/pdf-studio).
+
 ## 0.2.3 — Three more operations
 
 A second pass over Stirling-PDF surfaced three genuinely useful gaps, now ported

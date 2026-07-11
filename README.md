@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="https://marketplace.visualstudio.com/items?itemName=LynxDI.lynxdi-pdf-studio"><img src="https://img.shields.io/visual-studio-marketplace/v/LynxDI.lynxdi-pdf-studio?color=2dd4bf&label=Marketplace&logo=visualstudiocode" alt="Marketplace"></a>
-  <img src="https://img.shields.io/badge/operations-62-2dd4bf" alt="62 operations">
+  <img src="https://img.shields.io/badge/operations-63-2dd4bf" alt="63 operations">
   <img src="https://img.shields.io/badge/backends-pdf--lib%20bundled-3fb950" alt="pdf-lib bundled">
   <img src="https://img.shields.io/badge/agent--native-MCP-4fc1ff" alt="MCP">
 </p>
@@ -86,7 +86,7 @@ backend shows green when ready, amber with a one-click install hint when not.
   <img src="https://raw.githubusercontent.com/LynxDI/pdf-studio/main/media/guided-add.png" alt="Guided Add Operation with native dropdowns" width="560" />
 </p>
 
-## 62 operations, twelve categories
+## 63 operations, twelve categories
 
 Everything is one line in the `operations:` list:
 
@@ -104,7 +104,7 @@ Everything is one line in the `operations:` list:
 - **Optimize, repair & archival** — compress, linearize, repair, decompress,
   rasterize, PDF/A.
 - **Convert to PDF** — Markdown, HTML, a live URL, `.eml`, images, Office docs.
-- **Convert from PDF** — docx / pptx / xlsx / html.
+- **Convert from PDF** — docx / pptx / xlsx / html / Markdown.
 - **Digital signatures** — sign (PKCS#12), validate, RFC-3161 timestamp.
 
 ## Markdown / HTML / URL → PDF, high fidelity, no bloat

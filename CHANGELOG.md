@@ -2,6 +2,14 @@
 
 All notable changes to Lynx PDF Studio are documented here.
 
+## 0.2.6 — Convert any file to Markdown
+
+- **Convert File to Markdown** — a new command (Explorer right-click on any
+  supported file, or the palette) that turns Word / PowerPoint / Excel / HTML /
+  EPUB / CSV / images and more into Markdown via Microsoft **MarkItDown**. A
+  standalone utility (not an OPW op); MarkItDown is an optional, auto-detected
+  backend with a one-click install prompt.
+
 ## 0.2.5 — PDF → Markdown + Marketplace listing
 
 - **`pdf_to_markdown`** — convert a PDF to a Markdown (`.md`) file, discoverable

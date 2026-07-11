@@ -114,6 +114,14 @@ Everything is one line in the `operations:` list:
 200 MB bundled browser. When no browser is present they fall back to WeasyPrint and
 then a pure-Python engine, so they always work.
 
+## Convert any file to Markdown
+
+Beyond PDFs: right-click **any** file in the Explorer → **Convert File to
+Markdown**, or run it from the palette. Powered by Microsoft **MarkItDown**, it
+turns Word / PowerPoint / Excel / HTML / EPUB / CSV / images and more into clean
+Markdown — handy for docs, diffs, and LLM ingestion. (Install MarkItDown when
+prompted; it's an optional backend.)
+
 ## Execution backends
 
 The bundled **pdf-lib** backend runs page layout, stamps, watermarks, metadata, and

@@ -2,6 +2,16 @@
 
 All notable changes to Lynx PDF Studio are documented here.
 
+## 0.2.7 — Anonymous usage analytics (opt-out)
+
+- **Usage analytics (GA4)** to learn which features and operations are used most,
+  so high-use ones can be prioritized. Events: `feature_used`, `operation_added`,
+  `operation_used`, `workflow_rendered`, `activated` — anonymous, keyed only by
+  `vscode.env.machineId`; **no** file paths, contents, names, or personal data.
+- **On by default, easy to turn off:** respects VS Code's global
+  `telemetry.telemetryLevel`, plus a dedicated `pdfStudio.telemetry.enabled`
+  toggle. `pdfStudio.telemetry.debug` logs exactly what is sent.
+
 ## 0.2.6 — Convert any file to Markdown
 
 - **Convert File to Markdown** — a new command (Explorer right-click on any

@@ -166,6 +166,17 @@ Python interpreter is pinned, and webviews use a strict CSP. Because `url_to_pdf
 workflow before rendering it. Full details:
 [docs/security.md](https://github.com/LynxDI/pdf-studio/blob/main/docs/security.md).
 
+## Telemetry
+
+Lynx PDF Studio collects **anonymous, non-identifying** usage events (which
+features and operations are used, and whether a render succeeded) to help
+prioritize development. It **never** collects file paths, document contents,
+names, or any personal data — only `vscode.env.machineId` (an anonymized
+per-install id). Events are only sent when VS Code's global telemetry setting
+(`telemetry.telemetryLevel`) is enabled; you can also turn off just this
+extension's analytics with `pdfStudio.telemetry.enabled`. Set
+`pdfStudio.telemetry.debug` to see exactly what is sent.
+
 ## More from Lynx DI
 
 **Lynx File Content Search** is built by Lynx DI. Explore more at

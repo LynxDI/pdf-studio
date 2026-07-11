@@ -1,0 +1,17 @@
+Lynx PDF Studio — Third-Party Notices
+
+Lynx PDF Studio is proprietary software (see LICENSE). It bundles the following
+third-party open-source components, which remain licensed under their own terms:
+
+- pdf-lib — MIT License — https://github.com/Hopding/pdf-lib
+- pdf.js (pdfjs-dist) — Apache License 2.0 — https://github.com/mozilla/pdf.js
+- @modelcontextprotocol/sdk — MIT License — https://github.com/modelcontextprotocol/typescript-sdk
+- zod — MIT License — https://github.com/colinhacks/zod
+- yaml — ISC License — https://github.com/eemeli/yaml
+
+The optional local Python backend (PyMuPDF, pikepdf, OCRmyPDF, pymupdf4llm,
+MarkItDown, and related tools) is not bundled; it is installed separately by the
+user and remains under its respective licenses.
+
+Full license texts are available at the URLs above and within each component's
+distribution.

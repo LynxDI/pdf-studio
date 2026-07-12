@@ -2,6 +2,33 @@
 
 All notable changes to Lynx PDF Studio are documented here.
 
+## 0.2.15 — Settings shortcut in the view header
+
+- **Gear icon** in the Lynx PDF Studio view header opens this extension's
+  settings directly (scoped to `pdfStudio.*`) — a one-click path to toggles like
+  `allowRemoteRender`, telemetry, and the Python path.
+
+## 0.2.14 — Remote GPU rendering for Marker
+
+- **Run Marker on a GPU box over SSH.** `extract_markdown` / `pdf_to_markdown`
+  now take a `remote` parameter (`"user@host"`): the PDF is uploaded, Marker
+  (Surya OCR + layout) runs there on the GPU, and the Markdown is downloaded —
+  **minutes on a 4090 vs hours on a CPU** for a scanned book. Marker is
+  auto-installed on the box on first use; VRAM-safe batch sizes let it share a
+  partly-occupied card.
+
+  ```yaml
+  operations:
+    - extract_markdown: { engine: marker, remote: user@gpu-box.local }
+  ```
+
+- **Off by default, opt-in via `pdfStudio.allowRemoteRender`** (machine-scoped, so
+  a workspace can't enable it) — remote render runs commands on another machine
+  over SSH, so it's disabled until you turn it on. Requires key-based SSH and
+  `scp` on PATH; the host is validated against `user@host` to block shell
+  injection. A `remote` param with the setting off fails with a clear message
+  rather than silently falling back to slow CPU rendering.
+
 ## 0.2.7 — Anonymous usage analytics (opt-out)
 
 - **Usage analytics (GA4)** to learn which features and operations are used most,

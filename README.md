@@ -96,7 +96,8 @@ Everything is one line in the `operations:` list:
 - **Metadata, bookmarks & tables** — set metadata, set/extract bookmarks, export
   fields and detected tables to CSV, `pdf_info` report.
 - **Text, image & Markdown extraction** — text, images, clean Markdown
-  (GitHub-flavored tables), render pages to images, replace an image.
+  (GitHub-flavored tables), **AI OCR for scans** (Marker / Surya), render pages to
+  images, replace an image.
 - **Redaction & cleanup** — true redaction, find-and-redact text, sanitize, remove
   annotations / images / blank pages, OCR.
 - **Forms** — fill fields, flatten, unlock.
@@ -113,6 +114,31 @@ Everything is one line in the `operations:` list:
 **system Chrome or Edge** in headless print mode for full-fidelity output — no
 200 MB bundled browser. When no browser is present they fall back to WeasyPrint and
 then a pure-Python engine, so they always work.
+
+## Scanned books & documents → Markdown (AI OCR)
+
+Old scans with a poor or missing text layer? `extract_markdown` and
+`pdf_to_markdown` can run **Marker** (Surya OCR + layout models) to rebuild clean,
+GitHub-flavored Markdown — headings, lists, and tables intact — straight from the
+page images:
+
+```yaml
+operations:
+  - extract_markdown: { engine: marker }
+```
+
+Marker is accurate but heavy. For a full book, **offload it to a GPU box over SSH
+with one parameter — minutes on a GPU vs hours on a CPU:**
+
+```yaml
+operations:
+  - extract_markdown: { engine: marker, remote: user@gpu-box }   # 138-page scan → ~1 min on a 4090
+```
+
+The PDF is uploaded, Marker runs on the remote GPU, and the Markdown is downloaded.
+Off by default — enable `pdfStudio.allowRemoteRender`; it runs over key-based SSH,
+and the host is validated to block command injection. For lighter scans,
+`ocr_first: true` runs an OCRmyPDF/Tesseract pass before extraction — no GPU needed.
 
 ## Convert any file to Markdown
 
@@ -131,6 +157,7 @@ backends the extension auto-detects:
 | Backend | Unlocks |
 |---|---|
 | **Python** (PyMuPDF / pikepdf / OCRmyPDF / pymupdf4llm) | extraction, redaction, sanitize, forms, encryption, OCR, PDF/A, info |
+| **Marker** (Surya OCR + layout) | AI OCR: scanned books / PDFs → clean Markdown; optional remote GPU render |
 | **Ghostscript / qpdf** | deep compression, linearization |
 | **Tesseract** | OCR text layer |
 | **LibreOffice** | Office ⇆ PDF conversion |

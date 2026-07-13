@@ -204,9 +204,9 @@ per-install id). Events are only sent when VS Code's global telemetry setting
 extension's analytics with `pdfStudio.telemetry.enabled`. Set
 `pdfStudio.telemetry.debug` to see exactly what is sent.
 
-## More from Lynx DI
+## About
 
-**Lynx File Content Search** is built by Lynx DI. Explore more at
+**Lynx PDF Studio** is built by Lynx DI. Explore more at
 [lynxdi.com](https://lynxdi.com).
 
 ## License

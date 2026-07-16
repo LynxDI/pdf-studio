@@ -2,193 +2,174 @@
 
 All notable changes to Lynx PDF Studio are documented here.
 
-## 0.10.3 — New form: USCIS I-765 (work permit / EAD) + Immigration category
-
-Adds a **9th** fillable form — **USCIS Form I-765**, Application for Employment
-Authorization (the work-permit / EAD application) — and a new **Immigration** category in
-the PDF Fill catalog. Full coverage of Part 1 (reason for applying) and Part 2 (legal name,
-mailing & physical addresses, A-Number, marital status, sex, SSN, country of citizenship,
-place & date of birth, passport/travel document, last U.S. entry, current status, and the
-eligibility-category code). Verified end-to-end with a copy-paste mock-up in the catalog.
-
-## 0.10.2 — New form: IRS 1099-NEC (fills all copies at once)
-
-Adds an **8th** fillable form — **IRS Form 1099-NEC** (Nonemployee Compensation). Full
-coverage of the payer block, recipient block, account number, and the numbered boxes
-(1a nonemployee comp, 1b–1d, 2–7 incl. the two-state rows). It's a multi-copy form, so
-this ships a small engine feature: **one set of values fills every copy** (Copy A / 1 / B /
-2) — enter the data once. The PDF Fill catalog shows a complete mock-up.
-
-> **Note:** the downloadable **Copy A** (black ink) is *informational only* — the IRS
-> can't accept it on paper. File by **e-file** or the official scannable **red-ink** form;
-> print **Copy B/C** for the recipient. (Surfaced in the form's catalog doc.)
-
-## 0.10.1 — New form: IRS W-7 (ITIN application)
-
-Adds a **7th** fillable form — **IRS Form W-7**, the application for an Individual
-Taxpayer Identification Number. Full single-page coverage: application type (new/renew),
-reason for applying (a–h), name, mailing & foreign addresses, birth information, sex,
-country of citizenship, identification documents (passport/license/USCIS), previous
-ITIN/IRSN, and college/company details. Dates land correctly in the form's comb boxes.
-Fill it from `people.yaml` or inline — the **PDF Fill** catalog shows a complete mock-up.
-
-## 0.10.0 — PDF→SVG, viewer preferences, faster repeat searches
-
-Gaps closed after a review of other PDF toolkits:
-
-- **`render_pages` → SVG.** `format: svg` exports each page as **vector** graphics —
-  infinite zoom, tiny files, no DPI to pick (PNG/JPG still the default). `text_as_path`
-  keeps glyphs exact without the font, or emit selectable `<text>`.
-- **`set_view_preferences` — control how a PDF opens.** Page layout (e.g. `TwoPageLeft`
-  for a book spread), open mode (`FullScreen` for a kiosk/presentation, `UseOutlines` to
-  reveal bookmarks), initial page + zoom (`fit` / `fit-width` / a percent), and window
-  chrome (hide toolbar/menubar, fit/center window, show doc title).
-- **Semantic search caches embeddings.** A repeat `semantic_search` on the same PDF now
-  reuses the document's chunk embeddings (in the gitignored `.pdf-cache/`), so only the new
-  query is embedded — subsequent searches are near-instant. `no_cache: true` opts out.
-
-## 0.9.1 — Agent-map recipe for semantic search
-
-The generated agent map (CLAUDE.md / AGENTS.md / GEMINI.md) now teaches coding agents
-the **`semantic_search`** recipe — ask a PDF a question, run `ocr` first for scans, tune
-`top_k`/`min_score` — so an agent can author it from a plain-English request.
-
-## 0.9.0 — Semantic search, cleaner text extraction, page flip
-
-**72 operations.** New capabilities:
-
-- **`semantic_search` — ask your PDF a question.** Find passages by *meaning*, not
-  keywords: a natural-language query returns the closest passages, ranked, **with page
-  numbers**. It embeds the document with a **local** model (`nomic-embed-text` via Ollama
-  by default), so nothing leaves your machine. Behind the `pdfStudio.allowAiRequests`
-  setting; scanned PDF? run `ocr` first.
-- **`extract_text` cleanup.** `clean: true` (or the individual `remove_headers_footers` /
-  `fix_hyphenation` / `reflow` toggles) strips running headers/footers, rejoins
-  hyphen-split words, and reflows hard-wrapped lines back into paragraphs — a big
-  readability win on OCR'd or hard-wrapped documents. `page_markers: true` labels pages.
-- **`flip_pages`.** Mirror pages horizontally or vertically — a true flip, not a rotation
-  (for scans fed through a duplex feeder backwards, or transfer prints).
-- **Security — HTML sanitized before print.** `html_to_pdf` / `markdown_to_pdf` /
-  `url_to_pdf` / `eml_to_pdf` now strip `<script>`, `<iframe>`, event handlers,
-  `javascript:` URLs, forms, and meta-refresh from the HTML before the browser renders it
-  — layout/CSS/images are preserved. Complements the sandbox-on hardening from 0.7.9.
-  (`sanitize: false` opts out for fully trusted HTML.)
-
-## 0.8.0 — Programmable PDFs: fill forms, redact, compare, convert, automate
+## 0.17.3 — The whole form lifecycle: make one, fill one, read them all back
 
 Lynx PDF Studio turns PDFs into **programmable build artifacts**: you edit an
-**OpenPDF Workflow (OPW)** file — human-readable YAML — and a deterministic engine renders
-the result through a `parse → validate → optimize → plan → render` pipeline. The workflow is
-the source of truth; the PDF is a build artifact; **git is the undo stack**. Everything runs
-**locally**. **70 operations across 13 categories.**
+**OpenPDF Workflow (OPW)** file — human-readable YAML — and a deterministic engine renders the
+result through a `parse → validate → optimize → plan → render` pipeline. The workflow is the
+source of truth; the PDF is a build artifact; **git is the undo stack**. Everything runs
+**locally**. **79 operations across thirteen categories.**
 
-### Fill PDF forms — real government & tax forms, filled
+This release closes the loop on forms. You can now **build** a fillable PDF from a Word
+document, **fill** it (or any of 12 real government forms) from your own records, and **read**
+a stack of completed ones back into a spreadsheet — all on your machine, nothing uploaded.
 
-- **`fill_form` — fill a real form without knowing its field names.** A per-form pack maps
-  friendly keys to the PDF's actual AcroForm fields, handling the hard parts automatically:
-  shared-name **radio groups** (`Sex → M/F`), **split** fields (SSN across three boxes, dates
-  into M/D/Y), **dropdowns**, single-field date masks, and comb/`maxlen` truncation. Seeded
-  with **6 forms across 3 categories** — DS-11 & DS-82 (passport), Form 1040 & W-9 (tax), W-4
-  & I-9 (employment): `fill_form: { form: ds11, people: people.yaml, person: me }`.
-- **Deep form coverage.** The **DS-11** passport application maps the **full form** (63
-  fields) — applicant, both **parents**, **spouse** (via `relations.spouse`), marriage and
-  **prior-passport history** (ever-applied, most-recent book/card name + status), occupation,
-  travel plans, permanent address, and the complete emergency-contact block. Dates are
-  **normalized to `MM/DD/YYYY`** however you type them, and a field can declare a `default`
-  (DS-11's "Countries to be visited" auto-fills **none** when you leave it blank).
-- **Correct, print-ready output.** Filled boxes show the form's own **check mark** (✓) on
-  every ticked box, and filled government forms now **render identically in every viewer**.
-  These forms are XFA-based, so `fill_form` drops the XFA layer and relies on the appearance
-  streams it generates — fixing the classic **spaces-shown-as-`&`** corruption. It also
-  **suggests `flatten: true`** to bake a locked, print-ready final. Add
-  **`extract_pages`** to keep only the pages you submit (e.g. drop a form's instruction pages).
-- **Two ways to supply data.** Draw from shared records (**`people:` + `person:`**) so one
-  file fills many forms — or put **everything inline under `values:`** for a self-contained,
-  copy-paste workflow. Explicit `values` always win over a record.
-- **People / records — enter once, fill many.** Personal data lives in one shared, **local,
-  auto-gitignored `people.yaml`** holding many persons linked by `relations` (spouse, parents,
-  dependents). Each fill picks a `person`; forms that need relatives pull them by role. The
-  same file fills every form — a household today, a business's patients/clients tomorrow.
-- **PDF Fill catalog.** A **PDF Fill** node in the Documentation sidebar lists supported forms
-  by category; each opens a field reference plus a **complete, self-contained mock-up
-  workflow** you can copy, swap in your details, and Render. Data-driven, so new packs appear
-  automatically.
-- **Preview, sign, lock.** `preview: true` reports exactly what will be filled before you
-  commit; `signature: { image, field }` stamps a signature; `flatten: true` bakes a locked,
-  print-ready final. Default output stays **editable** for review.
-- **Extensible** — a new form is a drop-in JSON pack (a `harvest-form` tool stubs it from any
-  blank PDF), and a pack can ship a fully-worked `example`. Packs carry a field snapshot, so
-  filling a changed PDF warns about a possible **form-revision mismatch**.
+### Start here — a Get Started walkthrough
 
-### Redaction you can trust
+- **Help → Get Started → Lynx PDF Studio.** Four steps, each one command: render a PDF from a
+  workflow · fill a real government form from your records · turn a Word doc into a fillable
+  PDF and read the answers back as a CSV · light up the optional backends.
 
-- **`redact` / `auto_redact` that truly delete.** A plain black box in most apps leaves the
-  text underneath extractable; ours removes the content. Match by exact `text`, named PII
-  **`patterns`** (`ssn`, `email`, `phone`, `credit_card`, `ein`, `ipv4`, `iban`), or custom
-  `regex`; `ignore_case` / `whole_word` for control. **`rasterize: true`** flattens to an
-  image-only PDF so nothing hidden (text layer, metadata, off-page content) survives —
-  the safest way to share. `preview: true` lists every match first.
+### Make a form — `create_form`
 
-### Compare, convert, and read
+Every fillable form used to be one *someone else* authored. Now you make your own: write the
+document in **Word** (or Markdown/HTML), type a marker where each field belongs, and get a real
+AcroForm PDF. Word controls the layout; the fields are injected after conversion — so the same
+operation works for Markdown and HTML too, and there's no OOXML parsing anywhere.
 
-- **`compare_pdfs`.** Page-aligned text diff (an inserted/deleted page is reported as
-  added/removed, not a cascade of "changed") plus a precise visual diff. `side_by_side: true`
-  assembles one shareable `diff.pdf`; `tolerance` ignores anti-aliasing noise.
-- **Convert to/from PDF.** Office (docx/xlsx/pptx), HTML, Markdown, URL, `.eml`, and images
-  **to** PDF; PDF **to** DOCX/PPTX/XLSX/HTML/Markdown. **`pdf_to_epub`** builds a reflowable
-  **EPUB for Kindle** (Calibre when installed, else a bundled text-to-EPUB builder).
-- **`split_invoices`.** Split a multi-invoice PDF into one file per invoice (page-counter
-  resets, header keywords, invoice-number changes; `detect: ai` for irregular bundles), each
-  named from the detected number/vendor/date, plus a `_manifest.csv`.
+```yaml
+inputs:  [onboarding.docx]
+operations:
+  - office_to_pdf: {}
+  - create_form: { debug: true }
+output:  { file: output/onboarding-fillable.pdf }
+```
 
-### PDF Intelligence (AI) — private by default
+- **That's the whole config.** Tags are type names — `[[text]]`, `[[check]]`, `[[date]]`,
+  `[[money]]`, `[[sign]]` — used as often as you like. You never invent a unique name: they're
+  numbered in reading order (`checkbox_01`, `text_03`…), so tagging a 100-checkbox intake form
+  is copy-paste. Fields **size themselves to their table cell** and get a visible border.
+- **text · date · money · number · phone · ssn · zip · checkbox · dropdown · listbox ·
+  signature.** A typed field is a plain box with a **tooltip** stating what it wants and a
+  **length cap** — both work in every viewer and cannot fail. **A generated form contains no
+  JavaScript**: a PDF can only police typing with JS, which Chrome/Edge/Preview mostly ignore
+  and our own `sanitize` strips — while a picture validator will reject a date you typed
+  correctly and throw it away. Validate in the pipeline instead, where nothing can be destroyed.
+- **A generated codebook.** `form-map.json` records the text printed beside every field
+  (`"near": "I/We would like any REFUND electronically deposited…"`), so you always know which
+  `checkbox_47` is which question. `debug: true` outlines every field so you can see where they
+  landed; `preview: true` dry-runs and writes no PDF.
+- **It fails loudly rather than shipping a broken form.** A marker too long for its column is
+  *clipped* by the renderer — a naive tool then creates no field **and** bakes a mangled
+  `[[emplo` into the page while reporting success. The run stops and names the tag. Duplicate
+  tags, undeclared tags, rotated pages, off-page and overlapping fields are all reported.
+- **`[[sign]]` creates a real signature field** — hand it to `sign` (pyHanko) for a complete
+  local signing pipeline, no cloud round-trip.
+- Verified on a real 4-page accounting-firm tax worksheet: **117 fields** (95 checkboxes, 22
+  text) across Yes/No tables, checklists, a quarterly-payments grid and contact rows — layout,
+  logo and typography untouched.
 
-- **`summarize` & `translate`.** Run the PDF's text through a language model for a Markdown
-  summary or translation; `translate` with `layout: true` renders a **translated PDF that
-  keeps the original layout** (Latin + CJK fonts). Local via Ollama unless you set
-  `ANTHROPIC_API_KEY`; opt-in behind `pdfStudio.allowAiRequests`.
-- **AI OCR for scans (Marker)** with an optional **remote-GPU offload** over SSH.
+### Fill a form — `fill_form`, now with 12 forms and a spreadsheet
 
-### Assemble, edit & automate
+- **12 real forms across 4 categories**, mapped to their actual field names so you don't have to
+  know that a W-9's name box is `topmostSubform[0].Page1[0].f1_01[0]`: **Passport** (DS-11,
+  DS-82) · **Tax** (1040, **Schedule C**, **Schedule SE**, W-9, **W-8BEN**, W-4, W-7 ITIN,
+  1099-NEC) · **Employment** (I-9) · **Immigration** (I-765 EAD). The freelancer set chains:
+  1099-NEC → Schedule C → Schedule SE fills end to end from one set of values, and W-9/W-8BEN
+  are the U.S. and foreign-vendor counterparts you hand a payer.
+- **Records from a spreadsheet.** A household has a `people.yaml`; a business has a CSV already
+  exported from a system that holds the data. `records: vendors.csv` now works — one row per
+  record, column headers as the field keys. Headers normalise the way humans title them
+  (`First Name` → `first_name`), dotted headers nest so a flat sheet carries the address block
+  (`address.city`), and RFC 4180 quoting, embedded newlines and Excel's BOM are handled.
+- The pack handles the hard parts: shared-name **radio groups**, **split** fields (SSN across
+  boxes, dates into M/D/Y), **dropdowns**, date masks, comb/`maxlen` truncation, and
+  **multi-copy** forms (1099-NEC's four copies fill from one set of values).
+- **Form packs record their provenance** — `source_url` + `captured`, the issuer's canonical URL
+  for the blank and the date the field snapshot was taken, so a new revision can be diffed
+  against what a pack was built from.
 
-- Merge, split, delete/reorder/rotate/insert/extract pages, crop, scale, `n_up`, booklet,
-  poster, watermark, stamp, **`annotate`** (text/highlight/note/shapes/image), metadata,
-  bookmarks, tables, page numbers, compress, linearize, repair, encrypt/decrypt, permissions,
-  PDF/A, OCR, and digital signatures (`sign` / `validate_signature` / `timestamp`).
-- **Output can be a file or a folder**; **batch** a whole workflow over many files with a glob
-  in `inputs` (`*`, `?`, `**`) → per-input outputs (`output.folder` or a templated
-  `output.file`), one bad file skipped and reported.
+### Read them back — `extract_form`
+
+- **The inverse of `fill_form`.** Point at one PDF or a whole folder (`inputs: ["intake/*.pdf"]`
+  — all matches fold into **one table**) and get structured data out. Each PDF is auto-identified
+  from its field signature, so a folder of mixed forms works.
+- **JSON *and* CSV, every run.** Per-form JSON plus a combined `forms.json`, and **one CSV per
+  form type** (`w9.csv`, `f1040.csv`) — unrelated schemas never share a table. A CSV's columns
+  come from the pack in the form's own field order, so the **header is stable across runs** and
+  a downstream table built once keeps working.
+- **A form you built with `create_form` needs no pack at all** — nothing matches it, so its
+  fields are read **raw** (field name → value) into `raw.csv`, which is exactly right because
+  its field names *are* the keys. Template → fillable → filled → CSV, with nothing authored.
+- **Bulk with stop/resume.** `forms.json` doubles as a ledger keyed by **content hash**: drop new
+  files in and run again, and only the new or changed forms are read. Walk a 500-form backlog in
+  as many sittings as you like.
+
+### Read, search & understand
+
+- **`semantic_search` — ask a PDF a question.** Find passages by *meaning*, not keywords, ranked
+  **with page numbers**. Embeds with a **local** model (`nomic-embed-text` via Ollama); a repeat
+  search reuses cached embeddings. Nothing leaves your machine.
+- **`summarize` & `translate`** via a local LLM by default, or Claude with an API key;
+  `translate: { layout: true }` keeps the layout. Opt-in behind `pdfStudio.allowAiRequests`.
+- **Cleaner text extraction** (`extract_text: { clean: true }` strips running headers/footers,
+  rejoins hyphen-split words, reflows hard wraps) and **AI OCR for scans (Marker)** with an
+  optional **remote-GPU offload** over SSH.
+
+### Dark mode & appearance
+
+- **`recolor: { mode: dark }`** — a real dark mode for reading: light-on-dark text, while
+  embedded **photos and logos stay normal** instead of becoming negatives. `invert` and
+  `grayscale` too. **`scanner_effect`** makes a born-digital PDF look scanned.
+
+### Redaction & security inspection
+
+- **`redact` / `auto_redact` that truly delete.** Match by exact `text`, named PII **`patterns`**
+  (`ssn`, `email`, `phone`, `credit_card`, `ein`, `ipv4`, `iban`), or custom `regex`.
+  **`rasterize: true`** flattens to an image-only PDF so nothing hidden survives; `preview: true`
+  lists every match first.
+- **`extract_js`** reports embedded JavaScript for inspection; **`sanitize`** strips JS,
+  metadata, embedded files, and links.
+
+### Compare, convert & assemble
+
+- **`compare_pdfs`** — page-aligned text diff plus a precise visual diff; `side_by_side: true`
+  assembles one shareable `diff.pdf`.
+- **Convert to/from PDF.** Office (docx/xlsx/pptx), HTML, Markdown, URL, `.eml`, EPUB, and images
+  (PNG/JPEG/WEBP/TIFF/GIF/BMP/SVG, HEIC with pillow-heif) → PDF; PDF →
+  DOCX/PPTX/XLSX/HTML/Markdown/SVG/EPUB.
+- **`split_invoices`** — one file per invoice, named from the detected number/vendor/date.
+- Merge, split, delete/reorder/rotate/flip/insert/extract pages, crop, scale, `n_up`, booklet,
+  poster, watermark, stamp, `annotate`, metadata, bookmarks, tables, page numbers,
+  `set_view_preferences`, compress, linearize, repair, PDF/A, OCR, encrypt/decrypt, permissions,
+  and digital signatures (`sign` / `validate_signature` / `timestamp`).
+- **Batch** a whole workflow over many files with a glob in `inputs` → per-input outputs, one bad
+  file skipped and reported. An op can declare `consumesAllInputs`, so a glob feeds **one** run
+  instead of running once per file — the mechanism behind `extract_form`'s single table.
 
 ### Rendering, UI & backends
 
-- **Bundled pdf-lib** renders layout/stamps/watermarks/metadata with **zero dependencies**;
-  **live pdf.js preview** re-renders on save. Guided **Add Operation**, a searchable
-  **Operations** panel, per-operation **Documentation** pages, and a color-coded
-  **Dependencies** view for optional backends (Python/PyMuPDF, Ghostscript/qpdf, Tesseract,
-  LibreOffice, Chrome/Edge, pyHanko, Calibre).
+- **Bundled pdf-lib** renders layout/stamps/watermarks/metadata and PNG/JPEG→PDF with **zero
+  dependencies**; **live pdf.js preview** re-renders on save. Guided **Add Operation**, a
+  searchable **Operations** panel, per-operation **Documentation**, a **PDF Fill** catalog, and a
+  colour-coded **Dependencies** view for optional backends (Python/PyMuPDF, Ghostscript/qpdf,
+  Tesseract, LibreOffice, Chrome/Edge, pyHanko, Marker, Calibre).
 
 ### Agent-native (MCP)
 
-- A local **MCP server** (`pdf-studio`) exposes deterministic OPW helpers — `opw_validate`,
-  `opw_compile`, `opw_optimize`, `opw_diff`, `opw_scaffold`, `opw_operations` — plus form
-  tools `form_list`, `form_fields`, `form_people`, `form_scaffold`. It **never renders or
-  writes files**; execution stays local, and the PDF never leaves your machine.
-- A generated **agent map** (`CLAUDE.md` / `AGENTS.md` / `GEMINI.md`) teaches a coding agent
-  the OPW vocabulary and ready recipes (redact-and-share, fill-a-form, batch) so it can author
-  a workflow straight from a plain-English request.
+- A local **MCP server** exposes deterministic OPW helpers (`opw_validate`, `opw_compile`,
+  `opw_optimize`, `opw_diff`, `opw_scaffold`, `opw_operations`) plus form tools (`form_list`,
+  `form_fields`, `form_people`, `form_scaffold`). It **never renders or writes files**.
+- A generated **agent map** (`CLAUDE.md` / `AGENTS.md` / `GEMINI.md`) teaches a coding agent the
+  OPW vocabulary and ready recipes — redact-and-share, fill-a-form, make-a-form, ask-a-PDF, batch.
 
 ### Security & privacy
 
-- Untrusted-workflow hardening: input/output/asset paths — **including the records/`people`
-  file**, `output.folder`, and batch globs — are confined to the project (no `..`, absolute,
-  drive-relative, or UNC escape); the Python interpreter is pinned; the system browser renders
-  HTML/URL→PDF with its **security sandbox on**; Ghostscript runs with `-dSAFER`;
-  `pythonPath` / `allowRemoteRender` / `allowAiRequests` are machine-scoped; webviews use a
-  strict nonce CSP; `encrypt`/`decrypt`/`sign` secrets use `${ENV_VAR}` and stay out of files.
-- **Anonymous, opt-out telemetry** (which features/operations are used) keyed only by
-  `machineId` — **no** paths, contents, names, or personal data; honors VS Code's telemetry
-  setting plus `pdfStudio.telemetry.enabled`.
-- Hardened against a **four-part security review** (path confinement, process/secret handling,
-  data egress, webview/PII) — see `docs/security-review.md`.
+- **Untrusted-workflow hardening.** Input/output/asset paths (including the records file,
+  `output.folder`, and batch globs) are confined to the project — no `..`/absolute/UNC escape;
+  the Python interpreter is pinned; `pythonPath` / `allowRemoteRender` / `allowAiRequests` are
+  machine-scoped; webviews use a strict nonce CSP; `encrypt`/`decrypt`/`sign` secrets use
+  `${ENV_VAR}` and never touch a command line, log, or output. DPI is clamped so a crafted
+  workflow can't request a memory-exhausting render. Hardened against a **four-part security
+  review** (see `docs/security-review.md`).
+- **Safe rendering of untrusted content.** HTML→PDF keeps the system browser's exploit sandbox
+  **on** and strips `<script>`/embeds/handlers first; **`eml_to_pdf` blocks remote images by
+  default** so an email can't phone home with a tracking pixel.
+- **Private by design.** New projects auto-gitignore `people.yaml`, `*.people.yaml` and the
+  embedding cache, and seed a `.gitattributes` (`*.pdf binary`) so git knows what it's storing.
+  AI ops stay local (Ollama) unless you opt in. **Anonymous, opt-out telemetry** keyed only by
+  `machineId` — **no** paths, contents, names, or personal data.
 
-Verified end-to-end by a real VS Code integration harness (`npm run verify`).
+Verified end-to-end by a real VS Code integration harness (`npm run verify`): 145 engine tests,
+a 25-test form-creation suite, and a live VS Code that installs the built extension and drives
+its commands.

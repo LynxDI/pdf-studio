@@ -2,7 +2,7 @@
 
 All notable changes to Lynx PDF Studio are documented here.
 
-## 0.17.3 — The whole form lifecycle: make one, fill one, read them all back
+## 0.17.4 — The whole form lifecycle: make one, fill one, read them all back
 
 Lynx PDF Studio turns PDFs into **programmable build artifacts**: you edit an
 **OpenPDF Workflow (OPW)** file — human-readable YAML — and a deterministic engine renders the

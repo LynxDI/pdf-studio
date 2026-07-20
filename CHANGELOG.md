@@ -2,6 +2,28 @@
 
 All notable changes to Lynx PDF Studio are documented here.
 
+## 0.17.5 — `replace_text`: find-and-replace, in place
+
+The workflow-shaped answer to "can it edit a PDF?" — no canvas, one line per replacement,
+batchable over a folder:
+
+```yaml
+- replace_text: { find: "ACME Corp", replace: "Initech LLC" }
+```
+
+- The matched text is **truly deleted** (redaction, not a cover-up), and the replacement lands
+  on the **original baseline in the original size and colour**. `ignore_case`, `whole_word`,
+  and `pages` refine the match; `replace: ""` deletes; `preview: true` reports every match and
+  changes nothing.
+- **Font honesty:** an embedded, subsetted original font cannot render *new* glyphs, so the
+  replacement uses the closest base-14 look — serif originals map to Times, monospace to
+  Courier, everything else to Helvetica, keeping bold/italic (read from the span's own flags,
+  which are more reliable than subset font names). Use it for utility edits — re-dating a
+  template, fixing a recurring typo, swapping an entity name — not typography-preserving ones.
+- Matching is per **line** and literal: text that wraps across lines won't match, and the note
+  says so when nothing is found. A replacement much wider than what it replaced is warned
+  about, with the overflow measured in points.
+
 ## 0.17.4 — The whole form lifecycle: make one, fill one, read them all back
 
 Lynx PDF Studio turns PDFs into **programmable build artifacts**: you edit an

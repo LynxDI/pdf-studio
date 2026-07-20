@@ -11,7 +11,7 @@
 
 <p align="center">
   <a href="https://marketplace.visualstudio.com/items?itemName=LynxDI.lynxdi-pdf-studio"><img src="https://vsmarketplacebadges.dev/version-short/LynxDI.lynxdi-pdf-studio.svg?color=2dd4bf&label=Marketplace&logo=visualstudiocode" alt="Marketplace"></a>
-  <img src="https://img.shields.io/badge/operations-79-2dd4bf" alt="79 operations">
+  <img src="https://img.shields.io/badge/operations-80-2dd4bf" alt="80 operations">
   <img src="https://img.shields.io/badge/execution-local--first-3fb950" alt="Local-first execution">
   <img src="https://img.shields.io/badge/agent--ready-MCP-4fc1ff" alt="MCP">
 </p>
@@ -128,7 +128,7 @@ during.
 <tr>
 <td width="52%" valign="top">
 
-**Searchable Operations panel** — all **79 operations** grouped by category. Search,
+**Searchable Operations panel** — all **80 operations** grouped by category. Search,
 click to open the docs, or ＋ to add one to the active workflow.
 
 **Guided Add Operation** — pick an operation and fill its parameters with native
@@ -152,12 +152,12 @@ backend shows green when ready, amber with a one-click install hint when not.
   <img src="https://raw.githubusercontent.com/LynxDI/pdf-studio/main/media/guided-add.png" alt="Guided Add Operation with native dropdowns" width="560" />
 </p>
 
-## 79 operations, thirteen categories
+## 80 operations, thirteen categories
 
 Every operation is one line in the `operations:` list. A quick reference:
 
 <details>
-<summary><strong>See all 79 operations by category</strong></summary>
+<summary><strong>See all 80 operations by category</strong></summary>
 
 **Pages & layout** (15)
 - `merge` — concatenate all inputs into one PDF
@@ -193,12 +193,13 @@ Every operation is one line in the `operations:` list. A quick reference:
 - `compare_pdfs` — page-aligned text + visual diff of two PDFs
 - `set_view_preferences` — control how a PDF opens (layout, full-screen, zoom)
 
-**Text, image & Markdown extraction** (5)
+**Text, image & Markdown extraction** (6)
 - `extract_text` — extract page text (optional header/footer + reflow cleanup)
 - `extract_markdown` — extract content as Markdown (tables included)
 - `extract_images` — extract embedded images
 - `render_pages` — render pages to PNG/JPG or vector SVG
 - `replace_image` — replace an embedded image object
+- `replace_text` — find text and replace it in place (same position, size, and color)
 
 **Redaction & cleanup** (8)
 - `redact` — permanently remove content in regions

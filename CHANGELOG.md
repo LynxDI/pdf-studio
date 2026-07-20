@@ -2,6 +2,13 @@
 
 All notable changes to Lynx PDF Studio are documented here.
 
+## 0.17.6 — Docs: the Dependencies table tells the whole truth
+
+The README section formerly titled "Execution backends" is now **Dependencies** — matching what
+the product itself calls that panel — and the table gains the row it was missing:
+**MarkItDown** (any file — Word, Excel, PowerPoint, HTML, EPUB, CSV, images — to Markdown),
+which the extension has probed and used all along. Same fix in the Get Started walkthrough.
+
 ## 0.17.5 — `replace_text`: find-and-replace, in place
 
 The workflow-shaped answer to "can it edit a PDF?" — no canvas, one line per replacement,

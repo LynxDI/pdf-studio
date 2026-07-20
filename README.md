@@ -103,7 +103,7 @@ Diff it, revert it, review it in a PR — it's just code.
   teaches it your project. The agent writes the YAML; **you review the diff before anything
   runs**, and a fixed engine does the actual work.
 - **Batteries included, nothing else required.** The bundled engine renders many operations with zero
-  external dependencies; advanced ones light up when their optional backend is present.
+  external dependencies; advanced ones light up when their optional dependency is present.
 
 ## Getting started
 
@@ -118,7 +118,7 @@ Or do it by hand:
 
 Nothing else to install to start: the bundled engine handles merge, pages, watermarks, stamps and
 metadata on its own. Forms, OCR, redaction and Office conversion light up when their optional
-backend is present — the **Dependencies** view shows what you have and what each one unlocks,
+dependency is present — the **Dependencies** view shows what you have and what each one unlocks,
 and `opw_compile` reports an operation as *unsatisfied* before you render rather than failing
 during.
 
@@ -139,7 +139,7 @@ raw YAML.
 table, and a complete, copy-pasteable example workflow.
 
 **Live preview & color-coded Dependencies** — the output re-renders on save; every
-backend shows green when ready, amber with a one-click install hint when not.
+dependency shows green when ready, amber with a one-click install hint when not.
 
 </td>
 <td width="48%" valign="top">
@@ -427,25 +427,27 @@ Beyond PDFs: right-click **any** file in the Explorer → **Convert File to
 Markdown**, or run it from the palette. Powered by Microsoft **MarkItDown**, it
 turns Word / PowerPoint / Excel / HTML / EPUB / CSV / images and more into clean
 Markdown — handy for docs, diffs, and LLM ingestion. (Install MarkItDown when
-prompted; it's an optional backend.)
+prompted; it's an optional dependency.)
 
-## Execution backends
+## Dependencies
 
-The bundled **pdf-lib** backend runs page layout, stamps, watermarks, metadata, and
-image→PDF with **zero external dependencies**. Advanced operations use optional
-backends the extension auto-detects:
+The bundled **pdf-lib** engine runs page layout, stamps, watermarks, metadata, and
+image→PDF with **nothing to install**. Everything heavier uses an optional, free
+dependency the extension auto-detects — the colour-coded **Dependencies** view shows
+what you have, what each one unlocks, and a one-click install hint for what you don't:
 
-| Backend | Unlocks |
+| Dependency | Unlocks |
 |---|---|
 | **Python** (PyMuPDF / pikepdf / OCRmyPDF / pymupdf4llm) | extraction, redaction, sanitize, forms, encryption, OCR, PDF/A, info |
 | **Marker** (Surya OCR + layout) | AI OCR: scanned books / PDFs → clean Markdown; optional remote GPU render |
+| **MarkItDown** | Convert any file — Word, Excel, PowerPoint, HTML, EPUB, CSV, images — to Markdown |
 | **Ghostscript / qpdf** | deep compression, linearization |
 | **Tesseract** | OCR text layer |
 | **LibreOffice** | Office ⇆ PDF conversion |
 | **Chrome / Edge** | high-fidelity Markdown / HTML / URL → PDF |
 | **pyHanko** | digital signatures, timestamps |
 
-Until a backend is installed, `opw_compile` reports its operations as
+Until a dependency is installed, `opw_compile` reports its operations as
 `unsatisfied` — nothing fails silently.
 
 ## Agent-native (MCP)

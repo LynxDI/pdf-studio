@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>All 80 operations — Lynx PDF Studio</title>
+  <meta name="description" content="The full OpenPDF Workflow vocabulary: 80 PDF operations across 13 categories — merge, split, watermark, fill forms, redact, OCR, convert, sign — each with usage notes and a ready-to-paste example.">
+  <link rel="canonical" href="https://pdf.lynxdi.com/operations/">
+  <link rel="icon" href="../favicon.ico" sizes="48x48">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pdf.lynxdi.com/operations/">
+  <meta property="og:site_name" content="Lynx PDF Studio">
+  <meta property="og:title" content="All 80 operations — Lynx PDF Studio">
+  <meta property="og:description" content="The full OpenPDF Workflow vocabulary: 80 PDF operations across 13 categories, each with usage notes and a ready-to-paste example.">
+  <meta property="og:image" content="https://pdf.lynxdi.com/assets/img/og-image.png">
+  <meta property="og:image:alt" content="Lynx PDF Studio — Never do the same document twice. Never upload one once.">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="../"><img src="../assets/img/logo.png" alt="" width="256" height="256">Lynx&nbsp;<span class="accent">PDF Studio</span></a>
+    <nav class="nav-links" aria-label="Site">
+      <a href="../#why">Why</a>
+      <a href="../#forms">Forms</a>
+      <a href="../#agents">Agents</a>
+      <a href="../trust/">Trust</a>
+      <a class="btn btn-primary" href="../#install">Install</a>
+    </nav>
+  </div>
+</header>
+
+<main class="prose">
+  <h1>80 operations, one grammar</h1>
+  <p>Every operation is one line in a workflow file — the same declarative shape from
+     merge to redaction to form filling. Each entry below links its usage and a
+     ready-to-paste example. (Agents: this reference is also available as
+     <a href="../operations.md">plain Markdown</a>.)</p>
+  <nav aria-label="Categories">
+    <ul>
+      <li><a href="#pages-layout">Pages &amp; layout</a> <span class="count">(15)</span></li>
+      <li><a href="#stamps-overlays">Stamps &amp; overlays</a> <span class="count">(5)</span></li>
+      <li><a href="#metadata-bookmarks-tables">Metadata, bookmarks &amp; tables</a> <span class="count">(8)</span></li>
+      <li><a href="#text-image-markdown-extraction">Text, image &amp; Markdown extraction</a> <span class="count">(6)</span></li>
+      <li><a href="#redaction-cleanup">Redaction &amp; cleanup</a> <span class="count">(8)</span></li>
+      <li><a href="#forms">Forms</a> <span class="count">(6)</span></li>
+      <li><a href="#attachments">Attachments</a> <span class="count">(2)</span></li>
+      <li><a href="#encryption-permissions">Encryption &amp; permissions</a> <span class="count">(3)</span></li>
+      <li><a href="#optimize-repair-archival">Optimize, repair &amp; archival</a> <span class="count">(8)</span></li>
+      <li><a href="#convert-to-pdf">Convert to PDF</a> <span class="count">(7)</span></li>
+      <li><a href="#convert-from-pdf">Convert from PDF</a> <span class="count">(6)</span></li>
+      <li><a href="#document-intelligence-ai">Document intelligence (AI)</a> <span class="count">(3)</span></li>
+      <li><a href="#digital-signatures">Digital signatures</a> <span class="count">(3)</span></li>
+    </ul>
+  </nav>
+
+<h2 id="pages-layout">Pages &amp; layout</h2>
+<h3 id="merge"><code>merge</code></h3>
+<p>Concatenates every file in the workflow's <code>inputs</code> (in order) into one PDF. List 2+ inputs; no params.</p>
+<pre><code>- merge: {}</code></pre>
+<h3 id="split"><code>split</code></h3>
+<p>Splits the working PDF into several output files — by explicit <code>ranges</code> or <code>every</code> N pages.</p>
+<pre><code>- split: { ranges: ["1-1", "2-12", "13-40"] }</code></pre>
+<h3 id="split_invoices"><code>split_invoices</code></h3>
+<p>Splits a PDF that concatenates many invoices/receipts into one PDF per invoice. Set <code>output.folder</code> (or the op's <code>to</code> param) as the destination. Detects boundaries from the page text ("Page 1 of N" resets, invoice-number changes, header keywords) and names each file from the detected invoice number/date/vendor via <code>name</code>. Scans: add <code>ocr_first: true</code>. Always writes a <code>_manifest.csv</code> (page ranges + metadata) so you can verify the split. Escape hatch: pass explicit <code>starts</code> (1-based page numbers).</p>
+<pre><code>- split_invoices: { name: "{invoice_number}" }</code></pre>
+<h3 id="delete_pages"><code>delete_pages</code></h3>
+<p>Removes the listed 1-based pages from the working PDF.</p>
+<pre><code>- delete_pages: { pages: [2, 7, 12] }</code></pre>
+<h3 id="reorder_pages"><code>reorder_pages</code></h3>
+<p>Reorders pages to the given 1-based permutation (every page appears once).</p>
+<pre><code>- reorder_pages: { order: [1, 4, 2, 3, 5] }</code></pre>
+<h3 id="rotate_pages"><code>rotate_pages</code></h3>
+<p>Rotates pages clockwise by a multiple of 90°. Omit <code>pages</code> to rotate all.</p>
+<pre><code>- rotate_pages: { pages: [3, 4], degrees: 90 }</code></pre>
+<h3 id="flip_pages"><code>flip_pages</code></h3>
+<p>Mirrors pages — a true flip, not a rotation. <code>direction: horizontal</code> (default) mirrors left↔right; <code>vertical</code> mirrors top↕bottom. Omit <code>pages</code> to flip the whole document. Useful for scans fed through a duplex feeder backwards, or for iron-on/transfer prints.</p>
+<pre><code>- flip_pages: { direction: horizontal, pages: [2, 4] }</code></pre>
+<h3 id="insert_blank"><code>insert_blank</code></h3>
+<p>Inserts a blank page before the 1-based position <code>at</code>. <code>size</code> copies a neighbor by default.</p>
+<pre><code>- insert_blank: { at: 2, size: Letter }</code></pre>
+<h3 id="extract_pages"><code>extract_pages</code></h3>
+<p>Keeps only the listed pages (drops the rest), in the order given.</p>
+<pre><code>- extract_pages: { pages: [1, 8, 9] }</code></pre>
+<h3 id="crop"><code>crop</code></h3>
+<p>Crops pages to a rectangle [x, y, width, height] in points (origin bottom-left). Omit <code>pages</code> for all.</p>
+<pre><code>- crop: { box: [72, 500, 468, 240], pages: [4] }</code></pre>
+<h3 id="scale_pages"><code>scale_pages</code></h3>
+<p>Resizes pages to a named <code>size</code> (A4/Letter/Legal) or by a <code>factor</code>, scaling the content to fit.</p>
+<pre><code>- scale_pages: { size: A4 }</code></pre>
+<h3 id="n_up"><code>n_up</code></h3>
+<p>Places <code>cols</code>×<code>rows</code> source pages onto each output page (e.g. 2×1 = two-up handouts).</p>
+<pre><code>- n_up: { cols: 2, rows: 2 }</code></pre>
+<h3 id="booklet"><code>booklet</code></h3>
+<p>Imposes pages 2-up in saddle-stitch order for folded printing (pads to a multiple of 4). No params.</p>
+<pre><code>- booklet: {}</code></pre>
+<h3 id="poster"><code>poster</code></h3>
+<p>Splits each page into a <code>rows</code>×<code>cols</code> grid of separate pages (in reading order). Use a large grid for poster printing, or **<code>rows: 1, cols: 2</code>** to halve a 2-up book scan back into single pages.</p>
+<pre><code>- poster: { rows: 1, cols: 2 }</code></pre>
+<h3 id="single_page"><code>single_page</code></h3>
+<p>Combines every page into one tall single page, stacked top-to-bottom. Optional <code>gap</code> adds blank space (points) between pages.</p>
+<pre><code>- single_page: { gap: 12 }</code></pre>
+
+<h2 id="stamps-overlays">Stamps &amp; overlays</h2>
+<h3 id="watermark"><code>watermark</code></h3>
+<p>Stamps a diagonal <code>text</code> (or <code>image</code>) watermark across pages. Image comes from a declared asset.</p>
+<pre><code>- watermark: { text: CONFIDENTIAL, opacity: 0.12, rotate: 45 }</code></pre>
+<h3 id="stamp"><code>stamp</code></h3>
+<p>Places positioned <code>text</code> or an <code>image</code> at (<code>x</code>, <code>y</code>) in points from bottom-left (not diagonal — that's watermark).</p>
+<pre><code>- stamp: { image: assets/paid-stamp.png, x: 400, y: 640, width: 120, opacity: 0.9, pages: [1] }</code></pre>
+<h3 id="annotate"><code>annotate</code></h3>
+<p>Adds a list of <code>annotations</code> to the PDF — free <code>text</code> boxes, text <code>highlight</code>s (by <code>find</code> text or <code>rect</code>), sticky <code>note</code>s, shapes (<code>rect</code>/<code>line</code>/<code>ellipse</code>) and <code>image</code>s. Each item names a <code>type</code>, a 1-based <code>page</code>, and a <code>rect [x,y,w,h]</code> or point <code>at [x,y]</code> in points, origin BOTTOM-LEFT (like crop/stamp). Colors are "#RRGGBB" or [r,g,b]. Invalid items are skipped.</p>
+<pre><code>- annotate: { annotations: [{ type: highlight, page: 1, find: "DRAFT", color: "#ffcc00" }] }</code></pre>
+<h3 id="add_page_numbers"><code>add_page_numbers</code></h3>
+<p>Stamps page numbers on every page. <code>format</code> uses {n} and {total}; <code>position</code> places them.</p>
+<pre><code>- add_page_numbers: { format: "Page {n} of {total}", position: bottom-right, start: 1, size: 9 }</code></pre>
+<h3 id="overlay"><code>overlay</code></h3>
+<p>Overlays another PDF's pages on top of the current document. <code>over</code> is a declared asset PDF.</p>
+<pre><code>- overlay: { over: assets/void-specimen-overlay.pdf, opacity: 0.35 }</code></pre>
+
+<h2 id="metadata-bookmarks-tables">Metadata, bookmarks &amp; tables</h2>
+<h3 id="set_metadata"><code>set_metadata</code></h3>
+<p>Sets document metadata. Provide any of title/author/subject/keywords/creator/producer.</p>
+<pre><code>- set_metadata: { title: "2024 Annual Report", author: "Acme Corporation", subject: "Fiscal Year 2024 Results", keywords: ["annual report", "finance", "FY2024"] }</code></pre>
+<h3 id="set_bookmarks"><code>set_bookmarks</code></h3>
+<p>Replaces the outline with a given list of { level, title, page } entries (page is 1-based).</p>
+<pre><code>- set_bookmarks: { bookmarks: [{ level: 1, title: Introduction, page: 1 }, { level: 1, title: Installation, page: 4 }, { level: 2, title: "System Requirements", page: 5 }, { level: 1, title: Troubleshooting, page: 12 }] }</code></pre>
+<h3 id="extract_bookmarks"><code>extract_bookmarks</code></h3>
+<p>Exports the outline/bookmarks to a JSON file (<code>to</code>). Does not change the PDF.</p>
+<pre><code>- extract_bookmarks: { to: output/textbook-outline.json }</code></pre>
+<h3 id="extract_fields"><code>extract_fields</code></h3>
+<p>Exports form fields (page/name/type/value) to a CSV file (<code>to</code>). Does not change the PDF.</p>
+<pre><code>- extract_fields: { to: output/w9-fields.csv }</code></pre>
+<h3 id="extract_tables"><code>extract_tables</code></h3>
+<p>Detects tables and writes each to a CSV under the <code>to</code> directory. Does not change the PDF.</p>
+<pre><code>- extract_tables: { to: output/statement-tables }</code></pre>
+<h3 id="pdf_info"><code>pdf_info</code></h3>
+<p>Writes a read-only report of the PDF — page count, per-page size/rotation, metadata, encryption, fonts, image/field/annotation counts — as JSON to <code>to</code>. Leaves the PDF unchanged.</p>
+<pre><code>- pdf_info: { to: output/report-info.json }</code></pre>
+<h3 id="compare_pdfs"><code>compare_pdfs</code></h3>
+<p>Compares the working document with a second PDF (<code>against</code>, a workflow-relative path) and writes a diff report + highlighted images to <code>output.folder</code>. Pages are ALIGNED first (by text), so an inserted/deleted page is reported as added/removed instead of shifting every later page. Writes <code>_report.md</code> (per-page unified text diff), <code>_summary.json</code> (the change set as data), and one <code>change_*.png</code> per changed/added/removed page. <code>mode: text</code> skips images; <code>dpi</code> sets image resolution. Add <code>side_by_side: true</code> for one shareable <code>diff.pdf</code> (each changed page shown base-vs-against with the changed side highlighted). <code>tolerance</code> (0-255) ignores anti-aliasing noise in the visual fallback.</p>
+<pre><code>- compare_pdfs: { against: input/contract-v2.pdf, side_by_side: true }</code></pre>
+<h3 id="set_view_preferences"><code>set_view_preferences</code></h3>
+<p>Controls how the PDF OPENS in a reader (not its content): <code>page_layout</code> (e.g. TwoPageLeft for a book spread), <code>page_mode</code> (FullScreen for a kiosk/presentation, UseOutlines to reveal bookmarks), <code>open_page</code> + <code>zoom</code> ("fit"/"fit-width"/a percent), and window chrome (hide_toolbar/menubar, fit_window, center_window, display_doc_title).</p>
+<pre><code>- set_view_preferences: { page_mode: FullScreen, page_layout: SinglePage, open_page: 1, zoom: fit }</code></pre>
+
+<h2 id="text-image-markdown-extraction">Text, image &amp; Markdown extraction</h2>
+<h3 id="extract_text"><code>extract_text</code></h3>
+<p>Extracts the PDF's text to a sidecar file (<code>to</code>). Does not change the PDF. Add <code>clean: true</code> to tidy the text: drop running headers/footers, rejoin hyphen-split words, and reflow hard-wrapped lines back into paragraphs (each pass can also be toggled on its own). <code>page_markers: true</code> labels each page.</p>
+<pre><code>- extract_text: { to: output/lease-text.txt, clean: true }</code></pre>
+<h3 id="extract_markdown"><code>extract_markdown</code></h3>
+<p>Extracts page content as Markdown (tables included) to <code>to</code>. <code>engine</code>: auto/pymupdf4llm/markitdown, or <code>marker</code> (Surya OCR + layout) for scanned books — best quality, but slow and needs the marker-pdf backend. <code>remote</code> ("user@host") offloads Marker to a GPU box over SSH — minutes on a 4090 vs hours on a CPU; requires the pdfStudio.allowRemoteRender setting.</p>
+<pre><code>- extract_markdown: { to: output/annual-report.md, engine: pymupdf4llm }</code></pre>
+<h3 id="extract_images"><code>extract_images</code></h3>
+<p>Extracts every embedded image to files under the <code>to</code> directory. Does not change the PDF.</p>
+<pre><code>- extract_images: { to: output/catalog-images }</code></pre>
+<h3 id="render_pages"><code>render_pages</code></h3>
+<p>Renders each page to a raster image (PNG/JPG) under <code>to</code> at <code>dpi</code>. Different from extract_images (embedded images). Set <code>format: svg</code> for vector output (infinite zoom, tiny files, no DPI needed).</p>
+<pre><code>- render_pages: { to: output/deck-thumbnails, dpi: 200, format: png }</code></pre>
+<h3 id="replace_image"><code>replace_image</code></h3>
+<p>Replaces an embedded image. <code>selector</code> picks the target ({ page, object_name }); <code>image</code> is the replacement path.</p>
+<pre><code>- replace_image: { selector: { page: 1, object_name: Im0 }, image: assets/new-logo.png }</code></pre>
+<h3 id="replace_text"><code>replace_text</code></h3>
+<p>Finds literal text and replaces it IN PLACE — the workflow-shaped answer to "edit the PDF": re-date a template, fix a recurring typo, swap an entity name across a whole folder (put a glob in <code>inputs</code> and it batches). The matched text is truly deleted, and the replacement lands on the original baseline in the original size and color. Matching is per LINE (text that wraps won't match) and literal (not regex); <code>ignore_case</code> / <code>whole_word</code> refine it, <code>pages</code> restricts it, and <code>replace: ""</code> deletes the match. **Font honesty:** an embedded, subsetted original font can't render NEW glyphs, so the replacement uses the closest base-14 font (serif→Times, mono→Courier, else Helvetica, keeping bold/italic) — use it for utility edits, not typography-preserving ones. Run <code>preview: true</code> first for a report of every match with nothing changed.</p>
+<pre><code>- replace_text: { find: "ACME Corp", replace: "Initech LLC" }</code></pre>
+
+<h2 id="redaction-cleanup">Redaction &amp; cleanup</h2>
+<h3 id="redact"><code>redact</code></h3>
+<p>Permanently removes content in rectangles on a page. <code>rects</code> are [x, y, w, h] in points. Add <code>rasterize: true</code> to also flatten the WHOLE document to an image-only PDF afterward, so nothing hidden (text layer, metadata, off-page content) can survive — the safest way to share.</p>
+<pre><code>- redact: { page: 2, rects: [[72, 688, 250, 26], [72, 650, 210, 26]], rasterize: true }</code></pre>
+<h3 id="auto_redact"><code>auto_redact</code></h3>
+<p>Finds and permanently redacts matches across all pages. Match by literal <code>text</code> (a list), by named PII <code>patterns</code> (ssn, email, phone, credit_card, ein, ipv4, iban), and/or by custom <code>regex</code>. Literal matching is case-sensitive by default — add <code>ignore_case: true</code>, or <code>whole_word: true</code> so "Ann" doesn't hit "Anniversary". The run note reports any rule that found nothing, so verify. Add <code>rasterize: true</code> to also flatten the document to an image-only PDF so nothing hidden (text layer, metadata, off-page content) survives — the safest way to share.
+
+**Preview first (recommended for redaction):** set <code>preview: true</code> for a dry run — it writes <code>output/redaction-preview.md</code> listing every match (page + matched text + which rule) and applies NOTHING. Review it, then remove <code>preview</code> to apply for real.
+
+**Prompt example** — you don't have to write the YAML; just tell your coding agent in plain English, e.g.:
+&gt; "Create a workflow to redact my name (Jane Whitfield), account number 123456789, my email and any SSNs from statement.pdf, and give me a version that's safe to share."
+
+The agent then creates a <code>.opw.yaml</code> with <code>auto_redact</code> — your EXACT values in <code>text</code>, <code>patterns: [email, ssn]</code> for the shape-based ones, <code>rasterize: true</code> (because "safe to share" = flatten to an image), <code>output.file</code> at a new path — runs <code>opw_validate</code>, and renders it.</p>
+<pre><code>- auto_redact: { text: ["Jane Whitfield", "123456789"], patterns: ["email", "ssn"], ignore_case: true, rasterize: true }</code></pre>
+<h3 id="sanitize"><code>sanitize</code></h3>
+<p>Strips JavaScript, embedded files, metadata, and links from the PDF. No params.</p>
+<pre><code>- sanitize: {}</code></pre>
+<h3 id="remove_annotations"><code>remove_annotations</code></h3>
+<p>Removes all annotations (comments, highlights, link markup). No params.</p>
+<pre><code>- remove_annotations: {}</code></pre>
+<h3 id="remove_images"><code>remove_images</code></h3>
+<p>Removes all images from the document. No params.</p>
+<pre><code>- remove_images: {}</code></pre>
+<h3 id="remove_blank_pages"><code>remove_blank_pages</code></h3>
+<p>Detects and deletes blank pages (no text, no images, near-white). No params.</p>
+<pre><code>- remove_blank_pages: {}</code></pre>
+<h3 id="ocr"><code>ocr</code></h3>
+<p>Adds a searchable text layer to scanned pages via OCR. <code>language</code> is a Tesseract code (default eng).</p>
+<pre><code>- ocr: { language: "eng+fra" }</code></pre>
+<h3 id="extract_js"><code>extract_js</code></h3>
+<p>Surfaces any JavaScript embedded in the PDF (document-level Names tree and the open action) to a Markdown report at <code>to</code>. Read-only — it does not change the PDF. To strip JavaScript, use <code>sanitize</code>.</p>
+<pre><code>- extract_js: { to: output/javascript.md }</code></pre>
+
+<h2 id="forms">Forms</h2>
+<h3 id="create_form"><code>create_form</code></h3>
+<p>Turns a template into a FILLABLE PDF. Type a marker where each field belongs, run a conversion op (<code>office_to_pdf</code> / <code>markdown_to_pdf</code> / <code>html_to_pdf</code>) to render the layout, and create_form finds each marker, DELETES it, and puts a real AcroForm field in its place — so it works with any source that leaves a text layer. **The easy way: use the TYPE as the tag** — <code>[[text]]</code>, <code>[[check]]</code>, <code>[[date]]</code>, <code>[[sign]]</code> — as many times as you like; they're numbered in reading order (text_01, checkbox_01, checkbox_02…), so there's nothing to name and no config file. Fields fill their table cell automatically and get a visible border. Use a NAMED tag (<code>[[employee_name]]</code>) when you want a meaningful field name; add a <code>fields_file</code> YAML keyed by tag for types/tooltips/choices/widths. Either way the tag key BECOMES the PDF field name, so you can fill it with <code>fill_form: { fields: { text_01: "Jane" } }</code> and read it back with <code>extract_form</code> — no form pack needed. **Keep tags short:** a marker too long for its column wraps or gets clipped by the renderer, and create_form then FAILS the run rather than ship a form with a missing field and a mangled <code>[[emplo</code> on the page (in a narrow cell, set the marker's font small in Word — it's deleted anyway). <code>preview: true</code> dry-runs it; <code>debug: true</code> writes a copy with every field outlined.</p>
+<pre><code>- create_form: { debug: true }</code></pre>
+<h3 id="fill_form"><code>fill_form</code></h3>
+<p>Fills a known PDF form from your records — no need to know the raw field names. <code>form</code> is a supported id (ds11, f1040, … — see the <code>form_list</code> MCP tool or the PDF Fill catalog); <code>people</code> points at your people.yaml and <code>person</code> chooses whose info fills the primary role. The form pack maps friendly keys → the form's real fields, handling checkboxes, radio groups, split SSN/date boxes, and dropdowns. <code>roles</code> binds relatives (spouse/parents) for forms that need them; <code>values</code> sets form-specific fields (e.g. applying_for). <code>signature: { image, field }</code> stamps a signature and <code>flatten: true</code> bakes a locked, print-ready final. **Run once with <code>preview: true</code>** for a dry-run report of exactly what will be filled. (Advanced: omit <code>form</code> and pass raw <code>fields: { RealFieldName: value }</code> to fill any AcroForm directly.)</p>
+<pre><code>- fill_form: { form: ds11, people: people.yaml, person: me }</code></pre>
+<h3 id="extract_form"><code>extract_form</code></h3>
+<p>Reads filled forms back OUT to data — the inverse of <code>fill_form</code>. Because a form pack maps friendly keys to real fields, the same pack that fills a form reads one back, so every supported form is extractable with no extra setup. Point <code>inputs</code> at one PDF or a whole folder (<code>forms/*.pdf</code> — all matches fold into ONE table, they aren't batched). Each PDF is auto-identified by its field signature (pass <code>form:</code> to force one). Writes per-form <code>&lt;stem&gt;.json</code>, a combined <code>forms.json</code>, and **one CSV per form type** (<code>w9.csv</code>, <code>f1040.csv</code> — different forms have unrelated schemas, so they never share a table) into <code>to</code>; <code>format: json</code>/<code>csv</code> narrows it. A CSV's columns come from the form pack, in the form's own field order, so the header is stable across runs no matter which files are present or what a form left blank. **Re-runs are incremental**: <code>forms.json</code> doubles as a ledger keyed by content hash, so running again after dropping new files in extracts only what's new or changed and merges it into the table (<code>resume: false</code> re-reads everything). A PDF that matches NO pack — anything you built with <code>create_form</code> — is read **raw**: field name → value, into <code>raw.csv</code>. That's what closes the loop (template → fillable → filled → CSV) with nothing to author. Note a flattened PDF has no fields left to read.</p>
+<pre><code>- extract_form: { to: output/extracted }</code></pre>
+<h3 id="fill_field"><code>fill_field</code></h3>
+<p>Sets an AcroForm field's value. <code>field</code> is the field name, <code>value</code> the text to set.</p>
+<pre><code>- fill_field: { field: "policyholder_name", value: "Marcus Webb" }</code></pre>
+<h3 id="flatten"><code>flatten</code></h3>
+<p>Bakes form fields + annotations into static page content (no longer editable). No params.</p>
+<pre><code>- flatten: {}</code></pre>
+<h3 id="unlock_forms"><code>unlock_forms</code></h3>
+<p>Clears the read-only flag on form fields so they can be filled. No params.</p>
+<pre><code>- unlock_forms: {}</code></pre>
+
+<h2 id="attachments">Attachments</h2>
+<h3 id="extract_attachments"><code>extract_attachments</code></h3>
+<p>Extracts embedded file attachments to the <code>to</code> directory. Does not change the PDF.</p>
+<pre><code>- extract_attachments: { to: output/invoice-attachments }</code></pre>
+<h3 id="add_attachments"><code>add_attachments</code></h3>
+<p>Embeds a file as an attachment. <code>file</code> is a workflow-relative path; <code>name</code> defaults to its basename.</p>
+<pre><code>- add_attachments: { file: assets/line-items-2024.xlsx, name: line-items-2024.xlsx }</code></pre>
+
+<h2 id="encryption-permissions">Encryption &amp; permissions</h2>
+<h3 id="encrypt"><code>encrypt</code></h3>
+<p>Password-protects the PDF (AES-256). Set <code>user_password</code> (to open) and/or <code>owner_password</code>. Put it last. Use ${ENV} to keep secrets out of the file.</p>
+<pre><code>- encrypt: { user_password: "${PDF_OPEN_PASSWORD}", owner_password: "${PDF_OWNER_PASSWORD}" }</code></pre>
+<h3 id="decrypt"><code>decrypt</code></h3>
+<p>Removes password protection — supply the current <code>password</code>. Put it first so later ops can read the PDF.</p>
+<pre><code>- decrypt: { password: "${PDF_PASSWORD}" }</code></pre>
+<h3 id="set_permissions"><code>set_permissions</code></h3>
+<p>Restricts what viewers can do via an <code>owner_password</code>. <code>allow</code> toggles print/copy/modify/annotate/fill_form/assemble.</p>
+<pre><code>- set_permissions: { owner_password: "${PDF_OWNER_PASSWORD}", allow: { print: true, copy: false, modify: false, annotate: false } }</code></pre>
+
+<h2 id="optimize-repair-archival">Optimize, repair &amp; archival</h2>
+<h3 id="compress"><code>compress</code></h3>
+<p>Reduces file size; deep image compression kicks in when Ghostscript/qpdf are available. <code>quality</code> 1-100.</p>
+<pre><code>- compress: { quality: 60 }</code></pre>
+<h3 id="linearize"><code>linearize</code></h3>
+<p>"Fast web view" — reorders the PDF for progressive loading. Put it last. No params.</p>
+<pre><code>- linearize: {}</code></pre>
+<h3 id="repair"><code>repair</code></h3>
+<p>Repairs / rewrites a structurally-messy PDF. No params.</p>
+<pre><code>- repair: {}</code></pre>
+<h3 id="decompress"><code>decompress</code></h3>
+<p>Uncompresses content streams to produce a readable/debuggable PDF. No params.</p>
+<pre><code>- decompress: {}</code></pre>
+<h3 id="rasterize"><code>rasterize</code></h3>
+<p>Flattens every page to a raster image (non-editable, non-selectable output) at <code>dpi</code>.</p>
+<pre><code>- rasterize: { dpi: 200 }</code></pre>
+<h3 id="recolor"><code>recolor</code></h3>
+<p>Recolors every page for comfortable reading. **<code>mode: dark</code>** (default) is a smart **dark mode** — it flips text and background to light-on-dark, but leaves embedded photos and logos looking normal (not a negative). <code>mode: invert</code> is a raw negative of everything; <code>mode: grayscale</code> drops color. Rasterizes at <code>dpi</code>, so the text becomes an image.</p>
+<pre><code>- recolor: { mode: dark }</code></pre>
+<h3 id="scanner_effect"><code>scanner_effect</code></h3>
+<p>Makes a clean, born-digital PDF look like it was scanned — a slight page skew (alternating per page), softening, and grain. Rasterizes each page. Tune <code>skew</code>, <code>noise</code>, <code>grayscale</code>, <code>dpi</code>.</p>
+<pre><code>- scanner_effect: { grayscale: true, skew: 0.8 }</code></pre>
+<h3 id="pdf_to_pdfa"><code>pdf_to_pdfa</code></h3>
+<p>Converts to PDF/A for long-term archival. No params.</p>
+<pre><code>- pdf_to_pdfa: {}</code></pre>
+
+<h2 id="convert-to-pdf">Convert to PDF</h2>
+<h3 id="images_to_pdf"><code>images_to_pdf</code></h3>
+<p>Builds a PDF from image inputs — set the workflow's <code>inputs</code> to image files (one page each). PNG/JPEG work with the bundled engine; PNG/JPEG/WEBP/TIFF/GIF/BMP/SVG (and HEIC/HEIF with the <code>pillow-heif</code> package) work when the Python backend is installed. No params.</p>
+<pre><code>- images_to_pdf: {}</code></pre>
+<h3 id="html_to_pdf"><code>html_to_pdf</code></h3>
+<p>Renders an HTML file to PDF — set the workflow's input to a .html file. <code>engine</code> auto-picks a system Chrome/Edge (best fidelity), then WeasyPrint, then the built-in engine.</p>
+<pre><code>- html_to_pdf: { engine: chrome }</code></pre>
+<h3 id="markdown_to_pdf"><code>markdown_to_pdf</code></h3>
+<p>Renders a Markdown file to a styled PDF — set the workflow's input to a .md file. <code>engine</code> auto-picks a system Chrome/Edge for the best result (no bundled browser); force <code>story</code> for a zero-dependency render.</p>
+<pre><code>- markdown_to_pdf: { engine: chrome }</code></pre>
+<h3 id="url_to_pdf"><code>url_to_pdf</code></h3>
+<p>Fetches a web page and renders it to PDF using a system Chrome/Edge when present. Needs no input file: use <code>inputs: []</code> and pass the <code>url</code>.</p>
+<pre><code>- url_to_pdf: { url: "https://en.wikipedia.org/wiki/Portable_Document_Format", engine: chrome }</code></pre>
+<h3 id="eml_to_pdf"><code>eml_to_pdf</code></h3>
+<p>Renders an .eml email (headers + body) to a styled PDF — set the workflow's input to the .eml file.</p>
+<pre><code>- eml_to_pdf: { engine: auto }</code></pre>
+<h3 id="epub_to_pdf"><code>epub_to_pdf</code></h3>
+<p>Converts an EPUB ebook to PDF. Make it the first operation with a <code>.epub</code> input. The bundled PyMuPDF engine renders it by default; <code>engine: calibre</code> (with <code>paper_size</code>) paginates better when Calibre is installed.</p>
+<pre><code>- epub_to_pdf: { engine: auto }</code></pre>
+<h3 id="office_to_pdf"><code>office_to_pdf</code></h3>
+<p>Converts an Office document to PDF — set the input to a docx/xlsx/pptx/odt file and set <code>from</code> to its format.</p>
+<pre><code>- office_to_pdf: { from: pptx }</code></pre>
+
+<h2 id="convert-from-pdf">Convert from PDF</h2>
+<h3 id="pdf_to_docx"><code>pdf_to_docx</code></h3>
+<p>Converts the PDF to a Word document written to <code>to</code>. Fidelity varies (LibreOffice).</p>
+<pre><code>- pdf_to_docx: { to: output/board-minutes-2024.docx }</code></pre>
+<h3 id="pdf_to_pptx"><code>pdf_to_pptx</code></h3>
+<p>Converts the PDF to a PowerPoint file written to <code>to</code>. Fidelity varies (LibreOffice).</p>
+<pre><code>- pdf_to_pptx: { to: output/investor-deck.pptx }</code></pre>
+<h3 id="pdf_to_xlsx"><code>pdf_to_xlsx</code></h3>
+<p>Converts the PDF to an Excel file written to <code>to</code>. Fidelity varies (LibreOffice).</p>
+<pre><code>- pdf_to_xlsx: { to: output/expense-report-2024.xlsx }</code></pre>
+<h3 id="pdf_to_html"><code>pdf_to_html</code></h3>
+<p>Converts the PDF to an HTML file written to <code>to</code>. Fidelity varies (LibreOffice).</p>
+<pre><code>- pdf_to_html: { to: output/converted.html }</code></pre>
+<h3 id="pdf_to_markdown"><code>pdf_to_markdown</code></h3>
+<p>Converts the PDF to Markdown. Set the workflow's <code>output.file</code> to a <code>.md</code> path and the Markdown is written THERE directly (no stray PDF) — or pass <code>to</code> for a side artifact while the PDF passes through. <code>engine</code> auto-picks pymupdf4llm → markitdown → PyMuPDF; use <code>marker</code> (Surya OCR + layout, needs marker-pdf) for scanned books. <code>remote</code> ("user@host") runs Marker on a GPU box over SSH — minutes on a 4090 vs hours on a CPU; requires the pdfStudio.allowRemoteRender setting.</p>
+<pre><code>- pdf_to_markdown: { engine: auto }</code></pre>
+<h3 id="pdf_to_epub"><code>pdf_to_epub</code></h3>
+<p>Converts the PDF to a **reflowable EPUB** ebook written to <code>to</code> — ideal for reading on Kindle and other e-readers (text reflows to the screen, unlike a fixed PDF). <code>engine</code>: <code>auto</code> uses Calibre's <code>ebook-convert</code> when it's installed (best reflow + formatting) and otherwise falls back to a bundled text-to-EPUB builder (always available; text-focused). Chapters come from the PDF outline when present, else every <code>chapter_pages</code> pages. <code>title</code>/<code>author</code> default to the PDF metadata. Best for prose/text books; complex layouts reflow imperfectly.</p>
+<pre><code>- pdf_to_epub: { to: output/book.epub }</code></pre>
+
+<h2 id="document-intelligence-ai">Document intelligence (AI)</h2>
+<h3 id="summarize"><code>summarize</code></h3>
+<p>Summarizes the PDF's text with an LLM and writes a Markdown summary to <code>to</code> (or a <code>.md</code> output.file). <code>style</code>: bullets (default), abstract, or outline; <code>focus</code> narrows the topic. Runs a LOCAL model via Ollama by default; set ANTHROPIC_API_KEY for Claude. Requires the pdfStudio.allowAiRequests setting.</p>
+<pre><code>- summarize: { style: bullets, to: output/summary.md }</code></pre>
+<h3 id="translate"><code>translate</code></h3>
+<p>Translates the PDF's text to <code>lang</code> with an LLM. By default writes the translation as Markdown to <code>to</code>. Set <code>layout: true</code> to instead render a translated PDF that keeps the original page geometry, images and tables — each text block is translated in place (best for Latin/CJK scripts; point output.file at the PDF). Chunks long documents automatically. Runs a LOCAL model via Ollama by default; set ANTHROPIC_API_KEY for Claude. Requires the pdfStudio.allowAiRequests setting.</p>
+<pre><code>- translate: { lang: Spanish, layout: true }</code></pre>
+<h3 id="semantic_search"><code>semantic_search</code></h3>
+<p>Finds passages by MEANING, not keywords — ask in plain language and get the matching passages back, ranked, with their page numbers. Embeds the document with a LOCAL model (nomic-embed-text via Ollama by default: <code>ollama pull nomic-embed-text</code>), so nothing leaves your machine. Needs the pdfStudio.allowAiRequests setting. Scanned PDF? Run <code>ocr</code> first.</p>
+<pre><code>- semantic_search: { query: "the refund policy for late cancellations", top_k: 5, to: output/search-results.md }</code></pre>
+
+<h2 id="digital-signatures">Digital signatures</h2>
+<h3 id="sign"><code>sign</code></h3>
+<p>Digitally signs the PDF with a PKCS#12 certificate. <code>cert</code> is a .p12/.pfx path; use ${ENV} for the <code>password</code>.</p>
+<pre><code>- sign: { cert: assets/acme-legal.p12, password: "${CERT_PASSWORD}", field: Signature1, reason: "Approved by Legal" }</code></pre>
+<h3 id="validate_signature"><code>validate_signature</code></h3>
+<p>Validates the PDF's digital signatures and writes a JSON report to <code>to</code>. Does not change the PDF.</p>
+<pre><code>- validate_signature: { to: output/signature-report.json }</code></pre>
+<h3 id="timestamp"><code>timestamp</code></h3>
+<p>Adds an RFC-3161 trusted timestamp from a TSA. <code>tsa_url</code> is the timestamp server (needs network).</p>
+<pre><code>- timestamp: { tsa_url: "http://timestamp.digicert.com" }</code></pre>
+
+  <p><a href="../#install">Install Lynx PDF Studio →</a></p>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="smallprint">
+      <p>© 2026 Lynx DI. All rights reserved. Generated from the engine's operation
+         registry — this page cannot drift from what the engine actually does.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

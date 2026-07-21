@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lynx PDF Studio — PDF automation with workflow files: fill forms, redact, merge, batch, PDF to Markdown</title>
+  <meta name="description" content="Free PDF automation on your machine: describe the job once in a workflow file — fill forms, redact, merge, batch, convert. Ships as a free VS Code extension.">
+  <link rel="canonical" href="https://pdf.lynxdi.com/">
+  <link rel="icon" href="favicon.ico" sizes="48x48">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pdf.lynxdi.com/">
+  <meta property="og:site_name" content="Lynx PDF Studio">
+  <meta property="og:title" content="Never do the same document twice. Never upload one once.">
+  <meta property="og:description" content="Free PDF automation on your machine. Describe the job once in a workflow file; a deterministic engine repeats it — fill forms, redact, merge, batch, convert.">
+  <meta property="og:image" content="https://pdf.lynxdi.com/assets/img/og-image.png">
+  <meta property="og:image:alt" content="Lynx PDF Studio — Never do the same document twice. Never upload one once.">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Lynx PDF Studio",
+    "operatingSystem": "Windows, macOS, Linux",
+    "applicationCategory": "DeveloperApplication",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "downloadUrl": "https://marketplace.visualstudio.com/items?itemName=LynxDI.lynxdi-pdf-studio",
+    "url": "https://pdf.lynxdi.com/",
+    "image": "https://pdf.lynxdi.com/assets/img/og-image.png",
+    "description": "Free PDF automation on your machine: describe the job once in a workflow file — fill forms, redact, merge, batch, convert. Ships as a free VS Code extension.",
+    "publisher": { "@type": "Organization", "name": "Lynx DI", "url": "https://lynxdi.com" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Lynx DI",
+    "url": "https://lynxdi.com",
+    "logo": "https://pdf.lynxdi.com/assets/img/logo.png"
+  }
+  </script>
+  <!-- Analytics slot (intentionally inert). To enable: create a NEW GA4 Web data
+       stream for pdf.lynxdi.com (never reuse the extension's G-SQKVZ4XNMB stream),
+       put its G- id below, and uncomment. Consent Mode defaults: everything denied
+       -> cookieless pings only; keep /trust/ "About this website" wording in sync.
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      ad_storage: 'denied', ad_user_data: 'denied',
+      ad_personalization: 'denied', analytics_storage: 'denied'
+    });
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  -->
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="./"><img src="assets/img/logo.png" alt="" width="256" height="256">Lynx&nbsp;<span class="accent">PDF Studio</span></a>
+    <nav class="nav-links" aria-label="Site">
+      <a href="#why">Why</a>
+      <a href="operations/">Operations</a>
+      <a href="#forms">Forms</a>
+      <a href="#agents">Agents</a>
+      <a href="trust/">Trust</a>
+      <a class="btn btn-primary" href="#install">Install</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ===================== hero ===================== -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Never do the same document twice.<span class="line2">Never upload one once.</span></h1>
+      <p class="sub">Describe the job once in a small text file. A deterministic engine
+        repeats it — on your machine. There is no server of ours.</p>
+      <p class="byline">Lynx PDF Studio — free PDF automation.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="vscode:extension/LynxDI.lynxdi-pdf-studio">Install now</a>
+        <a class="btn btn-ghost" href="https://marketplace.visualstudio.com/items?itemName=LynxDI.lynxdi-pdf-studio">View on Marketplace</a>
+      </div>
+      <div class="pill-row">
+        <span class="pill"><strong><!--OPS-->80<!--/OPS--></strong>&nbsp;operations</span>
+        <span class="pill">Free — no account, no tiers</span>
+        <span class="pill">Local by design</span>
+        <span class="pill">Agent-ready (MCP)</span>
+      </div>
+    </div>
+    <div class="code-window" aria-label="Example workflow file">
+      <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fname">contract.opw.yaml</span></div>
+      <pre><span class="cm"># the source of truth — the PDF is a build artifact</span>
+<span class="ck">version:</span> <span class="cs">1</span>
+<span class="ck">kind:</span> <span class="cs">pdf</span>
+<span class="ck">inputs:</span>
+  <span class="cn">-</span> <span class="cs">input/contract.pdf</span>
+  <span class="cn">-</span> <span class="cs">input/appendix.pdf</span>
+<span class="ck">operations:</span>
+  <span class="cn">-</span> <span class="ck">merge:</span> <span class="cn">{}</span>
+  <span class="cn">-</span> <span class="ck">watermark:</span> <span class="cn">{ text:</span> <span class="cs">INTERNAL</span><span class="cn">, opacity:</span> <span class="cs">0.15</span> <span class="cn">}</span>
+  <span class="cn">-</span> <span class="ck">add_page_numbers:</span> <span class="cn">{ position:</span> <span class="cs">bottom-right</span> <span class="cn">}</span>
+<span class="ck">output:</span>
+  <span class="ck">file:</span> <span class="cs">output/contract_final.pdf</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== the problem ===================== -->
+<section id="why" class="alt">
+  <div class="wrap">
+    <p class="kicker">The problem</p>
+    <h2>None of it is hard. All of it is hours.</h2>
+    <p class="lead">Merging the same reports every month. Filling the same form for the
+      40th client. Redacting SSNs before a file goes out. Pulling 500 completed forms
+      into a spreadsheet. Today that work gets done one of three ways — and all three
+      have a catch:</p>
+    <div class="grid-3">
+      <div class="card">
+        <h3>Clicking through a PDF editor</h3>
+        <p>Fine for one document — and unrepeatable by the second. An editor is a good
+           place to <em>read</em> a document; it's a terrible place to <em>repeat</em> a process.</p>
+      </div>
+      <div class="card">
+        <h3>Uploading to a free online tool</h3>
+        <p>Which is a client's tax return on someone else's server.</p>
+      </div>
+      <div class="card">
+        <h3>A script somebody wrote once</h3>
+        <p>Which only they understand — and which broke last quarter.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== the workflow file ===================== -->
+<section id="workflow">
+  <div class="wrap split">
+    <div>
+      <p class="kicker">The fix</p>
+      <h2>Describe the job once, in a file.</h2>
+      <p class="lead">You write an OpenPDF Workflow: plain YAML, one line per step.
+        A deterministic engine renders it. Save the file and the PDF re-renders. Next
+        quarter it produces the same result from the same input — and <code>git diff</code>
+        says exactly what changed and who changed it.</p>
+      <ul class="checklist">
+        <li>The workflow is the source of truth; the PDF is a build artifact.</li>
+        <li>Git is your undo stack — every change is a reviewable diff.</li>
+        <li>Repeating it is free: next week, next quarter, the next five hundred files.</li>
+      </ul>
+      <p class="note">One person sets the workflow up; the whole team — or a coding
+         agent — reruns it forever.</p>
+    </div>
+    <div>
+      <div class="code-window" aria-label="Batch: one line turns a workflow into a folder job">
+        <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fname">change one line — process the whole folder</span></div>
+        <pre><span class="ck">inputs:</span> <span class="cs">"contracts/*.pdf"</span>   <span class="cm"># was: one file</span>
+<span class="ck">operations:</span>
+  <span class="cn">-</span> <span class="ck">watermark:</span> <span class="cn">{ text:</span> <span class="cs">FINAL</span> <span class="cn">}</span>
+<span class="ck">output:</span>
+  <span class="ck">file:</span> <span class="cs">"out/{stem}_final.pdf"</span></pre>
+      </div>
+      <p class="caption">A glob in <code>inputs</code> runs the same workflow over every
+         matching file. One bad file is skipped and reported — not fatal.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== privacy ===================== -->
+<section id="privacy" class="alt">
+  <div class="wrap">
+    <p class="kicker">Local by design</p>
+    <h2>There is no server of ours.</h2>
+    <p class="lead">No account, no upload service, no per-document pricing. The client's
+      tax return, the signed contract, the medical intake form stay on the disk they're
+      already on. The only network paths are ones you explicitly choose: offloading heavy
+      OCR to a GPU box <em>you</em> own, or an AI operation pointed at a provider you pick —
+      a local Ollama by default. That isn't a plan tier; it's the architecture — there is
+      no server of ours to upload to.</p>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Redaction that actually deletes</h3>
+        <p>Find every SSN, email and account number by pattern and truly delete them —
+           not a black rectangle over text that's still selectable underneath. Rasterize
+           for the safest possible output.</p>
+      </div>
+      <div class="card">
+        <h3>Read the trust model</h3>
+        <p>What's protected, what data can leave your machine and exactly what gates it,
+           and how this website itself behaves: <a href="trust/">the trust page</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== operations ===================== -->
+<section id="operations">
+  <div class="wrap">
+    <p class="kicker">The vocabulary</p>
+    <h2><!--OPS-->80<!--/OPS--> operations, one grammar.</h2>
+    <p class="lead">Every operation is one line in the same declarative shape — from
+      merge to redaction to form filling. Browse the
+      <a href="operations/">full operations reference</a>.</p>
+    <div class="grid-3">
+      <div class="card"><h3>Pages &amp; layout</h3><p class="ops">merge · split · split_invoices · crop · n_up · booklet …</p></div>
+      <div class="card"><h3>Forms</h3><p class="ops">create_form · fill_form · extract_form · flatten …</p></div>
+      <div class="card"><h3>Redaction &amp; cleanup</h3><p class="ops">redact · auto_redact · sanitize · ocr · extract_js …</p></div>
+      <div class="card"><h3>Stamps &amp; overlays</h3><p class="ops">watermark · stamp · annotate · add_page_numbers …</p></div>
+      <div class="card"><h3>Convert to PDF</h3><p class="ops">markdown_to_pdf · html_to_pdf · url_to_pdf · office_to_pdf …</p></div>
+      <div class="card"><h3>Convert from PDF</h3><p class="ops">pdf_to_markdown · pdf_to_docx · pdf_to_xlsx · pdf_to_html …</p></div>
+      <div class="card"><h3>Document intelligence (AI)</h3><p class="ops">summarize · translate · semantic_search</p></div>
+      <div class="card"><h3>Optimize &amp; archival</h3><p class="ops">compress · repair · recolor (dark mode) · pdf_to_pdfa …</p></div>
+      <div class="card"><h3>And five more categories</h3><p class="ops">metadata &amp; bookmarks · extraction · attachments · encryption · signatures</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== forms ===================== -->
+<section id="forms" class="alt">
+  <div class="wrap">
+    <p class="kicker">Flagship</p>
+    <h2>The whole form lifecycle.</h2>
+    <p class="lead">Make a fillable form, fill it a hundred times, and read every
+      completed copy back into a spreadsheet — all from workflow files.</p>
+    <div class="grid-3 step-cards">
+      <div class="card">
+        <h3>create_form</h3>
+        <p>Write the form in Word or Markdown, type <code>[[check]]</code> and
+           <code>[[text]]</code> where the fields belong, and get a real fillable
+           AcroForm PDF. Verified on a 117-field, 4-page accounting-firm tax worksheet.</p>
+      </div>
+      <div class="card">
+        <h3>fill_form</h3>
+        <p>Twelve real government forms ship already mapped: DS-11, DS-82, 1040,
+           Schedule C, Schedule SE, W-9, W-8BEN, W-4, W-7, 1099-NEC, I-9, I-765.
+           Your details live in one local YAML — or your existing CSV — and the same
+           record fills any of them.</p>
+      </div>
+      <div class="card">
+        <h3>extract_form</h3>
+        <p>Point at a folder of 500 filled PDFs; each is identified, read, and written
+           out as JSON and CSV. Re-run after more arrive and only the new ones are read.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== agents ===================== -->
+<section id="agents">
+  <div class="wrap split">
+    <div>
+      <p class="kicker">Agent-native</p>
+      <h2>Works with any AI coding agent — online or offline.</h2>
+      <p class="lead">Claude Code, Copilot, Cursor, Gemini, or a fully local agent:
+        a bundled MCP server and a generated project guide teach any of them to author
+        workflows for you.</p>
+      <p class="lead"><strong>Your coding agent never processes the PDF — it only creates
+        and updates the workflow file.</strong> The document never enters the model's
+        context. You review the diff before anything runs, and a fixed, deterministic
+        engine on your machine does the actual work. AI <em>operations</em> like
+        summarize and translate, if you enable them, go to the provider you chose —
+        local by default.</p>
+      <p class="note">Point your agent at <code>pdf.lynxdi.com/llms.txt</code> for a
+        machine-readable overview and the full operation reference in Markdown.</p>
+    </div>
+    <div>
+      <img class="shot" src="assets/img/in-action.webp" width="2560" height="1520" loading="lazy"
+           alt="Editing an OPW workflow file beside a live PDF preview, with the operations sidebar and color-coded dependencies">
+      <p class="caption">Rendering built from the extension's actual interface components.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== install ===================== -->
+<section id="install" class="alt">
+  <div class="wrap">
+    <p class="kicker">Get started</p>
+    <h2>Install in two steps.</h2>
+    <p class="lead">Lynx PDF Studio runs inside Visual Studio Code — a free download.
+      You don't need to be a developer, and you don't need to already use it: treat it
+      as the free app that hosts the tool. Works on Windows, macOS, and Linux
+      (VS Code 1.85 or later).</p>
+    <div class="grid-2 step-cards">
+      <div class="card">
+        <h3>Get VS Code</h3>
+        <p>Download it free from
+          <a href="https://code.visualstudio.com/" rel="noopener">code.visualstudio.com</a>
+          and install it like any app.</p>
+      </div>
+      <div class="card">
+        <h3>Add Lynx PDF Studio</h3>
+        <p><a href="vscode:extension/LynxDI.lynxdi-pdf-studio">Install with one click</a>
+           (your browser will ask to open VS Code), get it from the
+           <a href="https://marketplace.visualstudio.com/items?itemName=LynxDI.lynxdi-pdf-studio" rel="noopener">Marketplace</a>,
+           or search “Lynx PDF Studio” in the Extensions view. Then
+           <strong>Help&nbsp;→&nbsp;Get&nbsp;Started&nbsp;→&nbsp;Lynx&nbsp;PDF&nbsp;Studio</strong>
+           walks you through your first render in four steps.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section id="faq">
+  <div class="wrap">
+    <p class="kicker">Questions</p>
+    <h2>FAQ</h2>
+    <div class="faq">
+      <details>
+        <summary>Is it free? Can I use it for work?</summary>
+        <p>Yes. Free to install and use for its intended purpose, including at work —
+           no tiers, no account, no per-document pricing.</p>
+      </details>
+      <details>
+        <summary>Do my PDFs get uploaded anywhere?</summary>
+        <p>No. Documents are processed on your machine; there is no server of ours to
+           upload to. The only network paths are ones you explicitly choose — like an AI
+           operation pointed at a provider you pick, or OCR offloaded to a GPU box you
+           own. Details on the <a href="trust/">trust page</a>.</p>
+      </details>
+      <details>
+        <summary>Does the AI agent see my PDFs?</summary>
+        <p>No. Coding agents only create and update the workflow file — the document
+           never enters the model's context. A fixed local engine processes the PDF.
+           AI operations you explicitly enable (summarize, translate) go to the provider
+           you configure, which is a local model by default.</p>
+      </details>
+      <details>
+        <summary>Which AI agents work with it?</summary>
+        <p>Any MCP-capable coding agent, online or offline — Claude Code, GitHub
+           Copilot, Cursor, Gemini, or a fully local agent. A generated project guide
+           teaches the agent your workflow format.</p>
+      </details>
+      <details>
+        <summary>Is it open source?</summary>
+        <p>It's free, the workflow format spec is open, the source isn't — for now.</p>
+      </details>
+      <details>
+        <summary>Does it work offline?</summary>
+        <p>Yes — all PDF processing runs locally and needs no network. Anonymous usage
+           telemetry follows VS Code's telemetry setting (off means nothing is sent),
+           and only operations that explicitly fetch URLs go online.</p>
+      </details>
+      <details>
+        <summary>Windows, macOS, or Linux?</summary>
+        <p>All three — anywhere VS Code runs. VS Code 1.85 or later.</p>
+      </details>
+      <details>
+        <summary>I don't use VS Code — can I still use this?</summary>
+        <p>Yes. VS Code is just the free app that hosts the tool; you install it once
+           like any other application. You don't need to be a developer — if you can
+           edit a small text file, you can run a workflow.</p>
+      </details>
+      <details>
+        <summary>Which forms can it fill?</summary>
+        <p>Twelve real government forms ship pre-mapped — DS-11, DS-82, 1040,
+           Schedule C, Schedule SE, W-9, W-8BEN, W-4, W-7, 1099-NEC, I-9, I-765 — and
+           it can fill any fillable PDF, create new fillable forms from Word or
+           Markdown, and read completed forms back out to CSV.</p>
+      </details>
+      <details>
+        <summary>Where do I get help?</summary>
+        <p>Open an issue at
+           <a href="https://github.com/LynxDI/pdf-studio/issues" rel="noopener">github.com/LynxDI/pdf-studio/issues</a>
+           or email <a href="mailto:info@lynxdi.com">info@lynxdi.com</a>.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h3>Product</h3>
+        <ul>
+          <li><a href="https://marketplace.visualstudio.com/items?itemName=LynxDI.lynxdi-pdf-studio" rel="noopener">Marketplace listing</a></li>
+          <li><a href="operations/">Operations reference</a></li>
+          <li><a href="https://github.com/LynxDI/pdf-studio/blob/main/CHANGELOG.md" rel="noopener">Changelog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Trust</h3>
+        <ul>
+          <li><a href="trust/">Security &amp; trust model</a></li>
+          <li><a href="trust/#website">How this site works</a></li>
+          <li><a href="https://github.com/LynxDI/pdf-studio/blob/main/LICENSE" rel="noopener">License</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Company</h3>
+        <ul>
+          <li><a href="https://lynxdi.com" rel="noopener">lynxdi.com</a></li>
+          <li><a href="https://github.com/LynxDI/pdf-studio" rel="noopener">GitHub</a></li>
+          <li><a href="mailto:info@lynxdi.com">info@lynxdi.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <p>No cookies — anonymous page counts via Google Analytics, nothing more.
+       <a href="trust/#website">How this site works →</a></p>
+    <div class="smallprint">
+      <p>© 2026 Lynx DI. All rights reserved. Lynx PDF Studio is free to install and
+         use; the software is
+         <a href="https://github.com/LynxDI/pdf-studio/blob/main/LICENSE" rel="noopener">proprietary</a>
+         (licensed, not sold).<br>
+         Visual Studio Code and VS Code are trademarks of Microsoft Corporation.
+         Lynx PDF Studio is an independent product, not affiliated with or endorsed by
+         Microsoft.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Is it free? Can I use it for work?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Free to install and use for its intended purpose, including at work — no tiers, no account, no per-document pricing." } },
+    { "@type": "Question", "name": "Do my PDFs get uploaded anywhere?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Documents are processed on your machine; there is no server of ours to upload to. The only network paths are ones you explicitly choose — like an AI operation pointed at a provider you pick, or OCR offloaded to a GPU box you own." } },
+    { "@type": "Question", "name": "Does the AI agent see my PDFs?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Coding agents only create and update the workflow file — the document never enters the model's context. A fixed local engine processes the PDF. AI operations you explicitly enable (summarize, translate) go to the provider you configure, which is a local model by default." } },
+    { "@type": "Question", "name": "Which AI agents work with it?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Any MCP-capable coding agent, online or offline — Claude Code, GitHub Copilot, Cursor, Gemini, or a fully local agent. A generated project guide teaches the agent your workflow format." } },
+    { "@type": "Question", "name": "Is it open source?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It's free, the workflow format spec is open, the source isn't — for now." } },
+    { "@type": "Question", "name": "Does it work offline?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes — all PDF processing runs locally and needs no network. Anonymous usage telemetry follows VS Code's telemetry setting (off means nothing is sent), and only operations that explicitly fetch URLs go online." } },
+    { "@type": "Question", "name": "Windows, macOS, or Linux?",
+      "acceptedAnswer": { "@type": "Answer", "text": "All three — anywhere VS Code runs. VS Code 1.85 or later." } },
+    { "@type": "Question", "name": "I don't use VS Code — can I still use this?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. VS Code is just the free app that hosts the tool; you install it once like any other application. You don't need to be a developer — if you can edit a small text file, you can run a workflow." } },
+    { "@type": "Question", "name": "Which forms can it fill?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Twelve real government forms ship pre-mapped — DS-11, DS-82, 1040, Schedule C, Schedule SE, W-9, W-8BEN, W-4, W-7, 1099-NEC, I-9, I-765 — and it can fill any fillable PDF, create new fillable forms from Word or Markdown, and read completed forms back out to CSV." } },
+    { "@type": "Question", "name": "Where do I get help?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Open an issue at github.com/LynxDI/pdf-studio/issues or email info@lynxdi.com." } }
+  ]
+}
+</script>
+
+</body>
+</html>

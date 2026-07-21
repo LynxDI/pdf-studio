@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Security &amp; trust model — Lynx PDF Studio</title>
+  <meta name="description" content="What Lynx PDF Studio protects, exactly when data can leave your machine and what gates it, and how the pdf.lynxdi.com website itself behaves.">
+  <link rel="canonical" href="https://pdf.lynxdi.com/trust/">
+  <link rel="icon" href="../favicon.ico" sizes="48x48">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pdf.lynxdi.com/trust/">
+  <meta property="og:site_name" content="Lynx PDF Studio">
+  <meta property="og:title" content="Security &amp; trust model — Lynx PDF Studio">
+  <meta property="og:description" content="What is protected, exactly when data can leave your machine and what gates it, and how this website itself behaves.">
+  <meta property="og:image" content="https://pdf.lynxdi.com/assets/img/og-image.png">
+  <meta property="og:image:alt" content="Lynx PDF Studio — Never do the same document twice. Never upload one once.">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="../"><img src="../assets/img/logo.png" alt="" width="256" height="256">Lynx&nbsp;<span class="accent">PDF Studio</span></a>
+    <nav class="nav-links" aria-label="Site">
+      <a href="../#why">Why</a>
+      <a href="../operations/">Operations</a>
+      <a href="../#forms">Forms</a>
+      <a href="../#agents">Agents</a>
+      <a class="btn btn-primary" href="../#install">Install</a>
+    </nav>
+  </div>
+</header>
+
+<main class="prose">
+  <h1>Security &amp; trust model</h1>
+  <p>Lynx PDF Studio processes documents locally, and treats a workflow file
+     (<code>*.opw.yaml</code>) as <strong>potentially untrusted</strong> — it may be
+     cloned from a repo, shared by a colleague, or authored by a coding agent. The
+     engine is built so that a crafted workflow cannot quietly reach outside its own
+     project. This page states exactly what is protected and what is not, so you can
+     make an informed decision before installing — or before rendering a workflow you
+     did not write.</p>
+
+  <h2 id="data-paths">When data leaves your machine</h2>
+  <p>By default: never. Documents are processed on your machine and there is no server
+     of ours. Every network path that exists is listed below, with the exact thing that
+     gates it.</p>
+  <div class="table-scroll">
+  <table>
+    <thead>
+      <tr><th>Path</th><th>What is sent, where</th><th>What gates it</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Remote OCR offload</strong></td>
+        <td>Pages sent for OCR to a GPU machine <em>you</em> own, over key-based SSH.</td>
+        <td>Off by default. Requires the <code>pdfStudio.allowRemoteRender</code>
+            setting and a host you configure.</td>
+      </tr>
+      <tr>
+        <td><strong>AI operations</strong> (summarize, translate, semantic_search)</td>
+        <td>Extracted document text sent to the model provider <em>you</em> configure —
+            a local Ollama by default; a cloud provider only if you set an API key.</td>
+        <td>Only runs if the workflow contains the operation. Cloud use additionally
+            gated by <code>pdfStudio.allowAiRequests</code> and your own API key.</td>
+      </tr>
+      <tr>
+        <td><strong>url_to_pdf / html_to_pdf</strong></td>
+        <td>Fetches the URL (and any resources the HTML references) that the workflow
+            names.</td>
+        <td>Only runs if the workflow contains the operation. Review workflows you
+            didn't write — see the residual-risks note on SSRF below.</td>
+      </tr>
+      <tr>
+        <td><strong>Extension telemetry</strong></td>
+        <td>Anonymous feature-usage events (feature and operation names, no paths, no
+            content, no PII) to Google Analytics.</td>
+        <td>On by default; disable with <code>pdfStudio.telemetry.enabled</code> — and
+            VS Code's global telemetry setting silences it too.</td>
+      </tr>
+      <tr>
+        <td><strong>This website</strong></td>
+        <td>See <a href="#website">About this website</a> below.</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <p><strong>What never exists:</strong> an account, an upload service, or a copy of
+     your documents on any infrastructure of ours. Your coding agent, if you use one,
+     never processes the PDF either — it only writes the workflow file.</p>
+
+  <h2 id="protected">What is protected</h2>
+  <ul>
+    <li><strong>Path traversal.</strong> Every input, output, asset, and
+        extract/convert path is confined to the workflow directory. <code>..</code>,
+        absolute paths, Windows drive-relative/drive-absolute and UNC paths are
+        rejected — both as a fail-fast validation error and again at read/write time.
+        A workflow cannot read <code>~/.ssh/id_rsa</code> or write into a Startup
+        folder or <code>.git/hooks</code>.</li>
+    <li><strong>Environment secrets.</strong> <code>${ENV_VAR}</code> substitution only
+        applies to password params. A <code>${VAR}</code> in any other param — text, a
+        title, a URL, a path — is left literal, so a workflow cannot read arbitrary
+        host environment variables into an output PDF or a URL.</li>
+    <li><strong>Interpreter/binary pinning.</strong> The optional Python backend is
+        pinned to its absolute executable path and the setting is machine-scoped, so a
+        workspace cannot point the interpreter at a planted binary. The system browser
+        is resolved from its known install location before any name-based PATH lookup.</li>
+    <li><strong>Webviews.</strong> The preview and panels use a strict nonce CSP and
+        load no remote resources.</li>
+    <li><strong>Creator-op guards.</strong> Markdown/HTML→PDF operations must run first
+        with a matching input, so a working PDF can't be misinterpreted as source.</li>
+    <li><strong>Page bounds.</strong> Page numbers are validated as 1-based for every
+        operation, so a zero or negative index can't silently edit the wrong page.</li>
+  </ul>
+
+  <h2 id="residual">Residual risks — know these before rendering an untrusted workflow</h2>
+  <p>These follow from what the features intrinsically do; they are documented rather
+     than blocked.</p>
+  <ul>
+    <li><strong><code>url_to_pdf</code> / <code>html_to_pdf</code> fetch network and
+        local resources by design.</strong> A workflow can name any URL, and rendered
+        HTML can reference remote resources. This is an SSRF vector: rendering an
+        untrusted workflow can cause outbound requests from your machine. Don't render
+        untrusted URL/HTML workflows on a host with sensitive internal network
+        access.</li>
+    <li><strong>The headless browser runs without a sandbox.</strong> High-fidelity
+        Markdown/HTML rendering drives your system Chrome/Edge with
+        <code>--no-sandbox</code> against workflow-controlled content. Treat rendering
+        untrusted HTML like opening it in a browser.</li>
+    <li><strong>Confinement is lexical, not physical.</strong> A symlink inside the
+        workflow directory that points outside it can still redirect a read/write.
+        Don't render untrusted workflows in a directory that contains symlinks to
+        sensitive locations.</li>
+    <li><strong>Sidecar working directory (Windows).</strong> The Python sidecar runs
+        with its working directory set to the workflow folder so relative asset paths
+        resolve; the browser is resolved by absolute path first to reduce same-name
+        binary risks.</li>
+  </ul>
+  <p><strong>Recommendation:</strong> the <code>.opw.yaml</code> is code. Review a
+     workflow you didn't author before rendering it — the same way you'd review a
+     script — and be especially cautious with <code>url_to_pdf</code> /
+     <code>html_to_pdf</code> and with directories that contain symlinks.</p>
+
+  <h2 id="website">About this website</h2>
+  <p>This site is static files on GitHub Pages. It sets <strong>no cookies</strong> and
+     shows no consent banner because there is nothing to consent to store. If enabled,
+     it counts page views anonymously with Google Analytics in cookieless mode: every
+     consent signal is denied, so each page view sends a single cookieless ping to
+     Google — which, per Google's documentation, may include IP address and user agent
+     in transit, and which Google states it does not store or log. No advertising, no
+     remarketing, nothing tied to your identity. The only third party this site may
+     contact is Google Analytics.</p>
+
+  <h2 id="report">Reporting a vulnerability</h2>
+  <p>Contact <a href="mailto:info@lynxdi.com">info@lynxdi.com</a>.</p>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>No cookies — anonymous page counts via Google Analytics, nothing more.
+       <a href="#website">How this site works →</a></p>
+    <div class="smallprint">
+      <p>© 2026 Lynx DI. All rights reserved. Lynx PDF Studio is free to install and
+         use; the software is
+         <a href="https://github.com/LynxDI/pdf-studio/blob/main/LICENSE" rel="noopener">proprietary</a>
+         (licensed, not sold).<br>
+         Visual Studio Code and VS Code are trademarks of Microsoft Corporation.
+         Lynx PDF Studio is an independent product, not affiliated with or endorsed by
+         Microsoft.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

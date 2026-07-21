@@ -1,0 +1,30 @@
+# Lynx PDF Studio
+
+> Free, local, deterministic PDF automation. You describe a document job once in an
+> OpenPDF Workflow file (`*.opw.yaml` — plain YAML, one line per step); a fixed engine
+> renders the PDF on the user's machine. Ships as a VS Code extension with a bundled
+> MCP server, so any coding agent can author and validate workflows without the
+> document ever entering the model's context: the agent writes the workflow file, the
+> engine processes the PDF locally.
+
+Key facts: 80 operations across 13 categories (pages, stamps, metadata, extraction,
+redaction, forms, attachments, encryption, optimization, convert to/from PDF, AI,
+signatures). Fills 12 pre-mapped US government forms. Creates fillable AcroForms from
+Word/Markdown templates. Batch = a glob in `inputs`. Pages are 1-based. The workflow
+file is the source of truth; the PDF is a build artifact.
+
+## Reference
+
+- [Operations reference (Markdown)](https://pdf.lynxdi.com/operations.md): every
+  operation with usage notes and a runnable example.
+- [Security & trust model](https://pdf.lynxdi.com/trust/): what is protected, and
+  exactly when data can leave the machine.
+
+## Install
+
+- [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=LynxDI.lynxdi-pdf-studio):
+  install "Lynx PDF Studio", then run "PDF Studio: Initialize Project". The extension
+  can generate CLAUDE.md / AGENTS.md / GEMINI.md so your agent learns the workflow
+  format, and "Set Up MCP for This Workspace" exposes deterministic OPW helpers
+  (validate / compile / diff / operations / scaffold).
+- [Public repo](https://github.com/LynxDI/pdf-studio): README, changelog, license.

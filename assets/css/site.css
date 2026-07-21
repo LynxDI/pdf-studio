@@ -174,11 +174,6 @@ footer a { color: rgb(var(--ink-muted)); } footer a:hover { color: rgb(var(--acc
 .prose nav ul { padding-left: 0; list-style: none; columns: 2; }
 .prose .count { color: rgb(var(--ink-muted)); }
 
-/* ── entrance (restrained; respects reduced-motion) ── */
-@keyframes slide-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
-.hero > .wrap > div:first-child { animation: slide-up .7s cubic-bezier(0.22,1,0.36,1) both; }
-.hero .code-window { animation: slide-up .7s cubic-bezier(0.22,1,0.36,1) .08s both; }
-
 /* ── responsive ── */
 @media (max-width: 860px) {
   .hero .wrap, .split { grid-template-columns: minmax(0, 1fr); }
@@ -189,5 +184,4 @@ footer a { color: rgb(var(--ink-muted)); } footer a:hover { color: rgb(var(--acc
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .hero > .wrap > div:first-child, .hero .code-window { animation: none; }
 }

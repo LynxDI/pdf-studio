@@ -41,11 +41,13 @@
     "logo": "https://pdf.lynxdi.com/assets/img/logo.png"
   }
   </script>
-  <!-- Analytics slot (intentionally inert). To enable: create a NEW GA4 Web data
-       stream for pdf.lynxdi.com (never reuse the extension's G-SQKVZ4XNMB stream),
-       put its G- id below, and uncomment. Consent Mode defaults: everything denied
-       -> cookieless pings only; keep /trust/ "About this website" wording in sync.
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <!-- Analytics: shared GA4 property with the extension (single stream, by choice).
+       gtag.js needs only the measurement ID — the Measurement Protocol api_secret
+       stays server-side in the extension and must never appear here. Consent Mode is
+       all-denied => cookieless pings only (no cookies, no banner). Separate web from
+       extension traffic in GA by hostname (pdf.lynxdi.com) or event_name (page_view).
+       Keep the /trust/ "About this website" wording in sync with this. -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SQKVZ4XNMB"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -54,9 +56,8 @@
       ad_personalization: 'denied', analytics_storage: 'denied'
     });
     gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
+    gtag('config', 'G-SQKVZ4XNMB');
   </script>
-  -->
 </head>
 <body>
 

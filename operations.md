@@ -3,7 +3,7 @@
 
 # Lynx PDF Studio — Operations Reference
 
-**91 operations.** A workflow (`workflow.opw.yaml`) lists `inputs`, an ordered `operations:` program, and an `output`. Each operation below is one entry in that list.
+**92 operations.** A workflow (`workflow.opw.yaml`) lists `inputs`, an ordered `operations:` program, and an `output`. Each operation below is one entry in that list.
 
 ## Contents
 
@@ -345,6 +345,15 @@ Extracts the PDF's text to a sidecar file (`to`). Does not change the PDF. Add `
 - **operation:** `extract_text: { to: output/lease-text.txt, clean: true }`
 - **result:** Writes the full, cleaned-up text of the lease to output/lease-text.txt while leaving the PDF unchanged.
 
+### `inspect_text`
+
+Read-only inspection that maps the exact **text spans** on each page to a report at `to`. Every span carries its `text`, `bbox` [x0,y0,x1,y1], `origin`, `font`, `size`, `color` (hex) and `bold`/`italic`. This is how an agent discovers the numbers it cannot guess: the coordinates for a precise `redact` / `crop` / `stamp` / `annotate` / `add_links`, and the font/size/color a `replace_text` should match. Scope it with `pages` and `terms` (report only spans that contain a substring, e.g. `["Total"]`) so the output stays small. `origin: top-left` (default) matches `redact`; `origin: bottom-left` matches `crop`/`stamp`/`annotate`, and each page also carries `width`/`height` for manual conversion (`y_bottom = height − y_top`). `format: markdown`/`both` writes a human-readable table beside the JSON. If nothing matches, the PDF may be a scan with no text layer — run `ocr` first.
+
+- **params:** `to`, `format`, `pages`, `terms`, `ignore_case`, `origin`
+- **inputs:** invoice.pdf → **output:** `output/result.pdf`
+- **operation:** `inspect_text: { terms: ["Total", "Invoice #"], format: both }`
+- **result:** Writes output/text-spans.json (+ text-spans.md) listing each matched text span with its position, font, size and color — the coordinates and styling to author a precise redact/crop/stamp/annotate or a style-matched replace_text. A pure inspection: it writes only the report, so the workflow needs no output block.
+
 ### `extract_images`
 
 Extracts every embedded image to files under the `to` directory. Does not change the PDF.
@@ -374,9 +383,9 @@ Replaces an embedded image. `selector` picks the target ({ page, object_name });
 
 ### `replace_text`
 
-Finds literal text and replaces it IN PLACE — the workflow-shaped answer to "edit the PDF": re-date a template, fix a recurring typo, swap an entity name across a whole folder (put a glob in `inputs` and it batches). The matched text is truly deleted, and the replacement lands on the original baseline in the original size and color. Matching is per LINE (text that wraps won't match) and literal (not regex); `ignore_case` / `whole_word` refine it, `pages` restricts it, and `replace: ""` deletes the match. **Font honesty:** an embedded, subsetted original font can't render NEW glyphs, so the replacement uses the closest base-14 font (serif→Times, mono→Courier, else Helvetica, keeping bold/italic) — use it for utility edits, not typography-preserving ones. Run `preview: true` first for a report of every match with nothing changed.
+Finds text and replaces it IN PLACE — the workflow-shaped answer to "edit the PDF": re-date a template, fix a recurring typo, swap an entity name across a whole folder (put a glob in `inputs` and it batches). The matched text is truly deleted, and the replacement lands on the original baseline in the original size and color. Matching is per LINE (text that wraps won't match). `find` is **literal by default**, or a **regular expression** with `regex: true` — e.g. `find: "\\d{2}/\\d{2}/\\d{4}"` to re-date, `find: "Order #\\d+"` to mask IDs — and the `replace` string may then reference capture groups (`\\1`, `\g<name>`). `ignore_case` refines matching, `whole_word` restricts literal matches to whole words (ignored in regex mode — put `\b` in the pattern), `pages` restricts pages, and `replace: ""` deletes the match. **Font honesty:** an embedded, subsetted original font can't render NEW glyphs, so the replacement uses the closest base-14 font (serif→Times, mono→Courier, else Helvetica, keeping bold/italic) — use it for utility edits, not typography-preserving ones. Run `preview: true` first for a report of every match with nothing changed.
 
-- **params:** `find*`, `replace`, `ignore_case`, `whole_word`, `pages`, `font`, `preview`, `to`
+- **params:** `find*`, `replace`, `regex`, `ignore_case`, `whole_word`, `pages`, `font`, `preview`, `to`
 - **inputs:** contracts/master-services-agreement.pdf → **output:** `output/msa-renamed.pdf`
 - **operation:** `replace_text: { find: "ACME Corp", replace: "Initech LLC" }`
 - **result:** Replaces every in-line occurrence of "ACME Corp" with "Initech LLC", keeping each match's position, size and color; the render note reports the count and warns if a replacement is wider than what it replaced.

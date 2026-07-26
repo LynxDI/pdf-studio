@@ -7,7 +7,7 @@
 > document ever entering the model's context: the agent writes the workflow file, the
 > engine processes the PDF locally.
 
-Key facts: 91 operations across 14 categories (pages, stamps, metadata, extraction,
+Key facts: 92 operations across 14 categories (pages, stamps, metadata, extraction,
 redaction, forms, attachments, encryption, optimization, convert to/from PDF, AI,
 signatures). Fills 12 pre-mapped US government forms. Creates fillable AcroForms from
 Word/Markdown templates. Batch = a glob in `inputs`. Pages are 1-based. The workflow

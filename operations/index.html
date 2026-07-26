@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>All 91 operations — Lynx PDF Studio</title>
-  <meta name="description" content="The full OpenPDF Workflow vocabulary: 91 PDF operations across 14 categories — merge, split, watermark, fill forms, redact, OCR, convert, sign — each with usage notes and a ready-to-paste example.">
+  <title>All 92 operations — Lynx PDF Studio</title>
+  <meta name="description" content="The full OpenPDF Workflow vocabulary: 92 PDF operations across 14 categories — merge, split, watermark, fill forms, redact, OCR, convert, sign — each with usage notes and a ready-to-paste example.">
   <link rel="canonical" href="https://pdf.lynxdi.com/operations/">
   <link rel="icon" href="../favicon.ico" sizes="48x48">
   <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
@@ -15,8 +15,8 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://pdf.lynxdi.com/operations/">
   <meta property="og:site_name" content="Lynx PDF Studio">
-  <meta property="og:title" content="All 91 operations — Lynx PDF Studio">
-  <meta property="og:description" content="The full OpenPDF Workflow vocabulary: 91 PDF operations across 14 categories, each with usage notes and a ready-to-paste example.">
+  <meta property="og:title" content="All 92 operations — Lynx PDF Studio">
+  <meta property="og:description" content="The full OpenPDF Workflow vocabulary: 92 PDF operations across 14 categories, each with usage notes and a ready-to-paste example.">
   <meta property="og:image" content="https://pdf.lynxdi.com/assets/img/og-image.png">
   <meta property="og:image:alt" content="Lynx PDF Studio — PDFs as code, built for coding agents.">
   <meta name="twitter:card" content="summary_large_image">
@@ -50,7 +50,7 @@
 </header>
 
 <main class="prose">
-  <h1>91 operations, one grammar</h1>
+  <h1>92 operations, one grammar</h1>
   <p>Every operation is one line in a workflow file — the same declarative shape from
      merge to redaction to form filling. Each entry below links its usage and a
      ready-to-paste example. (Agents: this reference is also available as
@@ -60,7 +60,7 @@
       <li><a href="#pages-layout">Pages &amp; layout</a> <span class="count">(17)</span></li>
       <li><a href="#stamps-overlays">Stamps &amp; overlays</a> <span class="count">(6)</span></li>
       <li><a href="#metadata-bookmarks-tables">Metadata, bookmarks &amp; tables</a> <span class="count">(11)</span></li>
-      <li><a href="#text-image-markdown-extraction">Text, image &amp; Markdown extraction</a> <span class="count">(5)</span></li>
+      <li><a href="#text-image-markdown-extraction">Text, image &amp; Markdown extraction</a> <span class="count">(6)</span></li>
       <li><a href="#ocr-document-recognition">OCR &amp; document recognition</a> <span class="count">(5)</span></li>
       <li><a href="#redaction-cleanup">Redaction &amp; cleanup</a> <span class="count">(7)</span></li>
       <li><a href="#forms">Forms</a> <span class="count">(6)</span></li>
@@ -186,6 +186,9 @@
 <h3 id="extract_text"><code>extract_text</code></h3>
 <p>Extracts the PDF's text to a sidecar file (<code>to</code>). Does not change the PDF. Add <code>clean: true</code> to tidy the text: drop running headers/footers, rejoin hyphen-split words, and reflow hard-wrapped lines back into paragraphs (each pass can also be toggled on its own). <code>page_markers: true</code> labels each page.</p>
 <pre><code>- extract_text: { to: output/lease-text.txt, clean: true }</code></pre>
+<h3 id="inspect_text"><code>inspect_text</code></h3>
+<p>Read-only inspection that maps the exact **text spans** on each page to a report at <code>to</code>. Every span carries its <code>text</code>, <code>bbox</code> [x0,y0,x1,y1], <code>origin</code>, <code>font</code>, <code>size</code>, <code>color</code> (hex) and <code>bold</code>/<code>italic</code>. This is how an agent discovers the numbers it cannot guess: the coordinates for a precise <code>redact</code> / <code>crop</code> / <code>stamp</code> / <code>annotate</code> / <code>add_links</code>, and the font/size/color a <code>replace_text</code> should match. Scope it with <code>pages</code> and <code>terms</code> (report only spans that contain a substring, e.g. <code>["Total"]</code>) so the output stays small. <code>origin: top-left</code> (default) matches <code>redact</code>; <code>origin: bottom-left</code> matches <code>crop</code>/<code>stamp</code>/<code>annotate</code>, and each page also carries <code>width</code>/<code>height</code> for manual conversion (<code>y_bottom = height − y_top</code>). <code>format: markdown</code>/<code>both</code> writes a human-readable table beside the JSON. If nothing matches, the PDF may be a scan with no text layer — run <code>ocr</code> first.</p>
+<pre><code>- inspect_text: { terms: ["Total", "Invoice #"], format: both }</code></pre>
 <h3 id="extract_images"><code>extract_images</code></h3>
 <p>Extracts every embedded image to files under the <code>to</code> directory. Does not change the PDF.</p>
 <pre><code>- extract_images: { to: output/catalog-images }</code></pre>
@@ -196,7 +199,7 @@
 <p>Replaces an embedded image. <code>selector</code> picks the target ({ page, object_name }); <code>image</code> is the replacement path.</p>
 <pre><code>- replace_image: { selector: { page: 1, object_name: Im0 }, image: assets/new-logo.png }</code></pre>
 <h3 id="replace_text"><code>replace_text</code></h3>
-<p>Finds literal text and replaces it IN PLACE — the workflow-shaped answer to "edit the PDF": re-date a template, fix a recurring typo, swap an entity name across a whole folder (put a glob in <code>inputs</code> and it batches). The matched text is truly deleted, and the replacement lands on the original baseline in the original size and color. Matching is per LINE (text that wraps won't match) and literal (not regex); <code>ignore_case</code> / <code>whole_word</code> refine it, <code>pages</code> restricts it, and <code>replace: ""</code> deletes the match. **Font honesty:** an embedded, subsetted original font can't render NEW glyphs, so the replacement uses the closest base-14 font (serif→Times, mono→Courier, else Helvetica, keeping bold/italic) — use it for utility edits, not typography-preserving ones. Run <code>preview: true</code> first for a report of every match with nothing changed.</p>
+<p>Finds text and replaces it IN PLACE — the workflow-shaped answer to "edit the PDF": re-date a template, fix a recurring typo, swap an entity name across a whole folder (put a glob in <code>inputs</code> and it batches). The matched text is truly deleted, and the replacement lands on the original baseline in the original size and color. Matching is per LINE (text that wraps won't match). <code>find</code> is **literal by default**, or a **regular expression** with <code>regex: true</code> — e.g. <code>find: "\\d{2}/\\d{2}/\\d{4}"</code> to re-date, <code>find: "Order #\\d+"</code> to mask IDs — and the <code>replace</code> string may then reference capture groups (<code>\\1</code>, <code>\g&lt;name&gt;</code>). <code>ignore_case</code> refines matching, <code>whole_word</code> restricts literal matches to whole words (ignored in regex mode — put <code>\b</code> in the pattern), <code>pages</code> restricts pages, and <code>replace: ""</code> deletes the match. **Font honesty:** an embedded, subsetted original font can't render NEW glyphs, so the replacement uses the closest base-14 font (serif→Times, mono→Courier, else Helvetica, keeping bold/italic) — use it for utility edits, not typography-preserving ones. Run <code>preview: true</code> first for a report of every match with nothing changed.</p>
 <pre><code>- replace_text: { find: "ACME Corp", replace: "Initech LLC" }</code></pre>
 
 <h2 id="ocr-document-recognition">OCR &amp; document recognition</h2>

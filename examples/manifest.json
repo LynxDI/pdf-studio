@@ -118,11 +118,11 @@
         "operations"
       ],
       "workflow": "01-pages-layout/merge.opw.yaml",
-      "files": 114,
-      "bytes": 136694,
+      "files": 115,
+      "bytes": 137741,
       "zip": "operations.zip",
-      "zipBytes": 110166,
-      "sha256": "26b1188cd06c0127432ba7fda351cd7573b8526b6ec30fe9db9106d1d56eda40"
+      "zipBytes": 110910,
+      "sha256": "0a75d27c646f86444ae6b48adae3bbc1bc0e9e145bb1f0fa1e389baf5f963491"
     },
     {
       "id": "page-stats",

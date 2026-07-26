@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>All 80 operations — Lynx PDF Studio</title>
-  <meta name="description" content="The full OpenPDF Workflow vocabulary: 80 PDF operations across 13 categories — merge, split, watermark, fill forms, redact, OCR, convert, sign — each with usage notes and a ready-to-paste example.">
+  <title>All 91 operations — Lynx PDF Studio</title>
+  <meta name="description" content="The full OpenPDF Workflow vocabulary: 91 PDF operations across 14 categories — merge, split, watermark, fill forms, redact, OCR, convert, sign — each with usage notes and a ready-to-paste example.">
   <link rel="canonical" href="https://pdf.lynxdi.com/operations/">
   <link rel="icon" href="../favicon.ico" sizes="48x48">
   <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
@@ -15,10 +15,10 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://pdf.lynxdi.com/operations/">
   <meta property="og:site_name" content="Lynx PDF Studio">
-  <meta property="og:title" content="All 80 operations — Lynx PDF Studio">
-  <meta property="og:description" content="The full OpenPDF Workflow vocabulary: 80 PDF operations across 13 categories, each with usage notes and a ready-to-paste example.">
+  <meta property="og:title" content="All 91 operations — Lynx PDF Studio">
+  <meta property="og:description" content="The full OpenPDF Workflow vocabulary: 91 PDF operations across 14 categories, each with usage notes and a ready-to-paste example.">
   <meta property="og:image" content="https://pdf.lynxdi.com/assets/img/og-image.png">
-  <meta property="og:image:alt" content="Lynx PDF Studio — Never do the same document twice. Never upload one once.">
+  <meta property="og:image:alt" content="Lynx PDF Studio — PDFs as code, built for coding agents.">
   <meta name="twitter:card" content="summary_large_image">
   <!-- Analytics: shared GA4 property (single stream). Measurement ID only; no
        api_secret. Consent all-denied => cookieless. See /trust/#website. -->
@@ -50,24 +50,25 @@
 </header>
 
 <main class="prose">
-  <h1>80 operations, one grammar</h1>
+  <h1>91 operations, one grammar</h1>
   <p>Every operation is one line in a workflow file — the same declarative shape from
      merge to redaction to form filling. Each entry below links its usage and a
      ready-to-paste example. (Agents: this reference is also available as
      <a href="../operations.md">plain Markdown</a>.)</p>
   <nav aria-label="Categories">
     <ul>
-      <li><a href="#pages-layout">Pages &amp; layout</a> <span class="count">(15)</span></li>
-      <li><a href="#stamps-overlays">Stamps &amp; overlays</a> <span class="count">(5)</span></li>
-      <li><a href="#metadata-bookmarks-tables">Metadata, bookmarks &amp; tables</a> <span class="count">(8)</span></li>
-      <li><a href="#text-image-markdown-extraction">Text, image &amp; Markdown extraction</a> <span class="count">(6)</span></li>
-      <li><a href="#redaction-cleanup">Redaction &amp; cleanup</a> <span class="count">(8)</span></li>
+      <li><a href="#pages-layout">Pages &amp; layout</a> <span class="count">(17)</span></li>
+      <li><a href="#stamps-overlays">Stamps &amp; overlays</a> <span class="count">(6)</span></li>
+      <li><a href="#metadata-bookmarks-tables">Metadata, bookmarks &amp; tables</a> <span class="count">(11)</span></li>
+      <li><a href="#text-image-markdown-extraction">Text, image &amp; Markdown extraction</a> <span class="count">(5)</span></li>
+      <li><a href="#ocr-document-recognition">OCR &amp; document recognition</a> <span class="count">(5)</span></li>
+      <li><a href="#redaction-cleanup">Redaction &amp; cleanup</a> <span class="count">(7)</span></li>
       <li><a href="#forms">Forms</a> <span class="count">(6)</span></li>
-      <li><a href="#attachments">Attachments</a> <span class="count">(2)</span></li>
+      <li><a href="#attachments">Attachments</a> <span class="count">(4)</span></li>
       <li><a href="#encryption-permissions">Encryption &amp; permissions</a> <span class="count">(3)</span></li>
-      <li><a href="#optimize-repair-archival">Optimize, repair &amp; archival</a> <span class="count">(8)</span></li>
+      <li><a href="#optimize-repair-archival">Optimize, repair &amp; archival</a> <span class="count">(9)</span></li>
       <li><a href="#convert-to-pdf">Convert to PDF</a> <span class="count">(7)</span></li>
-      <li><a href="#convert-from-pdf">Convert from PDF</a> <span class="count">(6)</span></li>
+      <li><a href="#convert-from-pdf">Convert from PDF</a> <span class="count">(5)</span></li>
       <li><a href="#document-intelligence-ai">Document intelligence (AI)</a> <span class="count">(3)</span></li>
       <li><a href="#digital-signatures">Digital signatures</a> <span class="count">(3)</span></li>
     </ul>
@@ -75,7 +76,7 @@
 
 <h2 id="pages-layout">Pages &amp; layout</h2>
 <h3 id="merge"><code>merge</code></h3>
-<p>Concatenates every file in the workflow's <code>inputs</code> (in order) into one PDF. List 2+ inputs; no params.</p>
+<p>Concatenates the workflow's <code>inputs</code> into one PDF. Either list files in order (<code>inputs: [a.pdf, b.pdf]</code>), or point at a whole folder with a glob (<code>inputs: [docs/*.pdf]</code>) to merge every matching file in **sorted filename order** — that's why zero-padded names (part_000001.pdf) matter for a re-merge. No params.</p>
 <pre><code>- merge: {}</code></pre>
 <h3 id="split"><code>split</code></h3>
 <p>Splits the working PDF into several output files — by explicit <code>ranges</code> or <code>every</code> N pages.</p>
@@ -98,6 +99,12 @@
 <h3 id="insert_blank"><code>insert_blank</code></h3>
 <p>Inserts a blank page before the 1-based position <code>at</code>. <code>size</code> copies a neighbor by default.</p>
 <pre><code>- insert_blank: { at: 2, size: Letter }</code></pre>
+<h3 id="insert_pages"><code>insert_pages</code></h3>
+<p>Inserts another PDF's pages into the working document. <code>from</code> is an asset PDF declared under <code>assets:</code>; <code>at</code> is the 1-based position to insert before (omit to append); <code>pages</code> optionally picks which source pages.</p>
+<pre><code>- insert_pages: { from: exhibits.pdf, at: 3 }</code></pre>
+<h3 id="replace_pages"><code>replace_pages</code></h3>
+<p>Replaces pages of the working document with pages from another PDF. <code>from</code> is an asset PDF declared under <code>assets:</code>; <code>pages</code> are the 1-based pages to remove; the replacement drops in where the first removed page was. <code>from_pages</code> optionally picks which source pages.</p>
+<pre><code>- replace_pages: { from: revised-section.pdf, pages: [4, 5] }</code></pre>
 <h3 id="extract_pages"><code>extract_pages</code></h3>
 <p>Keeps only the listed pages (drops the rest), in the order given.</p>
 <pre><code>- extract_pages: { pages: [1, 8, 9] }</code></pre>
@@ -133,6 +140,9 @@
 <h3 id="add_page_numbers"><code>add_page_numbers</code></h3>
 <p>Stamps page numbers on every page. <code>format</code> uses {n} and {total}; <code>position</code> places them.</p>
 <pre><code>- add_page_numbers: { format: "Page {n} of {total}", position: bottom-right, start: 1, size: 9 }</code></pre>
+<h3 id="header_footer"><code>header_footer</code></h3>
+<p>Stamps running headers/footers on every page. <code>header</code> and <code>footer</code> each take { left, center, right } text; tokens {n}/{total} number pages, {date} inserts the <code>date</code> param (explicit, so the render stays deterministic), and {bates} inserts a legal Bates number configured via <code>bates: { prefix, start, digits }</code>. For continuous Bates across a set of files, <code>merge</code> them first.</p>
+<pre><code>- header_footer: { footer: { left: "CONFIDENTIAL", right: "{bates}" }, bates: { prefix: "ACME-", start: 1, digits: 6 } }</code></pre>
 <h3 id="overlay"><code>overlay</code></h3>
 <p>Overlays another PDF's pages on top of the current document. <code>over</code> is a declared asset PDF.</p>
 <pre><code>- overlay: { over: assets/void-specimen-overlay.pdf, opacity: 0.35 }</code></pre>
@@ -141,6 +151,9 @@
 <h3 id="set_metadata"><code>set_metadata</code></h3>
 <p>Sets document metadata. Provide any of title/author/subject/keywords/creator/producer.</p>
 <pre><code>- set_metadata: { title: "2024 Annual Report", author: "Acme Corporation", subject: "Fiscal Year 2024 Results", keywords: ["annual report", "finance", "FY2024"] }</code></pre>
+<h3 id="set_language"><code>set_language</code></h3>
+<p>Sets the document's default language on the PDF catalog (/Lang) — a BCP-47 tag like "en-US" or "fr". Required for accessibility so screen readers use the right voice; check_accessibility flags a missing one.</p>
+<pre><code>- set_language: { lang: en-US }</code></pre>
 <h3 id="set_bookmarks"><code>set_bookmarks</code></h3>
 <p>Replaces the outline with a given list of { level, title, page } entries (page is 1-based).</p>
 <pre><code>- set_bookmarks: { bookmarks: [{ level: 1, title: Introduction, page: 1 }, { level: 1, title: Installation, page: 4 }, { level: 2, title: "System Requirements", page: 5 }, { level: 1, title: Troubleshooting, page: 12 }] }</code></pre>
@@ -153,9 +166,15 @@
 <h3 id="extract_tables"><code>extract_tables</code></h3>
 <p>Detects tables and writes each to a CSV under the <code>to</code> directory. Does not change the PDF.</p>
 <pre><code>- extract_tables: { to: output/statement-tables }</code></pre>
+<h3 id="extract_annotations"><code>extract_annotations</code></h3>
+<p>Exports every markup/comment annotation (sticky notes, highlights, underlines, strikeouts, free text, shapes, ink, stamps) to <code>to</code>/annotations.json + annotations.csv — one row per annotation with author, comment, the text a markup covers, color, page and rect. Point <code>inputs</code> at one PDF or a folder (docs/*.pdf → one combined table). <code>types</code> filters kinds; <code>format</code> picks json/csv. Read-only.</p>
+<pre><code>- extract_annotations: { to: output/annotations }</code></pre>
 <h3 id="pdf_info"><code>pdf_info</code></h3>
-<p>Writes a read-only report of the PDF — page count, per-page size/rotation, metadata, encryption, fonts, image/field/annotation counts — as JSON to <code>to</code>. Leaves the PDF unchanged.</p>
+<p>Writes a read-only report of the PDF — page count, per-page size/rotation, metadata, encryption, fonts, image/field/annotation counts, plus text coverage (pages_with_text, per-page chars, image-only page count, and a needs_ocr flag) — as JSON to <code>to</code>. Leaves the PDF unchanged. For the full per-page OCR-candidate breakdown, use <code>text_report</code>.</p>
 <pre><code>- pdf_info: { to: output/report-info.json }</code></pre>
+<h3 id="check_accessibility"><code>check_accessibility</code></h3>
+<p>Audits the PDF for accessibility (PDF/UA, Section 508, WCAG) and writes a pass/warn/fail report to <code>to</code> — checks for a document title, a default language, a tag tree (StructTreeRoot), that the reader shows the title not the filename, image alt text, and form-field tooltips. <code>format</code> is json (default), markdown, or both. Read-only; each finding names the op that fixes it.</p>
+<pre><code>- check_accessibility: { to: output/accessibility.json, format: both }</code></pre>
 <h3 id="compare_pdfs"><code>compare_pdfs</code></h3>
 <p>Compares the working document with a second PDF (<code>against</code>, a workflow-relative path) and writes a diff report + highlighted images to <code>output.folder</code>. Pages are ALIGNED first (by text), so an inserted/deleted page is reported as added/removed instead of shifting every later page. Writes <code>_report.md</code> (per-page unified text diff), <code>_summary.json</code> (the change set as data), and one <code>change_*.png</code> per changed/added/removed page. <code>mode: text</code> skips images; <code>dpi</code> sets image resolution. Add <code>side_by_side: true</code> for one shareable <code>diff.pdf</code> (each changed page shown base-vs-against with the changed side highlighted). <code>tolerance</code> (0-255) ignores anti-aliasing noise in the visual fallback.</p>
 <pre><code>- compare_pdfs: { against: input/contract-v2.pdf, side_by_side: true }</code></pre>
@@ -167,9 +186,6 @@
 <h3 id="extract_text"><code>extract_text</code></h3>
 <p>Extracts the PDF's text to a sidecar file (<code>to</code>). Does not change the PDF. Add <code>clean: true</code> to tidy the text: drop running headers/footers, rejoin hyphen-split words, and reflow hard-wrapped lines back into paragraphs (each pass can also be toggled on its own). <code>page_markers: true</code> labels each page.</p>
 <pre><code>- extract_text: { to: output/lease-text.txt, clean: true }</code></pre>
-<h3 id="extract_markdown"><code>extract_markdown</code></h3>
-<p>Extracts page content as Markdown (tables included) to <code>to</code>. <code>engine</code>: auto/pymupdf4llm/markitdown, or <code>marker</code> (Surya OCR + layout) for scanned books — best quality, but slow and needs the marker-pdf backend. <code>remote</code> ("user@host") offloads Marker to a GPU box over SSH — minutes on a 4090 vs hours on a CPU; requires the pdfStudio.allowRemoteRender setting.</p>
-<pre><code>- extract_markdown: { to: output/annual-report.md, engine: pymupdf4llm }</code></pre>
 <h3 id="extract_images"><code>extract_images</code></h3>
 <p>Extracts every embedded image to files under the <code>to</code> directory. Does not change the PDF.</p>
 <pre><code>- extract_images: { to: output/catalog-images }</code></pre>
@@ -182,6 +198,23 @@
 <h3 id="replace_text"><code>replace_text</code></h3>
 <p>Finds literal text and replaces it IN PLACE — the workflow-shaped answer to "edit the PDF": re-date a template, fix a recurring typo, swap an entity name across a whole folder (put a glob in <code>inputs</code> and it batches). The matched text is truly deleted, and the replacement lands on the original baseline in the original size and color. Matching is per LINE (text that wraps won't match) and literal (not regex); <code>ignore_case</code> / <code>whole_word</code> refine it, <code>pages</code> restricts it, and <code>replace: ""</code> deletes the match. **Font honesty:** an embedded, subsetted original font can't render NEW glyphs, so the replacement uses the closest base-14 font (serif→Times, mono→Courier, else Helvetica, keeping bold/italic) — use it for utility edits, not typography-preserving ones. Run <code>preview: true</code> first for a report of every match with nothing changed.</p>
 <pre><code>- replace_text: { find: "ACME Corp", replace: "Initech LLC" }</code></pre>
+
+<h2 id="ocr-document-recognition">OCR &amp; document recognition</h2>
+<h3 id="text_report"><code>text_report</code></h3>
+<p>Read-only diagnostic that answers "does this PDF need OCR, and where?" — **page stats plus a recommendation**. Writes to <code>to</code>: doc-level coverage (<code>text_coverage_pct</code>, <code>pages_with_text</code>, <code>total_text_chars</code>, <code>avg_images_per_page</code>, the scripts present e.g. devanagari, a conservative <code>needs_ocr</code>, <code>damaged_streams</code>), the page lists that matter (<code>image_only_pages</code> = real OCR candidates, <code>empty_pages</code>, <code>oversized_pages</code>), a per-page stats array (<code>page</code>, <code>w</code>/<code>h</code> in points, <code>chars</code>, <code>images</code>, <code>class</code>: text | image_only | empty), and — the actionable part — <code>recommendation</code> (text-complete | mixed | image-only | blank) with a runnable <code>recommended_workflow</code>. <code>format: markdown</code>/<code>both</code> also writes a one-screen human summary (metrics table, suggested workflow, page-stats table) beside the JSON. <code>detail: summary</code> drops the per-page array, and <code>sample: 50</code> analyzes every 50th page for a fast estimate on a huge document. <code>min_image_px</code> / <code>oversize_pt</code> tune the classifier. Run it BEFORE ocr/extract_* so you OCR only the image-only pages — or skip OCR when a text layer already exists (re-OCR'ing a good text layer degrades it).</p>
+<pre><code>- text_report: { to: output/coverage.json, format: both }</code></pre>
+<h3 id="ocr"><code>ocr</code></h3>
+<p>Adds a searchable text layer to scanned pages via OCR (Tesseract). <code>language</code> is a Tesseract code, default eng ("eng+hin" for multiple) — it is preflighted against installed tessdata and fails clearly if missing. <code>mode</code>: skip-text (default, OCRs only text-less pages), redo-ocr (re-recognize), force-ocr (rasterize + OCR all, lossy). <code>output_type: pdfa</code> for archival PDF/A. <code>page_range</code> ("1-3,7") limits which pages. A damaged source whose OCR output ocrmypdf rejects is auto-repaired with pikepdf. This is the Tesseract engine and it outputs a SEARCHABLE PDF. For other OCR jobs use a different op: **<code>extract_markdown</code>** turns a scan into Markdown with <code>engine: marker</code> (Surya OCR + layout) or <code>engine: paddleocr-vl</code> (Baidu's compact 0.9B doc VLM — CPU-capable); **<code>extract_receipt</code>** pulls typed fields from receipts/invoices with a vision model (Qwen3-VL). Always run <code>text_report</code> first — don't re-OCR a doc that already has a good text layer. Engine speed/accuracy comparison: the OCR performance report — https://github.com/LynxDI/pdf-studio/blob/main/docs/ocr-benchmark.md</p>
+<pre><code>- ocr: { mode: redo-ocr, language: "eng+hin" }</code></pre>
+<h3 id="extract_markdown"><code>extract_markdown</code></h3>
+<p>Extracts page content as Markdown (tables included) to <code>to</code>. <code>engine</code>: auto/pymupdf4llm/markitdown for text-layer PDFs, or a vision-model OCR engine for scans — <code>marker</code> (Surya OCR + layout: best quality, slow, needs marker-pdf) or <code>paddleocr-vl</code> (Baidu's compact 0.9B doc parser: strong on tables/formulas, CPU-capable, runs in its own venv). <code>ocr</code>: off (text-layer only) / auto (default — OCR only pages with no text, keeping existing text) / force (re-OCR everything, lossy). <code>remote</code> ("user@host") offloads Marker to a GPU box over SSH; <code>endpoint</code> (URL) uses an HTTP Marker service instead (chunked + resumable) — both need pdfStudio.allowRemoteRender and send document bytes off-box. Tip: run <code>text_report</code> first — a PDF that already has text needs no OCR engine at all. Which engine to pick (speed/accuracy per engine): see the OCR performance report — https://github.com/LynxDI/pdf-studio/blob/main/docs/ocr-benchmark.md</p>
+<pre><code>- extract_markdown: { to: output/annual-report.md, engine: pymupdf4llm }</code></pre>
+<h3 id="pdf_to_markdown"><code>pdf_to_markdown</code></h3>
+<p>Converts the PDF to Markdown. Set the workflow's <code>output.file</code> to a <code>.md</code> path and the Markdown is written THERE directly (no stray PDF) — or pass <code>to</code> for a side artifact while the PDF passes through. <code>engine</code> auto-picks pymupdf4llm → markitdown → PyMuPDF; for scans use a vision-model OCR engine — <code>marker</code> (Surya OCR + layout, needs marker-pdf) or <code>paddleocr-vl</code> (Baidu's compact 0.9B doc parser, CPU-capable, its own venv). <code>remote</code> ("user@host") runs Marker on a GPU box over SSH — minutes on a 4090 vs hours on a CPU; requires the pdfStudio.allowRemoteRender setting. Which engine to pick (speed/accuracy per engine): see the OCR performance report — https://github.com/LynxDI/pdf-studio/blob/main/docs/ocr-benchmark.md</p>
+<pre><code>- pdf_to_markdown: { engine: auto }</code></pre>
+<h3 id="extract_receipt"><code>extract_receipt</code></h3>
+<p>Reads receipts/invoices as IMAGES with a vision-language model (Qwen3-VL) and extracts structured fields — merchant, date, currency, subtotal, tax, tip, total, receipt number, and line items — to JSON + CSV. Unlike <code>extract_form</code> (which reads AcroForm fields) this works on scans/photos with no text layer. Each page is rasterized (<code>dpi</code>, default 200) and sent to an OpenAI-compatible endpoint (<code>endpoint</code>, e.g. a vLLM server; defaults to $PDFSTUDIO_VLM_ENDPOINT), so it needs the **pdfStudio.allowRemoteRender** setting (page-image bytes go to the model server). No GPU? Point <code>endpoint</code> at a **free NVIDIA cloud vision model** (<code>meta/llama-3.2-90b-vision-instruct</code> + <code>$NVIDIA_API_KEY</code>) — see the AI-models guide in the Documentation panel. Point <code>inputs</code> at one PDF or a whole folder (<code>receipts/*.pdf</code> — all matches fold into ONE table). Writes per-input <code>&lt;stem&gt;.json</code>, a combined <code>receipts.json</code>, and a flattened <code>receipts.csv</code> (one row per line item) into <code>to</code>; <code>format: json</code>/<code>csv</code> narrows it, <code>schema: invoice</code> adds invoice fields, <code>line_items: false</code> keeps only totals. **Re-runs are incremental**: <code>receipts.json</code> doubles as a ledger keyed by content hash, so an unchanged file is skipped with no model calls (<code>resume: false</code> re-reads everything).</p>
+<pre><code>- extract_receipt: { endpoint: "http://localhost:11434/v1", model: qwen3-vl-8b }</code></pre>
 
 <h2 id="redaction-cleanup">Redaction &amp; cleanup</h2>
 <h3 id="redact"><code>redact</code></h3>
@@ -209,9 +242,6 @@ The agent then creates a <code>.opw.yaml</code> with <code>auto_redact</code> �
 <h3 id="remove_blank_pages"><code>remove_blank_pages</code></h3>
 <p>Detects and deletes blank pages (no text, no images, near-white). No params.</p>
 <pre><code>- remove_blank_pages: {}</code></pre>
-<h3 id="ocr"><code>ocr</code></h3>
-<p>Adds a searchable text layer to scanned pages via OCR. <code>language</code> is a Tesseract code (default eng).</p>
-<pre><code>- ocr: { language: "eng+fra" }</code></pre>
 <h3 id="extract_js"><code>extract_js</code></h3>
 <p>Surfaces any JavaScript embedded in the PDF (document-level Names tree and the open action) to a Markdown report at <code>to</code>. Read-only — it does not change the PDF. To strip JavaScript, use <code>sanitize</code>.</p>
 <pre><code>- extract_js: { to: output/javascript.md }</code></pre>
@@ -243,6 +273,12 @@ The agent then creates a <code>.opw.yaml</code> with <code>auto_redact</code> �
 <h3 id="add_attachments"><code>add_attachments</code></h3>
 <p>Embeds a file as an attachment. <code>file</code> is a workflow-relative path; <code>name</code> defaults to its basename.</p>
 <pre><code>- add_attachments: { file: assets/line-items-2024.xlsx, name: line-items-2024.xlsx }</code></pre>
+<h3 id="extract_links"><code>extract_links</code></h3>
+<p>Pulls every hyperlink out of a PDF (or a whole folder) to JSON + CSV — clickable link annotations (the URL, its page, and the anchor text) plus, by default, bare URLs printed in the text that were never linked. Point <code>inputs</code> at one file or a glob (<code>docs/*.pdf</code> — all matches fold into ONE table with a <code>file</code> column, they aren't batched). <code>types</code> picks which kinds to keep (default <code>[uri]</code> = external web/mailto; add <code>goto</code> for internal jumps, or <code>all</code>); <code>include_text_urls: false</code> limits it to real link annotations; <code>dedupe: true</code> collapses to a unique URL list. Read-only — the PDF is unchanged.</p>
+<pre><code>- extract_links: { to: output/links }</code></pre>
+<h3 id="add_links"><code>add_links</code></h3>
+<p>Makes URLs clickable and adds explicit links — the inverse of extract_links. With <code>auto</code> (default true) it finds bare URLs printed in the page text and lays a URI link over each. <code>links</code> adds explicit links by text search: <code>find</code> a phrase and point it at a <code>url</code> (external) or <code>goto</code> (1-based page). Modifies the PDF.</p>
+<pre><code>- add_links: { auto: true }</code></pre>
 
 <h2 id="encryption-permissions">Encryption &amp; permissions</h2>
 <h3 id="encrypt"><code>encrypt</code></h3>
@@ -274,6 +310,9 @@ The agent then creates a <code>.opw.yaml</code> with <code>auto_redact</code> �
 <h3 id="recolor"><code>recolor</code></h3>
 <p>Recolors every page for comfortable reading. **<code>mode: dark</code>** (default) is a smart **dark mode** — it flips text and background to light-on-dark, but leaves embedded photos and logos looking normal (not a negative). <code>mode: invert</code> is a raw negative of everything; <code>mode: grayscale</code> drops color. Rasterizes at <code>dpi</code>, so the text becomes an image.</p>
 <pre><code>- recolor: { mode: dark }</code></pre>
+<h3 id="convert_colors"><code>convert_colors</code></h3>
+<p>Converts the whole document's color space with Ghostscript — <code>mode</code>: gray (default, for cheap B&amp;W printing), cmyk (for a commercial press), or rgb (for screen). Keeps text and vector art as vectors (unlike recolor, which rasterizes). Needs Ghostscript installed.</p>
+<pre><code>- convert_colors: { mode: gray }</code></pre>
 <h3 id="scanner_effect"><code>scanner_effect</code></h3>
 <p>Makes a clean, born-digital PDF look like it was scanned — a slight page skew (alternating per page), softening, and grain. Rasterizes each page. Tune <code>skew</code>, <code>noise</code>, <code>grayscale</code>, <code>dpi</code>.</p>
 <pre><code>- scanner_effect: { grayscale: true, skew: 0.8 }</code></pre>
@@ -317,9 +356,6 @@ The agent then creates a <code>.opw.yaml</code> with <code>auto_redact</code> �
 <h3 id="pdf_to_html"><code>pdf_to_html</code></h3>
 <p>Converts the PDF to an HTML file written to <code>to</code>. Fidelity varies (LibreOffice).</p>
 <pre><code>- pdf_to_html: { to: output/converted.html }</code></pre>
-<h3 id="pdf_to_markdown"><code>pdf_to_markdown</code></h3>
-<p>Converts the PDF to Markdown. Set the workflow's <code>output.file</code> to a <code>.md</code> path and the Markdown is written THERE directly (no stray PDF) — or pass <code>to</code> for a side artifact while the PDF passes through. <code>engine</code> auto-picks pymupdf4llm → markitdown → PyMuPDF; use <code>marker</code> (Surya OCR + layout, needs marker-pdf) for scanned books. <code>remote</code> ("user@host") runs Marker on a GPU box over SSH — minutes on a 4090 vs hours on a CPU; requires the pdfStudio.allowRemoteRender setting.</p>
-<pre><code>- pdf_to_markdown: { engine: auto }</code></pre>
 <h3 id="pdf_to_epub"><code>pdf_to_epub</code></h3>
 <p>Converts the PDF to a **reflowable EPUB** ebook written to <code>to</code> — ideal for reading on Kindle and other e-readers (text reflows to the screen, unlike a fixed PDF). <code>engine</code>: <code>auto</code> uses Calibre's <code>ebook-convert</code> when it's installed (best reflow + formatting) and otherwise falls back to a bundled text-to-EPUB builder (always available; text-focused). Chapters come from the PDF outline when present, else every <code>chapter_pages</code> pages. <code>title</code>/<code>author</code> default to the PDF metadata. Best for prose/text books; complex layouts reflow imperfectly.</p>
 <pre><code>- pdf_to_epub: { to: output/book.epub }</code></pre>
@@ -329,10 +365,10 @@ The agent then creates a <code>.opw.yaml</code> with <code>auto_redact</code> �
 <p>Summarizes the PDF's text with an LLM and writes a Markdown summary to <code>to</code> (or a <code>.md</code> output.file). <code>style</code>: bullets (default), abstract, or outline; <code>focus</code> narrows the topic. Runs a LOCAL model via Ollama by default; set ANTHROPIC_API_KEY for Claude. Requires the pdfStudio.allowAiRequests setting.</p>
 <pre><code>- summarize: { style: bullets, to: output/summary.md }</code></pre>
 <h3 id="translate"><code>translate</code></h3>
-<p>Translates the PDF's text to <code>lang</code> with an LLM. By default writes the translation as Markdown to <code>to</code>. Set <code>layout: true</code> to instead render a translated PDF that keeps the original page geometry, images and tables — each text block is translated in place (best for Latin/CJK scripts; point output.file at the PDF). Chunks long documents automatically. Runs a LOCAL model via Ollama by default; set ANTHROPIC_API_KEY for Claude. Requires the pdfStudio.allowAiRequests setting.</p>
+<p>Translates the PDF's text to <code>lang</code> with an LLM. By default writes the translation as Markdown to <code>to</code>. Set <code>layout: true</code> to instead render a translated PDF that keeps the original page geometry, images and tables — each text block is translated in place (best for Latin/CJK scripts; point output.file at the PDF). Chunks long documents automatically. Runs a LOCAL model via Ollama by default; set ANTHROPIC_API_KEY for Claude, or point <code>$PDFSTUDIO_LLM_ENDPOINT</code> at a **free NVIDIA cloud model** (<code>nvidia/riva-translate-4b-instruct-v1.1</code> + <code>$NVIDIA_API_KEY</code>) — no local setup (see the AI-models guide in the Documentation panel). Requires the pdfStudio.allowAiRequests setting.</p>
 <pre><code>- translate: { lang: Spanish, layout: true }</code></pre>
 <h3 id="semantic_search"><code>semantic_search</code></h3>
-<p>Finds passages by MEANING, not keywords — ask in plain language and get the matching passages back, ranked, with their page numbers. Embeds the document with a LOCAL model (nomic-embed-text via Ollama by default: <code>ollama pull nomic-embed-text</code>), so nothing leaves your machine. Needs the pdfStudio.allowAiRequests setting. Scanned PDF? Run <code>ocr</code> first.</p>
+<p>Finds passages by MEANING, not keywords — ask in plain language and get the matching passages back, ranked, with their page numbers. Embeds the document with a LOCAL model (nomic-embed-text via Ollama by default: <code>ollama pull nomic-embed-text</code>), so nothing leaves your machine — or use a **free NVIDIA cloud embedder** (<code>nvidia/nv-embed-v1</code> via <code>$PDFSTUDIO_EMBED_ENDPOINT</code> + <code>$NVIDIA_API_KEY</code>, see the AI-models guide in the Documentation panel). Needs the pdfStudio.allowAiRequests setting. Scanned PDF? Run <code>ocr</code> first.</p>
 <pre><code>- semantic_search: { query: "the refund policy for late cancellations", top_k: 5, to: output/search-results.md }</code></pre>
 
 <h2 id="digital-signatures">Digital signatures</h2>

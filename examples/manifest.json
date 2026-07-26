@@ -1,0 +1,205 @@
+{
+  "schema": 1,
+  "generator": "gen-examples-bundle",
+  "count": 13,
+  "examples": [
+    {
+      "id": "basic",
+      "title": "Basic — merge, watermark, metadata",
+      "description": "Merge two PDFs, stamp a DRAFT watermark, and set the title/author. The 'hello world' of OPW.",
+      "tags": [
+        "merge",
+        "watermark",
+        "set_metadata"
+      ],
+      "workflow": "workflow.opw.yaml",
+      "files": 3,
+      "bytes": 3267,
+      "zip": "basic.zip",
+      "zipBytes": 2940,
+      "sha256": "eb4ed6d70ff7af75dcb7a53ac688e747ec2aee4b170c246bcce85e8f0361ded0"
+    },
+    {
+      "id": "batch",
+      "title": "Batch — one workflow over many files",
+      "description": "A glob input runs the whole workflow once per matched PDF, writing one output per file.",
+      "tags": [
+        "batch",
+        "glob"
+      ],
+      "workflow": "workflow.opw.yaml",
+      "files": 4,
+      "bytes": 4366,
+      "zip": "batch.zip",
+      "zipBytes": 3957,
+      "sha256": "d795ea910acf78f220dc76b099320be2b988cfb3d6ef21db319440be36f42280"
+    },
+    {
+      "id": "compare-pdfs",
+      "title": "Compare — diff two PDF revisions",
+      "description": "Side-by-side visual + text diff of two document versions as one shareable diff.pdf.",
+      "tags": [
+        "compare_pdfs",
+        "diff"
+      ],
+      "workflow": "workflow.opw.yaml",
+      "files": 3,
+      "bytes": 4663,
+      "zip": "compare-pdfs.zip",
+      "zipBytes": 4106,
+      "sha256": "8ed801ca6a47a8c3de9b9ff7e2aa7cc569ce1d3018bfad61ab6cda3b44da6292"
+    },
+    {
+      "id": "extract-links",
+      "title": "Extract links — every URL from a folder of PDFs",
+      "description": "Pull every hyperlink out of a whole folder into one links.json + links.csv — clickable link annotations (URL, page, anchor text) plus bare URLs printed in the text. Needs the Python backend.",
+      "tags": [
+        "extract_links",
+        "urls",
+        "glob",
+        "folder"
+      ],
+      "workflow": "workflow.opw.yaml",
+      "files": 4,
+      "bytes": 6798,
+      "zip": "extract-links.zip",
+      "zipBytes": 6181,
+      "sha256": "f1f9a1fc4ea12e9463ed865d5a9b62f13ac6b9244cff0d41a61895a58ecea500"
+    },
+    {
+      "id": "fill-forms",
+      "title": "Fill forms — government forms from your records",
+      "description": "Mapped forms (W-9, 1040, I-9, DS-11…) filled from a local, gitignored people.yaml. Templates download on first fill.",
+      "tags": [
+        "fill_form",
+        "forms"
+      ],
+      "workflow": "w9.opw.yaml",
+      "files": 15,
+      "bytes": 5312480,
+      "zip": "fill-forms.zip",
+      "zipBytes": 5012429,
+      "sha256": "84313bc6c7fb4b7ce7761d15e14dcff00a5a46f9143fd5665155a2db0814e8fb"
+    },
+    {
+      "id": "merge-folder",
+      "title": "Merge a folder — combine every PDF into one",
+      "description": "Point a glob at a folder (input/*.pdf) and merge every matching PDF into one, in sorted filename order — no need to list the files.",
+      "tags": [
+        "merge",
+        "glob",
+        "folder"
+      ],
+      "workflow": "workflow.opw.yaml",
+      "files": 5,
+      "bytes": 5240,
+      "zip": "merge-folder.zip",
+      "zipBytes": 4919,
+      "sha256": "65e9558488ad7c80948c4c7f30915b4e438118bedb26fff0a69c9ebe3950cf14"
+    },
+    {
+      "id": "ocr-engines",
+      "title": "ocr-engines",
+      "description": "── ALWAYS DO THIS FIRST ────────────────────────────────────────────────────────────",
+      "tags": [],
+      "workflow": "00-check-first.opw.yaml",
+      "files": 11,
+      "bytes": 92946,
+      "zip": "ocr-engines.zip",
+      "zipBytes": 72593,
+      "sha256": "74e0134161ba59d27ff9fe4b57d70589f996dde110881389410130d6328b05ba"
+    },
+    {
+      "id": "operations",
+      "title": "Operations reference — every operation",
+      "description": "One ready-to-adapt example workflow for every OPW operation, grouped by category, with a shared sample.pdf. A gallery to learn from.",
+      "tags": [
+        "reference",
+        "operations"
+      ],
+      "workflow": "01-pages-layout/merge.opw.yaml",
+      "files": 114,
+      "bytes": 136694,
+      "zip": "operations.zip",
+      "zipBytes": 110166,
+      "sha256": "26b1188cd06c0127432ba7fda351cd7573b8526b6ec30fe9db9106d1d56eda40"
+    },
+    {
+      "id": "page-stats",
+      "title": "Page stats — profile a PDF before you extract or OCR it",
+      "description": "text_report on a deliberately mixed document: per-page size/characters/images/class, text coverage, which pages are image-only vs blank vs oversized — plus the workflow to author for it (OCR only pages 5-7, not all 10).",
+      "tags": [
+        "text_report",
+        "ocr",
+        "analysis"
+      ],
+      "workflow": "workflow.opw.yaml",
+      "files": 2,
+      "bytes": 75864,
+      "zip": "page-stats.zip",
+      "zipBytes": 64866,
+      "sha256": "4119c086cfea7ce6ba3c7c5bceff62bd07ce93e95b23b523d69be046c34ad1c0"
+    },
+    {
+      "id": "redact-identity",
+      "title": "Redact identity — permanently remove PII",
+      "description": "De-identify a document: permanently delete a name, address, email, phone, SSN, and IP with auto_redact, then rasterize so nothing hidden can survive.",
+      "tags": [
+        "auto_redact",
+        "redact",
+        "pii"
+      ],
+      "workflow": "workflow.opw.yaml",
+      "files": 2,
+      "bytes": 3904,
+      "zip": "redact-identity.zip",
+      "zipBytes": 3089,
+      "sha256": "f897bf1e4ec3cc4480455a82ba8fe64ecf448cbe60b3fa8ff6d9a10c6ca92601"
+    },
+    {
+      "id": "split",
+      "title": "Split — one PDF into many by page range",
+      "description": "Slice a PDF into separate files by explicit page ranges, or every N pages. Runs fully offline.",
+      "tags": [
+        "split"
+      ],
+      "workflow": "workflow.opw.yaml",
+      "files": 2,
+      "bytes": 5796,
+      "zip": "split.zip",
+      "zipBytes": 4892,
+      "sha256": "0316036a3adb0b59b93d8faee633021aa1282bb8a26919d34af614a22995d113"
+    },
+    {
+      "id": "split-invoices",
+      "title": "Split invoices — burst a batch into per-invoice PDFs",
+      "description": "Detect invoice boundaries from page text and emit one named PDF per invoice, plus a _manifest.csv.",
+      "tags": [
+        "split_invoices"
+      ],
+      "workflow": "workflow.opw.yaml",
+      "files": 2,
+      "bytes": 3889,
+      "zip": "split-invoices.zip",
+      "zipBytes": 3385,
+      "sha256": "fcad7c38e9927912c75c2564a31a9f7e7a18c94d54f7f0ef732fa785eb82eafd"
+    },
+    {
+      "id": "variables",
+      "title": "Variables & conditionals — one workflow, many jobs",
+      "description": "Declare vars and reference them with ${name} in params and the output path; override them at run time to re-target the same workflow. A when: guard runs an op only when a predicate over document facts (pages, encrypted, …) or vars is true.",
+      "tags": [
+        "vars",
+        "when",
+        "template",
+        "conditionals"
+      ],
+      "workflow": "workflow.opw.yaml",
+      "files": 2,
+      "bytes": 2572,
+      "zip": "variables.zip",
+      "zipBytes": 2089,
+      "sha256": "96d9e697f742cf3dbb7e69ceada56fb5f5ceb06e29283b7e8beb3a2f0d69c842"
+    }
+  ]
+}

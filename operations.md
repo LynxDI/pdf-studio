@@ -3,7 +3,7 @@
 
 # Lynx PDF Studio — Operations Reference
 
-**80 operations.** A workflow (`workflow.opw.yaml`) lists `inputs`, an ordered `operations:` program, and an `output`. Each operation below is one entry in that list.
+**91 operations.** A workflow (`workflow.opw.yaml`) lists `inputs`, an ordered `operations:` program, and an `output`. Each operation below is one entry in that list.
 
 ## Contents
 
@@ -11,6 +11,7 @@
 - Stamps & overlays
 - Metadata, bookmarks & tables
 - Text, image & Markdown extraction
+- OCR & document recognition
 - Redaction & cleanup
 - Forms
 - Attachments
@@ -25,7 +26,7 @@
 
 ### `merge`
 
-Concatenates every file in the workflow's `inputs` (in order) into one PDF. List 2+ inputs; no params.
+Concatenates the workflow's `inputs` into one PDF. Either list files in order (`inputs: [a.pdf, b.pdf]`), or point at a whole folder with a glob (`inputs: [docs/*.pdf]`) to merge every matching file in **sorted filename order** — that's why zero-padded names (part_000001.pdf) matter for a re-merge. No params.
 
 - **params:** —
 - **inputs:** cover-page.pdf, chapter-01.pdf, chapter-02.pdf → **output:** `output/full-manuscript.pdf`
@@ -94,6 +95,24 @@ Inserts a blank page before the 1-based position `at`. `size` copies a neighbor 
 - **inputs:** employee-handbook.pdf → **output:** `output/handbook-print-ready.pdf`
 - **operation:** `insert_blank: { at: 2, size: Letter }`
 - **result:** Inserts a Letter-size blank page before page 2 so chapter 1 opens on a right-hand page for duplex printing.
+
+### `insert_pages`
+
+Inserts another PDF's pages into the working document. `from` is an asset PDF declared under `assets:`; `at` is the 1-based position to insert before (omit to append); `pages` optionally picks which source pages.
+
+- **params:** `from*`, `at`, `pages`
+- **inputs:** contract.pdf → **output:** `output/contract-with-exhibits.pdf`
+- **operation:** `insert_pages: { from: exhibits.pdf, at: 3 }`
+- **result:** Inserts every page of the exhibits.pdf asset before page 3 of the contract.
+
+### `replace_pages`
+
+Replaces pages of the working document with pages from another PDF. `from` is an asset PDF declared under `assets:`; `pages` are the 1-based pages to remove; the replacement drops in where the first removed page was. `from_pages` optionally picks which source pages.
+
+- **params:** `from*`, `pages*`, `from_pages`
+- **inputs:** report.pdf → **output:** `output/report-revised.pdf`
+- **operation:** `replace_pages: { from: revised-section.pdf, pages: [4, 5] }`
+- **result:** Swaps pages 4-5 of the report for every page of the revised-section.pdf asset.
 
 ### `extract_pages`
 
@@ -196,6 +215,15 @@ Stamps page numbers on every page. `format` uses {n} and {total}; `position` pla
 - **operation:** `add_page_numbers: { format: "Page {n} of {total}", position: bottom-right, start: 1, size: 9 }`
 - **result:** Adds "Page {n} of {total}" numbering to the bottom-right corner of every page in 9 pt type.
 
+### `header_footer`
+
+Stamps running headers/footers on every page. `header` and `footer` each take { left, center, right } text; tokens {n}/{total} number pages, {date} inserts the `date` param (explicit, so the render stays deterministic), and {bates} inserts a legal Bates number configured via `bates: { prefix, start, digits }`. For continuous Bates across a set of files, `merge` them first.
+
+- **params:** `header`, `footer`, `bates`, `date`, `start`, `pages`, `font`, `size`, `margin`, `color`
+- **inputs:** discovery/contract-bundle.pdf → **output:** `output/contract-bundle-bates.pdf`
+- **operation:** `header_footer: { footer: { left: "CONFIDENTIAL", right: "{bates}" }, bates: { prefix: "ACME-", start: 1, digits: 6 } }`
+- **result:** Stamps "CONFIDENTIAL" bottom-left and a sequential Bates number (ACME-000001, ACME-000002, …) bottom-right on every page.
+
 ### `overlay`
 
 Overlays another PDF's pages on top of the current document. `over` is a declared asset PDF.
@@ -215,6 +243,15 @@ Sets document metadata. Provide any of title/author/subject/keywords/creator/pro
 - **inputs:** annual-report-2024.pdf → **output:** `output/annual-report-2024-tagged.pdf`
 - **operation:** `set_metadata: { title: "2024 Annual Report", author: "Acme Corporation", subject: "Fiscal Year 2024 Results", keywords: ["annual report", "finance", "FY2024"] }`
 - **result:** Writes the title, author, subject, and keyword fields into the report's document properties.
+
+### `set_language`
+
+Sets the document's default language on the PDF catalog (/Lang) — a BCP-47 tag like "en-US" or "fr". Required for accessibility so screen readers use the right voice; check_accessibility flags a missing one.
+
+- **params:** `lang*`
+- **inputs:** public-report.pdf → **output:** `output/public-report-en.pdf`
+- **operation:** `set_language: { lang: en-US }`
+- **result:** Sets the report's default language to en-US so assistive technology reads it in English — clearing the missing-language accessibility failure.
 
 ### `set_bookmarks`
 
@@ -252,14 +289,32 @@ Detects tables and writes each to a CSV under the `to` directory. Does not chang
 - **operation:** `extract_tables: { to: output/statement-tables }`
 - **result:** Detects each table in the statement and writes it to its own CSV under output/statement-tables.
 
+### `extract_annotations`
+
+Exports every markup/comment annotation (sticky notes, highlights, underlines, strikeouts, free text, shapes, ink, stamps) to `to`/annotations.json + annotations.csv — one row per annotation with author, comment, the text a markup covers, color, page and rect. Point `inputs` at one PDF or a folder (docs/*.pdf → one combined table). `types` filters kinds; `format` picks json/csv. Read-only.
+
+- **params:** `to`, `format`, `types`, `include_text`
+- **inputs:** reviewed-drafts/*.pdf → **output:** `output/result.pdf`
+- **operation:** `extract_annotations: { to: output/annotations }`
+- **result:** Scans every PDF in reviewed-drafts/ and writes one annotations.json and annotations.csv to output/annotations/ — each row a comment/highlight with its author, page and covered text — leaving the PDFs unchanged.
+
 ### `pdf_info`
 
-Writes a read-only report of the PDF — page count, per-page size/rotation, metadata, encryption, fonts, image/field/annotation counts — as JSON to `to`. Leaves the PDF unchanged.
+Writes a read-only report of the PDF — page count, per-page size/rotation, metadata, encryption, fonts, image/field/annotation counts, plus text coverage (pages_with_text, per-page chars, image-only page count, and a needs_ocr flag) — as JSON to `to`. Leaves the PDF unchanged. For the full per-page OCR-candidate breakdown, use `text_report`.
 
 - **params:** `to`
-- **inputs:** quarterly-report.pdf → **output:** `output/quarterly-report.pdf`
+- **inputs:** quarterly-report.pdf → **output:** `output/result.pdf`
 - **operation:** `pdf_info: { to: output/report-info.json }`
-- **result:** Writes a structured JSON report of the quarterly report (pages, dimensions, metadata, fonts, security) for inspection or CI; the PDF passes through unchanged.
+- **result:** Writes a structured JSON report of the quarterly report (pages, dimensions, metadata, fonts, security, text coverage) for inspection or CI. A pure diagnostic: it writes only the report, so the workflow needs no output block.
+
+### `check_accessibility`
+
+Audits the PDF for accessibility (PDF/UA, Section 508, WCAG) and writes a pass/warn/fail report to `to` — checks for a document title, a default language, a tag tree (StructTreeRoot), that the reader shows the title not the filename, image alt text, and form-field tooltips. `format` is json (default), markdown, or both. Read-only; each finding names the op that fixes it.
+
+- **params:** `to`, `format`
+- **inputs:** public-report.pdf → **output:** `output/result.pdf`
+- **operation:** `check_accessibility: { to: output/accessibility.json, format: both }`
+- **result:** Writes output/accessibility.json (+ accessibility.md) grading the report against PDF/UA checks — title, language, tagging, alt text, tooltips — with a pass/warn/fail per check. A pure diagnostic: it writes only the report, so the workflow needs no output block.
 
 ### `compare_pdfs`
 
@@ -289,15 +344,6 @@ Extracts the PDF's text to a sidecar file (`to`). Does not change the PDF. Add `
 - **inputs:** signed-lease-agreement.pdf → **output:** `output/signed-lease-agreement.pdf`
 - **operation:** `extract_text: { to: output/lease-text.txt, clean: true }`
 - **result:** Writes the full, cleaned-up text of the lease to output/lease-text.txt while leaving the PDF unchanged.
-
-### `extract_markdown`
-
-Extracts page content as Markdown (tables included) to `to`. `engine`: auto/pymupdf4llm/markitdown, or `marker` (Surya OCR + layout) for scanned books — best quality, but slow and needs the marker-pdf backend. `remote` ("user@host") offloads Marker to a GPU box over SSH — minutes on a 4090 vs hours on a CPU; requires the pdfStudio.allowRemoteRender setting.
-
-- **params:** `to`, `engine`, `ocr_first`, `margins`, `lang`, `remote`
-- **inputs:** annual-report-2024.pdf → **output:** `output/annual-report-2024.pdf`
-- **operation:** `extract_markdown: { to: output/annual-report.md, engine: pymupdf4llm }`
-- **result:** Converts the report to clean Markdown (tables included) at output/annual-report.md, ready for LLM ingestion.
 
 ### `extract_images`
 
@@ -334,6 +380,53 @@ Finds literal text and replaces it IN PLACE — the workflow-shaped answer to "e
 - **inputs:** contracts/master-services-agreement.pdf → **output:** `output/msa-renamed.pdf`
 - **operation:** `replace_text: { find: "ACME Corp", replace: "Initech LLC" }`
 - **result:** Replaces every in-line occurrence of "ACME Corp" with "Initech LLC", keeping each match's position, size and color; the render note reports the count and warns if a replacement is wider than what it replaced.
+
+## OCR & document recognition
+
+### `text_report`
+
+Read-only diagnostic that answers "does this PDF need OCR, and where?" — **page stats plus a recommendation**. Writes to `to`: doc-level coverage (`text_coverage_pct`, `pages_with_text`, `total_text_chars`, `avg_images_per_page`, the scripts present e.g. devanagari, a conservative `needs_ocr`, `damaged_streams`), the page lists that matter (`image_only_pages` = real OCR candidates, `empty_pages`, `oversized_pages`), a per-page stats array (`page`, `w`/`h` in points, `chars`, `images`, `class`: text | image_only | empty), and — the actionable part — `recommendation` (text-complete | mixed | image-only | blank) with a runnable `recommended_workflow`. `format: markdown`/`both` also writes a one-screen human summary (metrics table, suggested workflow, page-stats table) beside the JSON. `detail: summary` drops the per-page array, and `sample: 50` analyzes every 50th page for a fast estimate on a huge document. `min_image_px` / `oversize_pt` tune the classifier. Run it BEFORE ocr/extract_* so you OCR only the image-only pages — or skip OCR when a text layer already exists (re-OCR'ing a good text layer degrades it).
+
+- **params:** `to`, `format`, `detail`, `sample`, `min_image_px`, `oversize_pt`
+- **inputs:** mixed-scanned-and-digital.pdf → **output:** `output/result.pdf`
+- **operation:** `text_report: { to: output/coverage.json, format: both }`
+- **result:** Writes output/coverage.json (+ coverage.md) with per-page stats and coverage — which pages have a text layer vs need OCR (needs_ocr, image_only_pages, oversized_pages, scripts) — and a recommendation plus the workflow to author for it. A pure diagnostic: it writes only the report, so the workflow needs no output block.
+
+### `ocr`
+
+Adds a searchable text layer to scanned pages via OCR (Tesseract). `language` is a Tesseract code, default eng ("eng+hin" for multiple) — it is preflighted against installed tessdata and fails clearly if missing. `mode`: skip-text (default, OCRs only text-less pages), redo-ocr (re-recognize), force-ocr (rasterize + OCR all, lossy). `output_type: pdfa` for archival PDF/A. `page_range` ("1-3,7") limits which pages. A damaged source whose OCR output ocrmypdf rejects is auto-repaired with pikepdf. This is the Tesseract engine and it outputs a SEARCHABLE PDF. For other OCR jobs use a different op: **`extract_markdown`** turns a scan into Markdown with `engine: marker` (Surya OCR + layout) or `engine: paddleocr-vl` (Baidu's compact 0.9B doc VLM — CPU-capable); **`extract_receipt`** pulls typed fields from receipts/invoices with a vision model (Qwen3-VL). Always run `text_report` first — don't re-OCR a doc that already has a good text layer. Engine speed/accuracy comparison: the OCR performance report — https://github.com/LynxDI/pdf-studio/blob/main/docs/ocr-benchmark.md
+
+- **params:** `language`, `mode`, `output_type`, `optimize`, `page_range`
+- **inputs:** scanned-contract.pdf → **output:** `output/searchable-contract.pdf`
+- **operation:** `ocr: { mode: redo-ocr, language: "eng+hin" }`
+- **result:** Re-OCRs the scanned pages with English+Hindi, replacing any poor prior OCR with a fresh searchable text layer.
+
+### `extract_markdown`
+
+Extracts page content as Markdown (tables included) to `to`. `engine`: auto/pymupdf4llm/markitdown for text-layer PDFs, or a vision-model OCR engine for scans — `marker` (Surya OCR + layout: best quality, slow, needs marker-pdf) or `paddleocr-vl` (Baidu's compact 0.9B doc parser: strong on tables/formulas, CPU-capable, runs in its own venv). `ocr`: off (text-layer only) / auto (default — OCR only pages with no text, keeping existing text) / force (re-OCR everything, lossy). `remote` ("user@host") offloads Marker to a GPU box over SSH; `endpoint` (URL) uses an HTTP Marker service instead (chunked + resumable) — both need pdfStudio.allowRemoteRender and send document bytes off-box. Tip: run `text_report` first — a PDF that already has text needs no OCR engine at all. Which engine to pick (speed/accuracy per engine): see the OCR performance report — https://github.com/LynxDI/pdf-studio/blob/main/docs/ocr-benchmark.md
+
+- **params:** `to`, `engine`, `ocr`, `ocr_first`, `margins`, `lang`, `remote`, `endpoint`
+- **inputs:** annual-report-2024.pdf → **output:** `output/annual-report-2024.pdf`
+- **operation:** `extract_markdown: { to: output/annual-report.md, engine: pymupdf4llm }`
+- **result:** Converts the report to clean Markdown (tables included) at output/annual-report.md, ready for LLM ingestion.
+
+### `pdf_to_markdown`
+
+Converts the PDF to Markdown. Set the workflow's `output.file` to a `.md` path and the Markdown is written THERE directly (no stray PDF) — or pass `to` for a side artifact while the PDF passes through. `engine` auto-picks pymupdf4llm → markitdown → PyMuPDF; for scans use a vision-model OCR engine — `marker` (Surya OCR + layout, needs marker-pdf) or `paddleocr-vl` (Baidu's compact 0.9B doc parser, CPU-capable, its own venv). `remote` ("user@host") runs Marker on a GPU box over SSH — minutes on a 4090 vs hours on a CPU; requires the pdfStudio.allowRemoteRender setting. Which engine to pick (speed/accuracy per engine): see the OCR performance report — https://github.com/LynxDI/pdf-studio/blob/main/docs/ocr-benchmark.md
+
+- **params:** `to`, `engine`, `ocr`, `ocr_first`, `margins`, `lang`, `remote`, `endpoint`
+- **inputs:** research-paper.pdf → **output:** `output/research-paper.md`
+- **operation:** `pdf_to_markdown: { engine: auto }`
+- **result:** Writes the paper as clean Markdown (tables included) to output/research-paper.md — ready for docs or LLM ingestion.
+
+### `extract_receipt`
+
+Reads receipts/invoices as IMAGES with a vision-language model (Qwen3-VL) and extracts structured fields — merchant, date, currency, subtotal, tax, tip, total, receipt number, and line items — to JSON + CSV. Unlike `extract_form` (which reads AcroForm fields) this works on scans/photos with no text layer. Each page is rasterized (`dpi`, default 200) and sent to an OpenAI-compatible endpoint (`endpoint`, e.g. a vLLM server; defaults to $PDFSTUDIO_VLM_ENDPOINT), so it needs the **pdfStudio.allowRemoteRender** setting (page-image bytes go to the model server). No GPU? Point `endpoint` at a **free NVIDIA cloud vision model** (`meta/llama-3.2-90b-vision-instruct` + `$NVIDIA_API_KEY`) — see the AI-models guide in the Documentation panel. Point `inputs` at one PDF or a whole folder (`receipts/*.pdf` — all matches fold into ONE table). Writes per-input `<stem>.json`, a combined `receipts.json`, and a flattened `receipts.csv` (one row per line item) into `to`; `format: json`/`csv` narrows it, `schema: invoice` adds invoice fields, `line_items: false` keeps only totals. **Re-runs are incremental**: `receipts.json` doubles as a ledger keyed by content hash, so an unchanged file is skipped with no model calls (`resume: false` re-reads everything).
+
+- **params:** `to`, `endpoint`, `model`, `schema`, `format`, `line_items`, `dpi`, `page_range`, `currency_hint`, `resume`
+- **inputs:** receipts/*.pdf → **output:** `output/result.pdf`
+- **operation:** `extract_receipt: { endpoint: "http://localhost:11434/v1", model: qwen3-vl-8b }`
+- **result:** Reads each receipt image with the vision model and writes one JSON per input, a combined receipts.json, and a receipts.csv of merchant/date/totals/tax + line items for a downstream system (expenses, bookkeeping) to ingest. Re-run after adding more receipts and only the new ones cost a model call.
 
 ## Redaction & cleanup
 
@@ -397,15 +490,6 @@ Detects and deletes blank pages (no text, no images, near-white). No params.
 - **inputs:** scanned-batch.pdf → **output:** `output/scanned-batch-trimmed.pdf`
 - **operation:** `remove_blank_pages: {}`
 - **result:** Detects and deletes the empty separator pages left by the scanner, keeping only pages with real content.
-
-### `ocr`
-
-Adds a searchable text layer to scanned pages via OCR. `language` is a Tesseract code (default eng).
-
-- **params:** `language`
-- **inputs:** scanned-contract.pdf → **output:** `output/searchable-contract.pdf`
-- **operation:** `ocr: { language: "eng+fra" }`
-- **result:** Adds a searchable, selectable text layer over the scanned pages, recognizing both English and French text.
 
 ### `extract_js`
 
@@ -492,6 +576,24 @@ Embeds a file as an attachment. `file` is a workflow-relative path; `name` defau
 - **operation:** `add_attachments: { file: assets/line-items-2024.xlsx, name: line-items-2024.xlsx }`
 - **result:** Embeds the source spreadsheet assets/line-items-2024.xlsx into invoice-2024.pdf as an attachment named line-items-2024.xlsx so recipients get the raw data alongside the invoice.
 
+### `extract_links`
+
+Pulls every hyperlink out of a PDF (or a whole folder) to JSON + CSV — clickable link annotations (the URL, its page, and the anchor text) plus, by default, bare URLs printed in the text that were never linked. Point `inputs` at one file or a glob (`docs/*.pdf` — all matches fold into ONE table with a `file` column, they aren't batched). `types` picks which kinds to keep (default `[uri]` = external web/mailto; add `goto` for internal jumps, or `all`); `include_text_urls: false` limits it to real link annotations; `dedupe: true` collapses to a unique URL list. Read-only — the PDF is unchanged.
+
+- **params:** `to`, `format`, `types`, `include_text_urls`, `dedupe`
+- **inputs:** research-papers/*.pdf → **output:** `output/result.pdf`
+- **operation:** `extract_links: { to: output/links }`
+- **result:** Scans every PDF in research-papers/ and writes one links.json and links.csv to output/links/ — each row a URL with the file and page it came from — leaving the PDFs unchanged.
+
+### `add_links`
+
+Makes URLs clickable and adds explicit links — the inverse of extract_links. With `auto` (default true) it finds bare URLs printed in the page text and lays a URI link over each. `links` adds explicit links by text search: `find` a phrase and point it at a `url` (external) or `goto` (1-based page). Modifies the PDF.
+
+- **params:** `auto`, `links`, `pages`
+- **inputs:** research-paper.pdf → **output:** `output/research-paper-linked.pdf`
+- **operation:** `add_links: { auto: true }`
+- **result:** Detects every bare URL printed in the paper's text and makes it a clickable link, writing the linked PDF.
+
 ## Encryption & permissions
 
 ### `encrypt`
@@ -576,6 +678,15 @@ Recolors every page for comfortable reading. **`mode: dark`** (default) is a sma
 - **inputs:** report.pdf → **output:** `output/report-dark.pdf`
 - **operation:** `recolor: { mode: dark }`
 - **result:** Turns the whole document into an easy-on-the-eyes dark mode — white-on-black text with the report's photos still in full color.
+
+### `convert_colors`
+
+Converts the whole document's color space with Ghostscript — `mode`: gray (default, for cheap B&W printing), cmyk (for a commercial press), or rgb (for screen). Keeps text and vector art as vectors (unlike recolor, which rasterizes). Needs Ghostscript installed.
+
+- **params:** `mode`
+- **inputs:** color-brochure.pdf → **output:** `output/brochure-grayscale.pdf`
+- **operation:** `convert_colors: { mode: gray }`
+- **result:** Converts the color brochure to true grayscale for black-and-white printing, keeping the text crisp and selectable.
 
 ### `scanner_effect`
 
@@ -698,15 +809,6 @@ Converts the PDF to an HTML file written to `to`. Fidelity varies (LibreOffice).
 - **operation:** `pdf_to_html: { to: output/converted.html }`
 - **result:** Converts the brochure to an HTML document via LibreOffice for web publishing or content reuse.
 
-### `pdf_to_markdown`
-
-Converts the PDF to Markdown. Set the workflow's `output.file` to a `.md` path and the Markdown is written THERE directly (no stray PDF) — or pass `to` for a side artifact while the PDF passes through. `engine` auto-picks pymupdf4llm → markitdown → PyMuPDF; use `marker` (Surya OCR + layout, needs marker-pdf) for scanned books. `remote` ("user@host") runs Marker on a GPU box over SSH — minutes on a 4090 vs hours on a CPU; requires the pdfStudio.allowRemoteRender setting.
-
-- **params:** `to`, `engine`, `ocr_first`, `margins`, `lang`, `remote`
-- **inputs:** research-paper.pdf → **output:** `output/research-paper.md`
-- **operation:** `pdf_to_markdown: { engine: auto }`
-- **result:** Writes the paper as clean Markdown (tables included) to output/research-paper.md — ready for docs or LLM ingestion.
-
 ### `pdf_to_epub`
 
 Converts the PDF to a **reflowable EPUB** ebook written to `to` — ideal for reading on Kindle and other e-readers (text reflows to the screen, unlike a fixed PDF). `engine`: `auto` uses Calibre's `ebook-convert` when it's installed (best reflow + formatting) and otherwise falls back to a bundled text-to-EPUB builder (always available; text-focused). Chapters come from the PDF outline when present, else every `chapter_pages` pages. `title`/`author` default to the PDF metadata. Best for prose/text books; complex layouts reflow imperfectly.
@@ -729,7 +831,7 @@ Summarizes the PDF's text with an LLM and writes a Markdown summary to `to` (or 
 
 ### `translate`
 
-Translates the PDF's text to `lang` with an LLM. By default writes the translation as Markdown to `to`. Set `layout: true` to instead render a translated PDF that keeps the original page geometry, images and tables — each text block is translated in place (best for Latin/CJK scripts; point output.file at the PDF). Chunks long documents automatically. Runs a LOCAL model via Ollama by default; set ANTHROPIC_API_KEY for Claude. Requires the pdfStudio.allowAiRequests setting.
+Translates the PDF's text to `lang` with an LLM. By default writes the translation as Markdown to `to`. Set `layout: true` to instead render a translated PDF that keeps the original page geometry, images and tables — each text block is translated in place (best for Latin/CJK scripts; point output.file at the PDF). Chunks long documents automatically. Runs a LOCAL model via Ollama by default; set ANTHROPIC_API_KEY for Claude, or point `$PDFSTUDIO_LLM_ENDPOINT` at a **free NVIDIA cloud model** (`nvidia/riva-translate-4b-instruct-v1.1` + `$NVIDIA_API_KEY`) — no local setup (see the AI-models guide in the Documentation panel). Requires the pdfStudio.allowAiRequests setting.
 
 - **params:** `lang*`, `layout`, `to`, `model`, `max_chars`, `chunk`, `max_tokens`
 - **inputs:** user-guide.pdf → **output:** `output/user-guide-es.pdf`
@@ -738,7 +840,7 @@ Translates the PDF's text to `lang` with an LLM. By default writes the translati
 
 ### `semantic_search`
 
-Finds passages by MEANING, not keywords — ask in plain language and get the matching passages back, ranked, with their page numbers. Embeds the document with a LOCAL model (nomic-embed-text via Ollama by default: `ollama pull nomic-embed-text`), so nothing leaves your machine. Needs the pdfStudio.allowAiRequests setting. Scanned PDF? Run `ocr` first.
+Finds passages by MEANING, not keywords — ask in plain language and get the matching passages back, ranked, with their page numbers. Embeds the document with a LOCAL model (nomic-embed-text via Ollama by default: `ollama pull nomic-embed-text`), so nothing leaves your machine — or use a **free NVIDIA cloud embedder** (`nvidia/nv-embed-v1` via `$PDFSTUDIO_EMBED_ENDPOINT` + `$NVIDIA_API_KEY`, see the AI-models guide in the Documentation panel). Needs the pdfStudio.allowAiRequests setting. Scanned PDF? Run `ocr` first.
 
 - **params:** `query*`, `top_k`, `min_score`, `to`, `model`, `chunk_words`, `overlap_words`, `no_cache`
 - **inputs:** terms-and-conditions.pdf → **output:** `output/terms-and-conditions.pdf`

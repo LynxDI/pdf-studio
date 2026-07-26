@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lynx PDF Studio — PDF automation with workflow files: fill forms, redact, merge, batch, PDF to Markdown</title>
-  <meta name="description" content="Free PDF automation on your machine: describe the job once in a workflow file — fill forms, redact, merge, batch, convert. Ships as a free VS Code extension.">
+  <title>Lynx PDF Studio — agent-native PDF automation: PDFs as code for coding agents (fill forms, redact, merge, batch)</title>
+  <meta name="description" content="PDFs as code. Let your coding agent (Claude Code, Codex, Gemini) author a workflow file; review the diff; a deterministic local engine renders the PDF — fill forms, redact, merge, batch, convert. Free VS Code extension.">
   <link rel="canonical" href="https://pdf.lynxdi.com/">
   <link rel="icon" href="favicon.ico" sizes="48x48">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
@@ -15,10 +15,10 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://pdf.lynxdi.com/">
   <meta property="og:site_name" content="Lynx PDF Studio">
-  <meta property="og:title" content="Never do the same document twice. Never upload one once.">
-  <meta property="og:description" content="Free PDF automation on your machine. Describe the job once in a workflow file; a deterministic engine repeats it — fill forms, redact, merge, batch, convert.">
+  <meta property="og:title" content="PDFs as code — built for coding agents.">
+  <meta property="og:description" content="Let your coding agent (Claude Code, Codex, Gemini) author the workflow file; review the diff; a deterministic local engine renders the PDF — fill forms, redact, merge, batch, convert.">
   <meta property="og:image" content="https://pdf.lynxdi.com/assets/img/og-image.png">
-  <meta property="og:image:alt" content="Lynx PDF Studio — Never do the same document twice. Never upload one once.">
+  <meta property="og:image:alt" content="Lynx PDF Studio — PDFs as code, built for coding agents.">
   <meta name="twitter:card" content="summary_large_image">
   <script type="application/ld+json">
   {
@@ -31,7 +31,7 @@
     "downloadUrl": "https://marketplace.visualstudio.com/items?itemName=LynxDI.lynxdi-pdf-studio",
     "url": "https://pdf.lynxdi.com/",
     "image": "https://pdf.lynxdi.com/assets/img/og-image.png",
-    "description": "Free PDF automation on your machine: describe the job once in a workflow file — fill forms, redact, merge, batch, convert. Ships as a free VS Code extension.",
+    "description": "Agent-native PDF automation: PDFs as code. Let a coding agent author a workflow file; review the diff; a deterministic local engine renders the PDF — fill forms, redact, merge, batch, convert. Free VS Code extension.",
     "publisher": { "@type": "Organization", "name": "Lynx DI", "url": "https://lynxdi.com" }
   }
   </script>
@@ -84,19 +84,22 @@
 <section class="hero">
   <div class="wrap">
     <div>
-      <h1>Never do the same document twice.<span class="line2">Never upload one once.</span></h1>
-      <p class="sub">Describe the job once in a small text file. A deterministic engine
-        repeats it — on your machine. There is no server of ours.</p>
-      <p class="byline">Lynx PDF Studio — free PDF automation.</p>
+      <h1>PDFs as code<span class="line2">built for coding agents.</span></h1>
+      <p class="sub"><strong>The agent-native PDF editor</strong> that reduces or removes manual
+        document work. Let Claude Code, Codex, Gemini, or your preferred coding agent author the
+        workflow. Review the diff. A deterministic local engine does the work — on your machine.
+        There is no server of ours.</p>
+      <p class="byline">Lynx PDF Studio — free, agent-native PDF automation.</p>
       <div class="cta-row">
         <a class="btn btn-primary" href="vscode:extension/LynxDI.lynxdi-pdf-studio">Install now</a>
         <a class="btn btn-ghost" href="https://marketplace.visualstudio.com/items?itemName=LynxDI.lynxdi-pdf-studio">View on Marketplace</a>
       </div>
       <div class="pill-row">
-        <span class="pill"><strong><!--OPS-->80<!--/OPS--></strong>&nbsp;operations</span>
+        <span class="pill"><strong><!--OPS-->91<!--/OPS--></strong>&nbsp;operations</span>
+        <span class="pill">PDFs as code</span>
         <span class="pill">Free — no account, no tiers</span>
         <span class="pill">Local by design</span>
-        <span class="pill">Agent-ready (MCP)</span>
+        <span class="pill">Agent-native (MCP)</span>
       </div>
     </div>
     <div class="code-window" aria-label="Example workflow file">
@@ -208,7 +211,7 @@
 <section id="operations">
   <div class="wrap">
     <p class="kicker">The vocabulary</p>
-    <h2><!--OPS-->80<!--/OPS--> operations, one grammar.</h2>
+    <h2><!--OPS-->91<!--/OPS--> operations, one grammar.</h2>
     <p class="lead">Every operation is one line in the same declarative shape — from
       merge to redaction to form filling. Browse the
       <a href="operations/">full operations reference</a>.</p>
@@ -260,8 +263,24 @@
 <section id="agents">
   <div class="wrap split">
     <div>
-      <p class="kicker">Agent-native</p>
+      <p class="kicker">Agent-native · PDFs as code</p>
       <h2>Works with any AI coding agent — online or offline.</h2>
+      <div class="code-window" aria-label="How a coding agent edits a PDF here">
+        <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fname">the workflow becomes an editable software artifact</span></div>
+        <pre><span class="cn">Prompt</span>  <span class="cm">("redact the SSNs; give me a version that's safe to share")</span>
+   ↓
+<span class="ck">Coding agent</span>  · Claude Code · Codex · Gemini · Copilot
+   ↓
+<span class="cs">workflow.opw.yaml</span>  <span class="cm">← the editable artifact (source of truth)</span>
+   ↓
+<span class="ck">Git diff / human review</span>  <span class="cm">← you approve before anything runs</span>
+   ↓
+Validate → Optimize → Plan
+   ↓
+<span class="ck">Deterministic engine</span>  <span class="cm">(local)</span>
+   ↓
+<span class="cs">PDF</span>  <span class="cm">(a build artifact)</span></pre>
+      </div>
       <p class="lead">Claude Code, Copilot, Cursor, Gemini, or a fully local agent:
         a bundled MCP server and a generated project guide teach any of them to author
         workflows for you.</p>

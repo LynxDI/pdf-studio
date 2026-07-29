@@ -1,0 +1,60 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build output
+dist/
+**/dist/
+dist-test/
+**/dist-test/
+*.tsbuildinfo
+**/*.tsbuildinfo
+
+# VS Code integration-test runtime (downloaded editor build)
+.vscode-test/
+**/.vscode-test/
+
+# Extension packages
+*.vsix
+
+# PDF Studio caches & renders (regenerated — the PDF is a build artifact)
+.pdf-cache/
+**/.pdf-cache/
+**/output/*.pdf
+
+# Records files hold PII — never commit a real one. (The mock example fixture is
+# explicitly re-included so the sample project still ships.)
+people.yaml
+*.people.yaml
+!examples/fill-forms/people.yaml
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+sidecar/.venv/
+
+# Extension runtime state written into the workspace it's activated in (trace log).
+.workspace/
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+
+# Claude local (personal pre-approval; not shared)
+.claude/settings.local.json
+.claude/projects/
+
+.reference/tools/ui-shots/
+
+# Guides copied into the VSIX by extension/build.mjs (source: docs/ + examples/)
+extension/resources/docs/
+
+# Copilot chatInstructions generated into the VSIX by extension/build.mjs
+# (source: agent-map-content.ts)
+extension/resources/instructions/
+
+# Generated example bundles land here if examples:bundle is run without --out.
+# The site itself lives in the private repo; nothing under site/ belongs in this one.
+site/

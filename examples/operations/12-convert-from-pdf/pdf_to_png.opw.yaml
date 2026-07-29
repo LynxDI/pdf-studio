@@ -1,0 +1,18 @@
+# pdf_to_png — Convert a PDF to PNG images — one file per page. A preset of render_pages; use that for SVG or a mixed format choice.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - pdf_to_png:
+      to: output/png
+      dpi: 100
+      pages:
+        - 1
+        - 2
+      name: "{stem}-{i:03}"
+output:
+  folder: output/png

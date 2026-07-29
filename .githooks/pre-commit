@@ -1,0 +1,20 @@
+#!/bin/sh
+# Block a commit that would stage a credential, key, or developer-machine path.
+#
+# Install once:  npm run hooks:install     (sets core.hooksPath to .githooks)
+#
+# Checks only STAGED changes, so it is fast enough to run on every commit. The full-tree
+# check is `npm run audit:secrets`.
+#
+# This hook ships in BOTH repositories. It matters most in the public one, where a push
+# publishes immediately — there is no gap between "committed" and "on the internet".
+#
+# Bypass with `git commit --no-verify` when you genuinely mean to — but read what it found
+# first. It reports no style opinions, only things that would be a problem once public.
+
+node .githooks/check-secrets.mjs --staged || {
+  echo ""
+  echo "pre-commit: refusing the commit — see above."
+  echo "            override with 'git commit --no-verify' if this is deliberate."
+  exit 1
+}

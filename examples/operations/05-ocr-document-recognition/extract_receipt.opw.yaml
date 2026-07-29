@@ -1,0 +1,10 @@
+# extract_receipt — Read receipts/invoices as images with a vision-language model (Qwen3-VL, served over an OpenAI-compatible endpoint) and extract structured fields — merchant, date, totals, tax, currency, line items — to JSON + CSV. For scans/photos where there is no reliable text layer.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# NOT runnable as-is: needs a vision-language endpoint (vLLM/Ollama; allowRemoteRender off). This example shows the syntax — provide your own input.
+version: 1
+kind: pdf
+inputs:
+  - receipts/*.pdf
+operations:
+  - extract_receipt: { endpoint: "http://localhost:11434/v1", model: qwen3-vl-8b }

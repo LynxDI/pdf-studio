@@ -1,0 +1,13 @@
+# pdf_info — Write a structured report of the PDF (pages, sizes, metadata, security, fonts, and text coverage) as JSON.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - pdf_info:
+      to: output/info.json
+output:
+  folder: output/pdf_info

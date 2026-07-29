@@ -1,0 +1,14 @@
+# poster — Split each page into a grid of tiles for large-format/poster printing.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - poster:
+      rows: 1
+      cols: 2
+output:
+  file: output/poster.pdf

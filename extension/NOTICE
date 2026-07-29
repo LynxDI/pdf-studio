@@ -1,0 +1,74 @@
+Lynx PDF Studio Automation — Third-Party Notices
+
+Lynx PDF Studio Automation is licensed under the GNU Affero General Public License, version 3 or
+later (see LICENSE). A commercial licence is available for use that AGPL does not suit —
+see LICENSING.md in the source repository:
+https://github.com/LynxDI/pdf-studio/blob/main/LICENSING.md
+
+The complete corresponding source for this extension, as AGPL section 6 requires, is
+published at https://github.com/LynxDI/pdf-studio.
+
+
+BUNDLED COMPONENTS
+
+These are compiled INTO the shipped JavaScript by the bundler, not installed
+alongside it, and remain licensed under their own permissive terms. Their full
+licence texts ship with this extension in THIRD-PARTY-LICENSES.txt — required
+by MIT (the copyright notice must accompany the distribution) and by Apache-2.0
+section 4(a) (recipients of a derivative work must receive a copy of the License).
+
+- pdf-lib — MIT License — https://github.com/Hopding/pdf-lib
+  - @pdf-lib/standard-fonts — MIT License (the Base-14 font metrics)
+  - @pdf-lib/upng — MIT License (PNG encode/decode)
+  - pako — MIT AND Zlib (the deflate implementation)
+  - tslib — 0BSD
+- pdf.js (pdfjs-dist) — Apache License 2.0 — https://github.com/mozilla/pdf.js
+- fflate — MIT License — https://github.com/101arrowz/fflate
+- @modelcontextprotocol/sdk — MIT License — https://github.com/modelcontextprotocol/typescript-sdk
+- zod — MIT License — https://github.com/colinhacks/zod
+- zod-to-json-schema — ISC License — https://github.com/StefanTerdell/zod-to-json-schema
+- yaml — ISC License — https://github.com/eemeli/yaml
+
+
+NOT BUNDLED — OPTIONAL TOOLS YOU INSTALL YOURSELF
+
+Lynx PDF Studio Automation runs on its bundled engine with nothing else installed. Several
+operations can additionally use optional third-party tools if they are already
+present on your machine.
+
+None of these are distributed with this extension. No copy of them is contained in
+this package. The extension only DETECTS whether you have installed one (by running
+its `--version`) and, when you ask it to, INVOKES it as a separate program — passing
+command-line arguments and reading its output. It does not link against, embed,
+modify, or redistribute any of them.
+
+When you use the "Set Up Dependency" action, the extension runs the standard installer
+command for your platform (winget / Scoop / Homebrew / apt) or opens the vendor's own
+download page. The software is obtained from its own publisher, by you, under that
+publisher's licence — the extension is not the distributor.
+
+  Tool          Licence                          Used by
+  ----------------------------------------------------------------------------------
+  Python +      PyMuPDF (AGPL-3.0 or commercial  extract_text, redaction, OCR,
+  libraries     from Artifex), pikepdf (MPL-2.0),  forms, and most content operations
+                OCRmyPDF (MPL-2.0), pypdf (BSD),
+                Pillow (MIT-CMU), and related
+  Ghostscript   AGPL-3.0, or a commercial        deep compression, convert_colors,
+                licence from Artifex Software    PDF/A conversion
+  qpdf          Apache-2.0                       compression, linearization
+  LibreOffice   MPL-2.0                          Office ⇆ PDF conversion
+  Tesseract     Apache-2.0                       OCR text layer
+  ffmpeg        LGPL-2.1-or-later; GPL-2.0-or-   video_to_pdf
+                later in builds configured with
+                --enable-gpl (most distributions)
+  Chrome/Edge   vendor's own terms               high-fidelity HTML/Markdown/URL → PDF
+  Calibre       GPL-3.0                          EPUB ⇆ PDF (optional engine)
+  pyHanko       MIT                              digital signatures, timestamps
+
+Ghostscript, PyMuPDF and ffmpeg are copyleft-licensed. If you intend to redistribute
+them, or to bundle them into a product of your own, review their terms — and note that
+Ghostscript and PyMuPDF are dual-licensed and that Artifex Software sells commercial
+licences for both. That obligation is yours as the party installing and using the
+software; it is not conveyed by this extension, which ships none of it.
+
+Full licence texts are available from each project and within its own distribution.

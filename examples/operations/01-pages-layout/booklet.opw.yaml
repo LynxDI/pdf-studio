@@ -1,0 +1,12 @@
+# booklet — Impose pages 2-up in saddle-stitch booklet order for folded printing.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - booklet: {}
+output:
+  file: output/booklet.pdf

@@ -1,0 +1,16 @@
+# overlay — Overlay another PDF's pages on top of the current document.
+#
+# Backend: bundled engine — runs with nothing installed.
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+assets:
+  overlay_src: input/sample2.pdf
+operations:
+  - overlay:
+      over: overlay_src
+      opacity: 0.3
+output:
+  file: output/overlay.pdf

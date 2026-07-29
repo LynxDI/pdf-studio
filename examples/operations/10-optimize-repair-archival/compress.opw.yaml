@@ -1,0 +1,13 @@
+# compress — Reduce file size — by quality, or to a target `max_size` (deep compression when Ghostscript/qpdf is available).
+#
+# Backend: bundled engine — runs with nothing installed.
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - compress:
+      quality: 60
+output:
+  file: output/compress.pdf

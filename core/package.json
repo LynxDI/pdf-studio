@@ -1,0 +1,37 @@
+{
+  "name": "@pdf-studio/core",
+  "version": "0.1.0",
+  "description": "PDF Studio engine — the OpenPDF Workflow (OPW) model, validate/optimize/compile pipeline, pluggable renderer adapters, and dependency probing. Pure Node, zero vscode imports.",
+  "license": "AGPL-3.0-or-later",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "tsc -b --clean"
+  },
+  "dependencies": {
+    "pdf-lib": "^1.17.1",
+    "yaml": "^2.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.4.0"
+  }
+}

@@ -1,0 +1,22 @@
+# ── OCR → a searchable PDF (Tesseract / OCRmyPDF) ───────────────────────────────────
+# The workhorse. Takes an image-only PDF and returns the SAME PDF with an invisible,
+# searchable text layer behind the image — so you can select/copy/search it and downstream
+# extraction works. Fast, offline, deterministic; best for ordinary typed documents.
+# Output stays a PDF (it doesn't give you Markdown or data — the engines below do that).
+#
+# ALWAYS run 00-check-first (text_report) first: if the file already has text, skip this.
+# input/scanned-letter.pdf is confirmed image-only (0% coverage), so OCR is the right call.
+# `mode: skip-text` only OCRs pages that lack text, so it's safe to run on a mixed file.
+#
+# Needs: Python backend + Tesseract → Dependencies view → "OCR (Tesseract + OCRmyPDF)".
+
+version: 1
+kind: pdf
+inputs:
+  - input/scanned-letter.pdf
+operations:
+  - ocr:
+      language: eng # installed Tesseract language(s), e.g. "eng" or "eng+fra"
+      mode: skip-text # only OCR pages with no text layer (never destroys existing text)
+output:
+  file: output/scanned-letter-searchable.pdf

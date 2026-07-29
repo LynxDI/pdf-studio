@@ -1,0 +1,13 @@
+# rasterize — Flatten every page to a raster image (non-editable, non-selectable).
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - rasterize:
+      dpi: 100
+output:
+  file: output/rasterize.pdf

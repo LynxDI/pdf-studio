@@ -1,0 +1,12 @@
+# decrypt — Remove password protection — supply the current password. Put this first.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# NOT runnable as-is: needs a prior step's output (run that op first). This example shows the syntax — provide your own input.
+version: 1
+kind: pdf
+inputs:
+  - locked-bank-statement.pdf
+operations:
+  - decrypt: { password: "${PDF_PASSWORD}" }
+output:
+  file: output/bank-statement-unlocked.pdf

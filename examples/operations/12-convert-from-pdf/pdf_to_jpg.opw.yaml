@@ -1,0 +1,16 @@
+# pdf_to_jpg — Convert a PDF to JPG images — one file per page. A preset of render_pages; JPG is smaller than PNG for photos and scans, but cannot be transparent.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - pdf_to_jpg:
+      to: output/jpg
+      dpi: 100
+      pages:
+        - 1
+output:
+  folder: output/jpg

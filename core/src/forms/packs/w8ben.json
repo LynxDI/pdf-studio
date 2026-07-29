@@ -1,0 +1,318 @@
+{
+  "id": "w8ben",
+  "title": "Form W-8BEN \u2014 Certificate of Foreign Status of Beneficial Owner (Individuals)",
+  "issuer": "Internal Revenue Service",
+  "category": "Tax",
+  "country": "US",
+  "tags": [
+    "tax",
+    "irs",
+    "withholding",
+    "treaty",
+    "foreign",
+    "contractor",
+    "w-8"
+  ],
+  "roles": [
+    "applicant"
+  ],
+  "source": {
+    "source_url": "https://www.irs.gov/pub/irs-pdf/fw8ben.pdf",
+    "captured": "2026-07-16",
+    "fields": [
+      {
+        "name": "topmostSubform[0].Page1[0].f_1[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f_2[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f_3[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f_4[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f_5[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f_6[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f_7[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f_8[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f_9[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f_10[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_01[0]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f_11[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f_12[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f_13[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f_14[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f_15[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f_16[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f_17[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f_18[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_02[0]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f_20[0]",
+        "type": "Signature",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Date[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f_21[0]",
+        "type": "Text",
+        "page": 1
+      }
+    ]
+  },
+  "fields": [
+    {
+      "key": "name",
+      "label": "Name of individual who is the beneficial owner (line 1)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f_1[0]",
+      "template": "{applicant.first_name} {applicant.last_name}",
+      "required": true
+    },
+    {
+      "key": "country_of_citizenship",
+      "label": "Country of citizenship (line 2)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f_2[0]",
+      "required": true
+    },
+    {
+      "key": "address_street",
+      "label": "Permanent residence address \u2014 street, apt or suite (line 3)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f_3[0]",
+      "from": "applicant.address.street",
+      "help": "No P.O. box or in-care-of address."
+    },
+    {
+      "key": "address_city_state_zip",
+      "label": "Permanent residence \u2014 city or town, state/province, postal code",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f_4[0]",
+      "template": "{applicant.address.city}, {applicant.address.state} {applicant.address.zip}"
+    },
+    {
+      "key": "address_country",
+      "label": "Permanent residence \u2014 country",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f_5[0]",
+      "from": "applicant.address.country",
+      "required": true
+    },
+    {
+      "key": "mailing_street",
+      "label": "Mailing address \u2014 street (line 4, if different)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f_6[0]"
+    },
+    {
+      "key": "mailing_city_state_zip",
+      "label": "Mailing address \u2014 city or town, state/province, postal code",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f_7[0]"
+    },
+    {
+      "key": "mailing_country",
+      "label": "Mailing address \u2014 country",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f_8[0]"
+    },
+    {
+      "key": "us_tin",
+      "label": "U.S. taxpayer identification number \u2014 SSN or ITIN (line 5)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f_9[0]",
+      "from": "applicant.ssn",
+      "help": "Required to claim treaty benefits unless a foreign TIN is given on line 6a."
+    },
+    {
+      "key": "foreign_tin",
+      "label": "Foreign tax identifying number (line 6a)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f_10[0]"
+    },
+    {
+      "key": "ftin_not_required",
+      "label": "Check if FTIN not legally required (line 6b)",
+      "type": "checkbox",
+      "field": "topmostSubform[0].Page1[0].c1_01[0]",
+      "on": "1"
+    },
+    {
+      "key": "reference_number",
+      "label": "Reference number(s) (line 7)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f_11[0]"
+    },
+    {
+      "key": "date_of_birth",
+      "label": "Date of birth \u2014 MM-DD-YYYY (line 8)",
+      "type": "date",
+      "field": "topmostSubform[0].Page1[0].f_12[0]",
+      "from": "applicant.date_of_birth",
+      "format": "MM-DD-YYYY"
+    },
+    {
+      "key": "treaty_country",
+      "label": "Line 9 \u2014 resident of (treaty country)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f_13[0]",
+      "help": "Part II: claim of tax treaty benefits. Leave Part II blank if you aren't claiming a treaty rate."
+    },
+    {
+      "key": "treaty_article",
+      "label": "Line 10 \u2014 Article and paragraph",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f_14[0]"
+    },
+    {
+      "key": "treaty_rate",
+      "label": "Line 10 \u2014 % rate of withholding claimed",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f_15[0]"
+    },
+    {
+      "key": "treaty_income_type",
+      "label": "Line 10 \u2014 type of income",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f_16[0]"
+    },
+    {
+      "key": "treaty_explanation",
+      "label": "Line 10 \u2014 additional conditions met (explanation)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f_17[0]"
+    },
+    {
+      "key": "treaty_explanation_cont",
+      "label": "Line 10 \u2014 explanation, continued",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f_18[0]"
+    },
+    {
+      "key": "certify_capacity",
+      "label": "I certify that I have the capacity to sign for the person on line 1",
+      "type": "checkbox",
+      "field": "topmostSubform[0].Page1[0].c1_02[0]",
+      "on": "1"
+    },
+    {
+      "key": "signer_name",
+      "label": "Print name of signer",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f_21[0]",
+      "template": "{applicant.first_name} {applicant.last_name}"
+    },
+    {
+      "key": "date_signed",
+      "label": "Date signed (MM-DD-YYYY)",
+      "type": "date",
+      "field": "topmostSubform[0].Page1[0].Date[0]",
+      "format": "MM-DD-YYYY"
+    }
+  ],
+  "example": {
+    "intro": "W-8BEN \u2014 a non-U.S. freelancer certifies foreign status to a U.S. payer (mock data).",
+    "values": {
+      "name": "Lucia Vega",
+      "country_of_citizenship": "Portugal",
+      "address_street": "Rua das Flores 42",
+      "address_city_state_zip": "Lisboa 1200-192",
+      "address_country": "Portugal",
+      "us_tin": "900-00-1234",
+      "foreign_tin": "PT123456789",
+      "reference_number": "Vendor 4471",
+      "date_of_birth": "1988-03-09",
+      "treaty_country": "Portugal",
+      "treaty_article": "14",
+      "treaty_rate": "0",
+      "treaty_income_type": "Independent personal services",
+      "signer_name": "Lucia Vega",
+      "date_signed": "2026-02-10"
+    },
+    "flatten": true
+  }
+}

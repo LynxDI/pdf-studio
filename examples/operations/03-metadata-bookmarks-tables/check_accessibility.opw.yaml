@@ -1,0 +1,12 @@
+# check_accessibility — Audit a PDF for accessibility (PDF/UA / Section 508 / WCAG) and write a pass/warn/fail report — checks a document title, a default language, a tag tree (StructTreeRoot), that the reader shows the title not the filename, image alt text, and form-field tooltips. Read-only; suggests the op to fix each gap.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - check_accessibility: {}
+output:
+  folder: output/check_accessibility

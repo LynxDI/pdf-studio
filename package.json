@@ -1,0 +1,28 @@
+{
+  "name": "pdf-studio-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "OpenPDF Workflow (OPW) — an open, deterministic document-transformation DSL, edited as code, rendered by pluggable backends. Git-native, agent-first PDF automation for VS Code.",
+  "license": "AGPL-3.0-or-later",
+  "workspaces": [
+    "core",
+    "mcp",
+    "extension",
+    "cli"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "tsc -b --clean",
+    "typecheck": "tsc -b --pretty",
+    "lint": "echo \"(lint not configured yet)\"",
+    "audit:secrets": "node .githooks/check-secrets.mjs",
+    "hooks:install": "git config core.hooksPath .githooks"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.4.0"
+  }
+}

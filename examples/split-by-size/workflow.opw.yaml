@@ -1,0 +1,29 @@
+# Split so EVERY part fits an upload limit.
+#
+# The problem this solves: a form that accepts 5 MB uploads, and a document that is far
+# bigger. Splitting by page count cannot satisfy that — pages are not uniform, so a part
+# full of scans blows the limit while a text-only part wastes it. `max_size` packs as
+# many pages as actually FIT, measuring each part rather than estimating.
+#
+#   max_size: "5MB"    decimal    5,000,000 bytes
+#   max_size: "5MiB"   binary     5,242,880 bytes  <- what most upload forms check
+#
+# Leave your own headroom (4.8MB for a 5 MB cap). No hidden safety margin is applied,
+# because a file rejected by a limit we had silently shaved would be undebuggable.
+#
+# input/exhibits.pdf is deliberately uneven: every 4th page is a heavy "scan". Try
+# `every: 10` instead of `max_size` and compare the part sizes — that is the bug.
+#
+# Runs fully offline in the bundled engine. Nothing is uploaded.
+
+version: 1
+kind: pdf
+inputs:
+  - input/exhibits.pdf
+operations:
+  - compress: {}                        # fewer parts to upload; drop it to see the difference
+  - split:
+      max_size: "40KB"                  # small so the sample splits; use "4.8MB" for real
+      name: "exhibits-part-{i:02}"
+output:
+  folder: output/parts

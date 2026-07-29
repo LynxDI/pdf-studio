@@ -1,0 +1,14 @@
+# scanner_effect — Make a clean PDF look scanned — slight skew, softening, and grain. Rasterizes each page.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - scanner_effect:
+      grayscale: true
+      dpi: 100
+output:
+  file: output/scanner_effect.pdf

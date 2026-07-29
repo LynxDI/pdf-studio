@@ -1,0 +1,12 @@
+# extract_links — Extract every hyperlink/URL — clickable link annotations (URL, page, anchor text) plus, by default, bare URLs printed in the page text — to JSON + CSV. Point `inputs` at one PDF or a whole folder (docs/*.pdf → one combined table with a source-file column). Read-only.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - extract_links: {}
+output:
+  folder: output/extract_links

@@ -1,0 +1,14 @@
+# swap_pages — Exchange the positions of two pages, leaving every other page where it is.
+#
+# Backend: bundled engine — runs with nothing installed.
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - swap_pages:
+      a: 2
+      b: 5
+output:
+  file: output/swap_pages.pdf

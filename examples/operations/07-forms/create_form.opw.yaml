@@ -1,0 +1,13 @@
+# create_form — Turn a template into a FILLABLE PDF: find each [[tag]] you typed in the DOCX/Markdown/HTML, delete the tag, and put a real form field (text, checkbox, dropdown, signature) in its place. Put a conversion op before it.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/form-template.md
+operations:
+  - markdown_to_pdf: {}
+  - create_form: {}
+output:
+  file: output/create_form.pdf

@@ -1,0 +1,17 @@
+# annotate — Add annotations to pages — free text, text highlights, sticky notes, shapes (rect/line/ellipse) and images. Coordinates are in points, origin BOTTOM-LEFT (like crop/stamp).
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - annotate:
+      annotations:
+        - type: highlight
+          page: 1
+          find: Introduction
+          color: "#ffcc00"
+output:
+  file: output/annotate.pdf

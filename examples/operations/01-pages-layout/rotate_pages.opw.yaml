@@ -1,0 +1,15 @@
+# rotate_pages — Rotate the given pages (or all) by a multiple of 90 degrees.
+#
+# Backend: bundled engine — runs with nothing installed.
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - rotate_pages:
+      pages:
+        - 1
+      degrees: 90
+output:
+  file: output/rotate_pages.pdf

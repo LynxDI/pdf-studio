@@ -1,0 +1,543 @@
+{
+  "name": "lynxdi-pdf-studio",
+  "displayName": "PDF Studio Automation",
+  "description": "PDFs as code — built for coding agents. 100 composable PDF operations, one workflow language: tell a coding agent what you want; it authors an OpenPDF Workflow (OPW) file that a deterministic engine renders locally. pdf-lib bundled; PyMuPDF/pikepdf/qpdf optional.",
+  "version": "0.27.7",
+  "publisher": "lynxdi",
+  "license": "AGPL-3.0-or-later",
+  "icon": "resources/logo.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LynxDI/pdf-studio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LynxDI/pdf-studio/issues"
+  },
+  "homepage": "https://www.lynxdi.com/pdf",
+  "engines": {
+    "vscode": "^1.85.0",
+    "node": ">=20.0.0"
+  },
+  "categories": [
+    "Other",
+    "Formatters"
+  ],
+  "keywords": [
+    "pdf",
+    "opw",
+    "workflow",
+    "automation",
+    "agent",
+    "ai"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onStartupFinished",
+    "workspaceContains:**/*.opw.yaml",
+    "workspaceContains:**/workflow.opw.yaml"
+  ],
+  "contributes": {
+    "mcpServerDefinitionProviders": [
+      {
+        "id": "pdf-studio",
+        "label": "PDF Studio"
+      }
+    ],
+    "chatInstructions": [
+      {
+        "name": "LynxPdfStudioOPW",
+        "description": "How to edit PDFs in a PDF Studio workspace: author an OpenPDF Workflow (.opw.yaml) and use the pdf-studio MCP tools.",
+        "path": "resources/instructions/pdf-studio.instructions.md"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "pdfStudio",
+          "title": "PDF Studio",
+          "icon": "resources/activitybar.svg"
+        }
+      ]
+    },
+    "views": {
+      "pdfStudio": [
+        {
+          "id": "pdfStudioExplorer",
+          "name": "PDF Studio"
+        },
+        {
+          "id": "pdfStudioOperations",
+          "name": "Operations",
+          "type": "webview"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "pdfStudioExplorer",
+        "contents": "No OpenPDF Workflow found.\nCreate a starter project (workflow.opw.yaml + sample inputs) to get started.\n[Initialize PDF Studio Project](command:pdfStudio.initProject)\n[New Workflow](command:pdfStudio.newWorkflow)\nOr download runnable example projects to learn from:\n[Get Example Projects](command:pdfStudio.downloadExamples)"
+      }
+    ],
+    "commands": [
+      {
+        "command": "pdfStudio.initProject",
+        "title": "PDF Studio: Initialize Project"
+      },
+      {
+        "command": "pdfStudio.initPeople",
+        "title": "PDF Studio: Create People (records) File"
+      },
+      {
+        "command": "pdfStudio.searchWorkflows",
+        "title": "PDF Studio: Find a Workflow…",
+        "icon": "$(search)"
+      },
+      {
+        "command": "pdfStudio.filterWorkflows",
+        "title": "PDF Studio: Filter Workflows…",
+        "icon": "$(filter)"
+      },
+      {
+        "command": "pdfStudio.clearWorkflowFilter",
+        "title": "PDF Studio: Clear Workflow Filter",
+        "icon": "$(clear-all)"
+      },
+      {
+        "command": "pdfStudio.newWorkflow",
+        "title": "PDF Studio: New Workflow",
+        "icon": "$(add)"
+      },
+      {
+        "command": "pdfStudio.downloadExamples",
+        "title": "PDF Studio: Get Example Projects",
+        "icon": "$(cloud-download)"
+      },
+      {
+        "command": "pdfStudio.runWorkflow",
+        "title": "PDF Studio: Render Workflow",
+        "icon": "$(run)"
+      },
+      {
+        "command": "pdfStudio.validateWorkflow",
+        "title": "PDF Studio: Validate Workflow",
+        "icon": "$(check)"
+      },
+      {
+        "command": "pdfStudio.optimizeWorkflow",
+        "title": "PDF Studio: Optimize Workflow"
+      },
+      {
+        "command": "pdfStudio.showPlan",
+        "title": "PDF Studio: Show Execution Plan"
+      },
+      {
+        "command": "pdfStudio.openPreview",
+        "title": "PDF Studio: Open Preview",
+        "icon": "$(open-preview)"
+      },
+      {
+        "command": "pdfStudio.openWorkflow",
+        "title": "PDF Studio: Open Workflow File"
+      },
+      {
+        "command": "pdfStudio.refresh",
+        "title": "PDF Studio: Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "pdfStudio.checkDependencies",
+        "title": "PDF Studio: Check Dependencies",
+        "icon": "$(package)"
+      },
+      {
+        "command": "pdfStudio.setupDependency",
+        "title": "PDF Studio: Set Up Dependency"
+      },
+      {
+        "command": "pdfStudio.setupPaddleOcr",
+        "title": "PDF Studio: Set up PaddleOCR-VL"
+      },
+      {
+        "command": "pdfStudio.setupOcr",
+        "title": "PDF Studio: Set up OCR (Tesseract + OCRmyPDF)"
+      },
+      {
+        "command": "pdfStudio.setupMarker",
+        "title": "PDF Studio: Set up Marker (Surya OCR)"
+      },
+      {
+        "command": "pdfStudio.setupReceiptOcr",
+        "title": "PDF Studio: Set up Receipt OCR (Qwen3-VL)"
+      },
+      {
+        "command": "pdfStudio.generateAgentMap",
+        "title": "PDF Studio: Generate Agent Map (CLAUDE.md / AGENTS.md)"
+      },
+      {
+        "command": "pdfStudio.revealOutput",
+        "title": "PDF Studio: Reveal Output"
+      },
+      {
+        "command": "pdfStudio.showLogs",
+        "title": "PDF Studio: Show Logs",
+        "icon": "$(output)"
+      },
+      {
+        "command": "pdfStudio.openSettings",
+        "title": "PDF Studio: Open Settings",
+        "icon": "$(gear)"
+      },
+      {
+        "command": "pdfStudio.openProjectLog",
+        "title": "PDF Studio: Open Project Render Log",
+        "icon": "$(history)"
+      },
+      {
+        "command": "pdfStudio.addOperation",
+        "title": "PDF Studio: Add Operation…",
+        "icon": "$(add)"
+      },
+      {
+        "command": "pdfStudio.deleteOperation",
+        "title": "PDF Studio: Remove Operation",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "pdfStudio.showMcpTools",
+        "title": "PDF Studio: MCP Tools — How to Use"
+      },
+      {
+        "command": "pdfStudio.setupMcp",
+        "title": "PDF Studio: Set Up MCP for This Workspace",
+        "icon": "$(plug)"
+      },
+      {
+        "command": "pdfStudio.applyToPage",
+        "title": "PDF Studio: Apply Operation to Page…",
+        "icon": "$(zap)"
+      },
+      {
+        "command": "pdfStudio.applyToImage",
+        "title": "PDF Studio: Apply Operation to Image…",
+        "icon": "$(zap)"
+      },
+      {
+        "command": "pdfStudio.applyToField",
+        "title": "PDF Studio: Fill Form Field…",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "pdfStudio.readAsMarkdown",
+        "title": "PDF Studio: Read as Markdown",
+        "icon": "$(markdown)"
+      },
+      {
+        "command": "pdfStudio.addNamedOperation",
+        "title": "PDF Studio: Add Operation (by name)"
+      },
+      {
+        "command": "pdfStudio.showOpReference",
+        "title": "PDF Studio: Operations Reference",
+        "icon": "$(book)"
+      },
+      {
+        "command": "pdfStudio.convertToMarkdown",
+        "title": "PDF Studio: Convert File to Markdown…",
+        "icon": "$(markdown)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "pdfStudio.searchWorkflows",
+          "when": "view == pdfStudioExplorer",
+          "group": "navigation@1"
+        },
+        {
+          "command": "pdfStudio.clearWorkflowFilter",
+          "when": "view == pdfStudioExplorer && pdfStudio.workflowFilterActive",
+          "group": "navigation@2"
+        },
+        {
+          "command": "pdfStudio.newWorkflow",
+          "when": "view == pdfStudioExplorer",
+          "group": "navigation@3"
+        },
+        {
+          "command": "pdfStudio.downloadExamples",
+          "when": "view == pdfStudioExplorer",
+          "group": "navigation@4"
+        },
+        {
+          "command": "pdfStudio.refresh",
+          "when": "view == pdfStudioExplorer",
+          "group": "navigation@5"
+        },
+        {
+          "command": "pdfStudio.checkDependencies",
+          "when": "view == pdfStudioExplorer",
+          "group": "navigation@6"
+        },
+        {
+          "command": "pdfStudio.showLogs",
+          "when": "view == pdfStudioExplorer",
+          "group": "navigation@7"
+        },
+        {
+          "command": "pdfStudio.openSettings",
+          "when": "view == pdfStudioExplorer",
+          "group": "navigation@8"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "pdfStudio.searchWorkflows",
+          "when": "view == pdfStudioExplorer && viewItem =~ /^section-workflows/",
+          "group": "inline@1"
+        },
+        {
+          "command": "pdfStudio.clearWorkflowFilter",
+          "when": "view == pdfStudioExplorer && viewItem == section-workflows-filtered",
+          "group": "inline@2"
+        },
+        {
+          "command": "pdfStudio.runWorkflow",
+          "when": "view == pdfStudioExplorer && viewItem == workflow",
+          "group": "inline@1"
+        },
+        {
+          "command": "pdfStudio.validateWorkflow",
+          "when": "view == pdfStudioExplorer && viewItem == workflow",
+          "group": "inline@2"
+        },
+        {
+          "command": "pdfStudio.addOperation",
+          "when": "view == pdfStudioExplorer && viewItem == workflow",
+          "group": "inline@3"
+        },
+        {
+          "command": "pdfStudio.addOperation",
+          "when": "view == pdfStudioExplorer && viewItem == operations",
+          "group": "inline@1"
+        },
+        {
+          "command": "pdfStudio.deleteOperation",
+          "when": "view == pdfStudioExplorer && viewItem == operation",
+          "group": "inline@1"
+        },
+        {
+          "command": "pdfStudio.applyToPage",
+          "when": "view == pdfStudioExplorer && viewItem == pdf-page",
+          "group": "inline@1"
+        },
+        {
+          "command": "pdfStudio.applyToImage",
+          "when": "view == pdfStudioExplorer && viewItem == pdf-image",
+          "group": "inline@1"
+        },
+        {
+          "command": "pdfStudio.applyToField",
+          "when": "view == pdfStudioExplorer && viewItem == pdf-field",
+          "group": "inline@1"
+        },
+        {
+          "command": "pdfStudio.readAsMarkdown",
+          "when": "view == pdfStudioExplorer && viewItem == pdf-input",
+          "group": "inline@1"
+        },
+        {
+          "command": "pdfStudio.openPreview",
+          "when": "view == pdfStudioExplorer && viewItem == output",
+          "group": "inline@1"
+        },
+        {
+          "command": "pdfStudio.setupDependency",
+          "when": "view == pdfStudioExplorer && viewItem =~ /^dep-missing-/",
+          "group": "inline@1"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "pdfStudio.runWorkflow",
+          "when": "resourceFilename =~ /\\.opw\\.ya?ml$/",
+          "group": "pdfStudio@1"
+        },
+        {
+          "command": "pdfStudio.validateWorkflow",
+          "when": "resourceFilename =~ /\\.opw\\.ya?ml$/",
+          "group": "pdfStudio@2"
+        },
+        {
+          "command": "pdfStudio.convertToMarkdown",
+          "when": "!explorerResourceIsFolder && resourceExtname =~ /\\.(docx|doc|pptx|ppt|xlsx|xls|csv|html?|epub|json|ipynb|msg|rtf|pdf|png|jpe?g|gif|bmp|tiff?|webp)$/i",
+          "group": "pdfStudio@3"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "pdfStudio.runWorkflow",
+          "when": "resourceFilename =~ /\\.opw\\.ya?ml$/",
+          "group": "navigation@1",
+          "icon": "$(run)"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "PDF Studio",
+      "properties": {
+        "pdfStudio.pythonPath": {
+          "type": "string",
+          "default": "",
+          "scope": "machine",
+          "description": "Python executable used to probe and run the optional PyMuPDF/pikepdf/OCR backend. Empty = python3/python on PATH. Machine-scoped: cannot be set by a workspace (a workspace must not choose which interpreter runs)."
+        },
+        "pdfStudio.paddlePythonPath": {
+          "type": "string",
+          "default": "",
+          "scope": "machine",
+          "markdownDescription": "Python executable of a SEPARATE venv that has PaddleOCR-VL installed (the `extract_markdown` / `pdf_to_markdown` `engine: paddleocr-vl`). Kept apart from `#pdfStudio.pythonPath#` because the PaddlePaddle stack conflicts with the PyMuPDF/marker pins. Empty = use the extension-managed venv created by **PDF Studio: Set up PaddleOCR-VL** (click the PaddleOCR-VL row in the Dependencies view). Machine-scoped."
+        },
+        "pdfStudio.vlmEndpoint": {
+          "type": "string",
+          "default": "",
+          "scope": "machine",
+          "markdownDescription": "OpenAI-compatible base URL (ending in `/v1`) of the vision-language model server used by `extract_receipt` — e.g. `http://localhost:11434/v1` (Ollama) or `http://gpu:8801/v1` (vLLM). Set automatically by **PDF Studio: Set up Receipt OCR (Qwen3-VL)**. Empty = fall back to the `$PDFSTUDIO_VLM_ENDPOINT` environment variable. Machine-scoped."
+        },
+        "pdfStudio.vlmModel": {
+          "type": "string",
+          "default": "",
+          "scope": "machine",
+          "markdownDescription": "Model name `extract_receipt` requests from the VLM server (e.g. `qwen2.5vl:3b`, or a fine-tuned `qwen3-vl-8b-receipts`). Empty = fall back to `$PDFSTUDIO_VLM_MODEL`. Machine-scoped."
+        },
+        "pdfStudio.autoRenderOnSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Re-render a workflow's output automatically whenever its .opw.yaml is saved."
+        },
+        "pdfStudio.autoValidateOnSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Validate a workflow and surface diagnostics in the Problems panel whenever its .opw.yaml is saved."
+        },
+        "pdfStudio.telemetry.enabled": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "**Off by default.** Turn on to send anonymous, non-identifying usage events (which features/operations are used) to help prioritize development — no file paths, contents, names, or personal data, ever. Also requires VS Code's global telemetry (`#telemetry.telemetryLevel#`). This is a local-first tool: it collects nothing unless you opt in here."
+        },
+        "pdfStudio.telemetry.debug": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "Log every telemetry event and its HTTP status to the **PDF Studio: Telemetry** output channel, to confirm what is (and isn't) sent."
+        },
+        "pdfStudio.allowRemoteRender": {
+          "type": "boolean",
+          "default": false,
+          "scope": "machine",
+          "markdownDescription": "Allow operations with a `remote` (SSH) or `endpoint` (HTTP) parameter to offload rendering to a remote GPU box (e.g. `extract_markdown` with `engine: marker`). **This uploads your document bytes to the host/URL you specify** — Marker runs there on the GPU and the Markdown is downloaded — minutes on a 4090 vs hours on a CPU. SSH needs key-based auth + `scp` on PATH (`user@host`, no shell metacharacters); the HTTP `endpoint` may be any `http(s)://` URL you control (chunked + resumable for large files). **Off by default** because it sends data to another machine; machine-scoped so a workspace cannot enable it. This is also the gate for `extract_receipt`, which sends PAGE IMAGES to a vision-language model server — document-byte egress is governed here, not by `#pdfStudio.allowAiRequests#`."
+        },
+        "pdfStudio.allowAiRequests": {
+          "type": "boolean",
+          "default": false,
+          "scope": "machine",
+          "markdownDescription": "Allow the **text** AI operations (`summarize`, `translate`, `semantic_search`, and `detect: ai`) to send the document's extracted TEXT to a language model. **By default this uses a LOCAL model via Ollama** (`OLLAMA_HOST`, default `http://localhost:11434`) so nothing leaves your machine; set `ANTHROPIC_API_KEY` to use Claude (cloud), or point `PDFSTUDIO_LLM_ENDPOINT`/`PDFSTUDIO_EMBED_ENDPOINT` at a free NVIDIA cloud model with `NVIDIA_API_KEY` (see docs/python-setup.md). `PDFSTUDIO_LLM_MODEL` picks the model. **Off by default** because these ops send document content to a model; machine-scoped so a workspace cannot enable it. When off, an AI op fails with a clear message rather than contacting any model. **This setting does not cover ops that upload document BYTES or PAGE IMAGES to a host you name** — `extract_markdown`/`pdf_to_markdown` with `remote`/`endpoint` (Marker) and `extract_receipt` (a vision-language model) are gated by `#pdfStudio.allowRemoteRender#` instead, even though `extract_receipt` is listed under Document intelligence (AI)."
+        },
+        "pdfStudio.scaffoldEmptyWorkspace": {
+          "type": "boolean",
+          "default": false,
+          "description": "When PDF Studio activates in an empty folder, seed a sample OPW project so there is something to render immediately."
+        },
+        "pdfStudio.generateAgentMap": {
+          "type": "boolean",
+          "default": true,
+          "description": "When you run 'Initialize Project', also write CLAUDE.md / AGENTS.md / GEMINI.md so a coding agent knows how to edit OPW workflows here. These files are NEVER created automatically on activation — only on an explicit Initialize Project / Generate Agent Map action. Set false to skip them even on init."
+        },
+        "pdfStudio.examplesUrl": {
+          "type": "string",
+          "default": "",
+          "scope": "machine",
+          "markdownDescription": "Base URL the **Get Example Projects** action downloads runnable example bundles from (must serve `manifest.json` + one `.zip` per example). Empty = the built-in Lynx CDN default. Must be `https://` (or `http://localhost` for local development — point it at `http://localhost:8080/examples/`, `npm run site:serve`). Machine-scoped: a workspace cannot redirect example downloads."
+        }
+      }
+    },
+    "walkthroughs": [
+      {
+        "id": "pdfStudioGettingStarted",
+        "title": "Get Started with PDF Studio",
+        "description": "Render a PDF from a YAML workflow, fill a real government form from your own records, and turn a Word document into a fillable PDF — then read the answers back as a spreadsheet.",
+        "steps": [
+          {
+            "id": "render",
+            "title": "Render a PDF from a workflow",
+            "description": "Create a starter project, then hit Render. The YAML is the source of truth; the PDF is the build artifact.\n[Initialize Project](command:pdfStudio.initProject)\nThen: [Render Workflow](command:pdfStudio.runWorkflow) and [Open Preview](command:pdfStudio.openPreview)",
+            "media": {
+              "markdown": "media/walkthrough/1-render.md",
+              "altText": "A workflow.opw.yaml rendering to a PDF"
+            },
+            "completionEvents": [
+              "onCommand:pdfStudio.runWorkflow"
+            ]
+          },
+          {
+            "id": "fill",
+            "title": "Fill a real form (W-9, 1040, I-9…)",
+            "description": "12 government forms ship already mapped. Put your details in a local, gitignored people.yaml — or point at a CSV — and fill any of them.\n[Create People File](command:pdfStudio.initPeople)\nBrowse the forms in the PDF Fill sidebar.",
+            "media": {
+              "markdown": "media/walkthrough/2-fill.md",
+              "altText": "Filling an IRS W-9 from a people.yaml record"
+            },
+            "completionEvents": [
+              "onCommand:pdfStudio.initPeople"
+            ]
+          },
+          {
+            "id": "create",
+            "title": "Turn a Word doc into a fillable PDF",
+            "description": "Type [[check]] and [[text]] in Word where fields belong; create_form makes them real form fields. Then extract_form reads the filled copies back into a CSV.\n[Browse the operations](command:pdfStudio.showOpReference)",
+            "media": {
+              "markdown": "media/walkthrough/3-create.md",
+              "altText": "A Word template becoming a fillable PDF, then a CSV"
+            },
+            "completionEvents": [
+              "onCommand:pdfStudio.showOpReference"
+            ]
+          },
+          {
+            "id": "backends",
+            "title": "Light up the optional dependencies",
+            "description": "The bundled engine needs nothing installed. OCR, redaction, forms and Office conversion light up when their dependency is present — the Dependencies view shows what you have and what each one unlocks.\n[Check Dependencies](command:pdfStudio.checkDependencies)",
+            "media": {
+              "markdown": "media/walkthrough/4-backends.md",
+              "altText": "The colour-coded Dependencies view"
+            },
+            "completionEvents": [
+              "onCommand:pdfStudio.checkDependencies"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "scripts": {
+    "build": "tsc -b && node ./build.mjs",
+    "clean": "tsc -b --clean",
+    "package": "tsc -b && node ./build.mjs && vsce package --no-yarn --no-dependencies",
+    "package:targets": "tsc -b && node ./build.mjs && node ./scripts/package-targets.mjs",
+    "package:mac": "tsc -b && node ./build.mjs && node ./scripts/package-targets.mjs darwin-arm64 darwin-x64",
+    "install-local": "node ./scripts/install-vsix.mjs",
+    "release": "npm run package && npm run install-local",
+    "publish": "tsc -b && node ./build.mjs && vsce publish --no-yarn --no-dependencies"
+  },
+  "dependencies": {
+    "fflate": "^0.8.2"
+  },
+  "devDependencies": {
+    "@pdf-studio/core": "*",
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.0.0",
+    "esbuild": "^0.24.0",
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^4.6.82",
+    "typescript": "^5.4.0"
+  }
+}

@@ -1,0 +1,14 @@
+# recolor — Recolor pages for comfortable reading: dark mode (light text on dark, photos kept intact), raw invert, or grayscale. Rasterizes each page.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - recolor:
+      mode: grayscale
+      dpi: 100
+output:
+  file: output/recolor.pdf

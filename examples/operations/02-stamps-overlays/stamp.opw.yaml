@@ -1,0 +1,18 @@
+# stamp — Stamp positioned text or an image onto pages (watermark is the diagonal variant).
+#
+# Backend: bundled engine — runs with nothing installed.
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - stamp:
+      text: PAID
+      x: 400
+      y: 640
+      size: 24
+      pages:
+        - 1
+output:
+  file: output/stamp.pdf

@@ -1,0 +1,12 @@
+# flatten — Bake form fields + annotations into static page content.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - flatten: {}
+output:
+  file: output/flatten.pdf

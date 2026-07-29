@@ -1,0 +1,260 @@
+{
+  "id": "w9",
+  "title": "IRS Form W-9 (Request for Taxpayer ID)",
+  "issuer": "Internal Revenue Service",
+  "category": "Tax",
+  "country": "US",
+  "roles": [
+    "applicant"
+  ],
+  "source": {
+    "fields": [
+      {
+        "name": "topmostSubform[0].Page1[0].f1_01[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_02[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Boxes3a-b_ReadOrder[0].c1_1[0]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Boxes3a-b_ReadOrder[0].c1_1[1]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "2"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Boxes3a-b_ReadOrder[0].c1_1[2]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "3"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Boxes3a-b_ReadOrder[0].c1_1[3]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "4"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Boxes3a-b_ReadOrder[0].c1_1[4]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "5"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Boxes3a-b_ReadOrder[0].c1_1[5]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "6"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Boxes3a-b_ReadOrder[0].f1_03[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Boxes3a-b_ReadOrder[0].c1_1[6]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "7"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Boxes3a-b_ReadOrder[0].f1_04[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Boxes3a-b_ReadOrder[0].c1_2[0]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_05[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_06[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Address_ReadOrder[0].f1_07[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Address_ReadOrder[0].f1_08[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_09[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_10[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_11[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_12[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_13[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_14[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_15[0]",
+        "type": "Text",
+        "page": 1
+      }
+    ]
+  },
+  "fields": [
+    {
+      "key": "name",
+      "label": "Name (as on your tax return)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_01[0]",
+      "template": "{applicant.first_name} {applicant.last_name}",
+      "required": true
+    },
+    {
+      "key": "business_name",
+      "label": "Business name (if different)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_02[0]"
+    },
+    {
+      "key": "tax_classification",
+      "label": "Federal tax classification",
+      "type": "choice",
+      "options": {
+        "Individual/sole proprietor": {
+          "field": "topmostSubform[0].Page1[0].Boxes3a-b_ReadOrder[0].c1_1[0]",
+          "on": "1"
+        },
+        "C corporation": {
+          "field": "topmostSubform[0].Page1[0].Boxes3a-b_ReadOrder[0].c1_1[1]",
+          "on": "2"
+        },
+        "S corporation": {
+          "field": "topmostSubform[0].Page1[0].Boxes3a-b_ReadOrder[0].c1_1[2]",
+          "on": "3"
+        },
+        "Partnership": {
+          "field": "topmostSubform[0].Page1[0].Boxes3a-b_ReadOrder[0].c1_1[3]",
+          "on": "4"
+        },
+        "Trust/estate": {
+          "field": "topmostSubform[0].Page1[0].Boxes3a-b_ReadOrder[0].c1_1[4]",
+          "on": "5"
+        },
+        "LLC": {
+          "field": "topmostSubform[0].Page1[0].Boxes3a-b_ReadOrder[0].c1_1[5]",
+          "on": "6"
+        },
+        "Other": {
+          "field": "topmostSubform[0].Page1[0].Boxes3a-b_ReadOrder[0].c1_1[6]",
+          "on": "7"
+        }
+      }
+    },
+    {
+      "key": "address_street",
+      "label": "Address (number, street, apt)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Address_ReadOrder[0].f1_07[0]",
+      "from": "applicant.address.street"
+    },
+    {
+      "key": "city_state_zip",
+      "label": "City, state, and ZIP code",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Address_ReadOrder[0].f1_08[0]",
+      "template": "{applicant.address.city}, {applicant.address.state} {applicant.address.zip}"
+    },
+    {
+      "key": "ssn",
+      "label": "Social Security Number",
+      "type": "split",
+      "from": "applicant.ssn",
+      "parts": [
+        {
+          "field": "topmostSubform[0].Page1[0].f1_11[0]",
+          "take": 3
+        },
+        {
+          "field": "topmostSubform[0].Page1[0].f1_12[0]",
+          "take": 2
+        },
+        {
+          "field": "topmostSubform[0].Page1[0].f1_13[0]",
+          "take": 4
+        }
+      ]
+    },
+    {
+      "key": "ein",
+      "label": "Employer ID Number (instead of SSN)",
+      "type": "split",
+      "from": "applicant.ein",
+      "parts": [
+        {
+          "field": "topmostSubform[0].Page1[0].f1_14[0]",
+          "take": 2
+        },
+        {
+          "field": "topmostSubform[0].Page1[0].f1_15[0]",
+          "take": 7
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "tax",
+    "irs",
+    "tin",
+    "contractor"
+  ]
+}

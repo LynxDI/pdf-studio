@@ -1,0 +1,15 @@
+# watermark — Stamp a diagonal text (or image) watermark on pages.
+#
+# Backend: bundled engine — runs with nothing installed.
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - watermark:
+      text: CONFIDENTIAL
+      opacity: 0.12
+      rotate: 45
+output:
+  file: output/watermark.pdf

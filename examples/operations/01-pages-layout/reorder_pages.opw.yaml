@@ -1,0 +1,19 @@
+# reorder_pages — Reorder pages to a COMPLETE 1-based permutation (every page, exactly once).
+#
+# Backend: bundled engine — runs with nothing installed.
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - reorder_pages:
+      order:
+        - 6
+        - 5
+        - 4
+        - 3
+        - 2
+        - 1
+output:
+  file: output/reorder_pages.pdf

@@ -1,0 +1,13 @@
+# set_language — Set the document's default language (the PDF catalog /Lang) — a BCP-47 tag like "en-US" or "fr". Required for accessibility (WCAG 3.1.1 / PDF/UA) so assistive tech reads the document in the right voice; check_accessibility flags a missing one.
+#
+# Backend: bundled engine — runs with nothing installed.
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - set_language:
+      lang: en-US
+output:
+  file: output/set_language.pdf

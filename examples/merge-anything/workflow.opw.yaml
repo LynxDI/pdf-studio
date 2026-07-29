@@ -1,0 +1,33 @@
+# Merge ANYTHING into one PDF — mixed file types, no per-type step.
+#
+# The inputs below are five files of four different types. `merge` converts each non-PDF
+# input to PDF first — picking the converter from the file's EXTENSION — then combines
+# everything in the order listed. PDFs pass straight through, untouched.
+#
+#   .pdf                        used as-is
+#   .docx .xlsx .pptx .odt .rtf → office_to_pdf   (needs LibreOffice)
+#   .png .jpg .webp .tiff .gif  → images_to_pdf   (bundled — no install)
+#   .md  .markdown              → markdown_to_pdf (system Chrome/Edge, or WeasyPrint)
+#   .html .eml .epub            → the matching converter
+#
+# Order is the order you list them. Point at a folder instead (`input/*`) and they merge
+# in SORTED FILENAME ORDER — which is why the samples are named 01-, 02-, 03-.
+#
+# To go back to the strict, PDF-only behaviour (a non-PDF becomes an error):
+#   - merge: { convert: false }
+#
+# Validate after every edit, then "PDF Studio: Render Workflow".
+
+version: 1
+kind: pdf
+inputs:
+  - input/01-cover.pdf
+  - input/02-finance-summary.docx
+  - input/03-engineering-notes.md
+  - input/04-revenue-chart.png
+  - input/05-headcount-chart.png
+operations:
+  - merge: {}
+  - add_page_numbers: { position: bottom-center }
+output:
+  file: output/q3-board-pack.pdf

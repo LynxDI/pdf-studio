@@ -1,0 +1,28 @@
+{
+  "name": "@pdf-studio/mcp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "PDF Studio MCP server — deterministic OpenPDF Workflow (OPW) helpers (validate, optimize, compile, diff, operations, scaffold). No rendering; heavy execution runs locally in the extension.",
+  "license": "AGPL-3.0-or-later",
+  "type": "module",
+  "main": "./dist/index.js",
+  "bin": {
+    "pdf-studio-mcp": "./dist/index.js"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "tsc -b --clean"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "@pdf-studio/core": "*",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.4.0"
+  }
+}

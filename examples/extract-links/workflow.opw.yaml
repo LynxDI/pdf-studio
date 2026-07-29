@@ -1,0 +1,36 @@
+# Extract every hyperlink from a whole FOLDER of PDFs into one table.
+#
+# A glob in `inputs` (input/*.pdf) hands ALL matching files to a single `extract_links`
+# run — it does NOT batch one output per file. The result is ONE combined table with a
+# `file` column, so you can sort/filter every link across the folder at once.
+#
+# What it captures:
+#   • clickable hyperlink annotations — the URL, its page, and the anchor text
+#     ("Read the full write-up" → https://news.example.com/story/42), plus mailto: links
+#   • bare URLs printed as plain text in a references section that were never made
+#     clickable (https://arxiv.org/abs/1706.03762) — added by a regex pass
+#
+# Output (into output/links/, because `to` is set):
+#   links.json   every link as { file, page, kind, url, text, source }
+#   links.csv    the same, spreadsheet-ready (open in Excel/Sheets)
+#
+# Handy knobs:
+#   types: [all]              also include internal jump-to-page (goto) links
+#   include_text_urls: false  only real clickable annotations, skip the text scan
+#   dedupe: true              collapse to a unique list instead of one row per occurrence
+#
+# Single file instead of a folder?  inputs: [input/newsletter.pdf]
+#
+# NOTE: extract_links uses the optional Python backend (PyMuPDF). If the Dependencies
+# sidebar shows Python as unavailable, see docs/python-setup.md. Validate after every
+# edit, then "PDF Studio: Render Workflow" (or the ▶ in the sidebar).
+
+version: 1
+kind: pdf
+inputs:
+  - input/*.pdf
+operations:
+  - extract_links:
+      to: output/links
+      format: both
+# No `output:` block — extract_links writes its own links.json/links.csv into `to`.

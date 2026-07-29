@@ -1,0 +1,1030 @@
+{
+  "id": "nec1099",
+  "title": "IRS Form 1099-NEC (Nonemployee Compensation)",
+  "issuer": "IRS",
+  "category": "Tax",
+  "country": "US",
+  "revision": "2026",
+  "roles": [
+    "payer",
+    "recipient"
+  ],
+  "partial": true,
+  "copies": [
+    [
+      [
+        "CopyA[0]",
+        "Copy1[0]"
+      ],
+      [
+        ".f1_",
+        ".f2_"
+      ],
+      [
+        ".c1_",
+        ".c2_"
+      ]
+    ],
+    [
+      [
+        "CopyA[0]",
+        "CopyB[0]"
+      ],
+      [
+        ".f1_",
+        ".f2_"
+      ],
+      [
+        ".c1_",
+        ".c2_"
+      ]
+    ],
+    [
+      [
+        "CopyA[0]",
+        "Copy2[0]"
+      ],
+      [
+        ".f1_",
+        ".f2_"
+      ],
+      [
+        ".c1_",
+        ".c2_"
+      ]
+    ]
+  ],
+  "source": {
+    "fields": [
+      {
+        "name": "topmostSubform[0].CopyA[0].PgHeader[0].CalendarYear[0].f1_1[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].c1_1[0]",
+        "type": "CheckBox",
+        "page": 2,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].c1_1[1]",
+        "type": "CheckBox",
+        "page": 2,
+        "on_states": [
+          "2"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].LeftCol[0].f1_2[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].LeftCol[0].f1_3[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].LeftCol[0].f1_4[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].LeftCol[0].f1_5[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].LeftCol[0].f1_6[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].LeftCol[0].f1_7[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].LeftCol[0].f1_8[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].LeftCol[0].f1_9[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].LeftCol[0].f1_10[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].LeftCol[0].f1_11[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].LeftCol[0].f1_12[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].LeftCol[0].f1_13[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].LeftCol[0].f1_14[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].LeftCol[0].f1_15[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].LeftCol[0].f1_16[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].LeftCol[0].f1_17[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].LeftCol[0].f1_18[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].LeftCol[0].f1_19[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].LeftCol[0].c1_2[0]",
+        "type": "CheckBox",
+        "page": 2,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].RightCol[0].f1_20[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].RightCol[0].Box1b_ReadOrder[0].f1_21[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].RightCol[0].f1_22[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].RightCol[0].f1_23[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].RightCol[0].f1_24[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].RightCol[0].c1_3[0]",
+        "type": "CheckBox",
+        "page": 2,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].RightCol[0].f1_25[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].RightCol[0].f1_26[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].RightCol[0].Box5_ReadOrder[0].f1_27[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].RightCol[0].Box5_ReadOrder[0].f1_28[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].RightCol[0].Box6_ReadOrder[0].f1_29[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].RightCol[0].Box6_ReadOrder[0].f1_30[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].RightCol[0].f1_31[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].CopyA[0].RightCol[0].f1_32[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].PgHeader[0].CalendarYear[0].f2_1[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].PgHeader[0].c2_1[0]",
+        "type": "CheckBox",
+        "page": 3,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].PgHeader[0].c2_1[1]",
+        "type": "CheckBox",
+        "page": 3,
+        "on_states": [
+          "2"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].LeftCol[0].f2_2[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].LeftCol[0].f2_3[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].LeftCol[0].f2_4[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].LeftCol[0].f2_5[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].LeftCol[0].f2_6[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].LeftCol[0].f2_7[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].LeftCol[0].f2_8[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].LeftCol[0].f2_9[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].LeftCol[0].f2_10[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].LeftCol[0].f2_11[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].LeftCol[0].f2_12[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].LeftCol[0].f2_13[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].LeftCol[0].f2_14[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].LeftCol[0].f2_15[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].LeftCol[0].f2_16[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].LeftCol[0].f2_17[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].LeftCol[0].f2_18[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].LeftCol[0].f2_19[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].RightCol[0].f2_20[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].RightCol[0].Box1b_ReadOrder[0].f2_21[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].RightCol[0].f2_22[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].RightCol[0].f2_23[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].RightCol[0].f2_24[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].RightCol[0].c1_3[0]",
+        "type": "CheckBox",
+        "page": 3,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].RightCol[0].f2_25[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].RightCol[0].f2_26[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].RightCol[0].Box5_ReadOrder[0].f2_27[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].RightCol[0].Box5_ReadOrder[0].f2_28[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].RightCol[0].Box6_ReadOrder[0].f2_29[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].RightCol[0].Box6_ReadOrder[0].f2_30[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].RightCol[0].f2_31[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Copy1[0].RightCol[0].f2_32[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].PgHeader[0].CalendarYear[0].f2_1[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].c2_1[0]",
+        "type": "CheckBox",
+        "page": 4,
+        "on_states": [
+          "2"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].LeftCol[0].f2_2[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].LeftCol[0].f2_3[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].LeftCol[0].f2_4[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].LeftCol[0].f2_5[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].LeftCol[0].f2_6[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].LeftCol[0].f2_7[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].LeftCol[0].f2_8[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].LeftCol[0].f2_9[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].LeftCol[0].f2_10[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].LeftCol[0].f2_11[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].LeftCol[0].f2_12[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].LeftCol[0].f2_13[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].LeftCol[0].f2_14[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].LeftCol[0].f2_15[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].LeftCol[0].f2_16[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].LeftCol[0].f2_17[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].LeftCol[0].f2_18[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].LeftCol[0].f2_19[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].RightCol[0].f2_20[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].RightCol[0].Box1b_ReadOrder[0].f2_21[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].RightCol[0].f2_22[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].RightCol[0].f2_23[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].RightCol[0].f2_24[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].RightCol[0].c1_3[0]",
+        "type": "CheckBox",
+        "page": 4,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].RightCol[0].f2_25[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].RightCol[0].f2_26[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].RightCol[0].Box5_ReadOrder[0].f2_27[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].RightCol[0].Box5_ReadOrder[0].f2_28[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].RightCol[0].Box6_ReadOrder[0].f2_29[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].RightCol[0].Box6_ReadOrder[0].f2_30[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].RightCol[0].f2_31[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].CopyB[0].RightCol[0].f2_32[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].PgHeader[0].CalendarYear[0].f2_1[0]",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].c2_1[0]",
+        "type": "CheckBox",
+        "page": 6,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].c2_1[1]",
+        "type": "CheckBox",
+        "page": 6,
+        "on_states": [
+          "2"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].LeftCol[0].f2_2[0]",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].LeftCol[0].f2_3[0]",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].LeftCol[0].f2_4[0]",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].LeftCol[0].f2_5[0]",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].LeftCol[0].f2_6[0]",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].LeftCol[0].f2_7[0]",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].LeftCol[0].f2_8[0]",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].LeftCol[0].f2_9[0]",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].LeftCol[0].f2_10[0]",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].LeftCol[0].f2_11[0]",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].LeftCol[0].f2_12[0]",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].LeftCol[0].f2_13[0]",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].LeftCol[0].f2_14[0]",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].LeftCol[0].f2_15[0]",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].LeftCol[0].f2_16[0]",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].LeftCol[0].f2_17[0]",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].LeftCol[0].f2_18[0]",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].LeftCol[0].f2_19[0]",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].RightCol[0].f2_20[0]",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].RightCol[0].Box1b_ReadOrder[0].f2_21[0]",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].RightCol[0].f2_22[0]",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].RightCol[0].f2_23[0]",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].RightCol[0].f2_24[0]",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].RightCol[0].c1_3[0]",
+        "type": "CheckBox",
+        "page": 6,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].RightCol[0].f2_25[0]",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].RightCol[0].f2_26[0]",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].RightCol[0].Box5_ReadOrder[0].f2_27[0]",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].RightCol[0].Box5_ReadOrder[0].f2_28[0]",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].RightCol[0].Box6_ReadOrder[0].f2_29[0]",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].RightCol[0].Box6_ReadOrder[0].f2_30[0]",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].RightCol[0].f2_31[0]",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "topmostSubform[0].Copy2[0].RightCol[0].f2_32[0]",
+        "type": "Text",
+        "page": 6
+      }
+    ]
+  },
+  "fields": [
+    {
+      "key": "calendar_year",
+      "label": "Calendar year (e.g. 2026)",
+      "type": "text",
+      "field": "topmostSubform[0].CopyA[0].PgHeader[0].CalendarYear[0].f1_1[0]"
+    },
+    {
+      "key": "payer_name",
+      "label": "PAYER'S name",
+      "type": "text",
+      "field": "topmostSubform[0].CopyA[0].LeftCol[0].f1_2[0]",
+      "required": true
+    },
+    {
+      "key": "payer_street",
+      "label": "PAYER'S street address",
+      "type": "text",
+      "field": "topmostSubform[0].CopyA[0].LeftCol[0].f1_3[0]"
+    },
+    {
+      "key": "payer_room",
+      "label": "PAYER'S room or suite no.",
+      "type": "text",
+      "field": "topmostSubform[0].CopyA[0].LeftCol[0].f1_4[0]"
+    },
+    {
+      "key": "payer_city",
+      "label": "PAYER'S city or town",
+      "type": "text",
+      "field": "topmostSubform[0].CopyA[0].LeftCol[0].f1_5[0]"
+    },
+    {
+      "key": "payer_phone",
+      "label": "PAYER'S telephone number",
+      "type": "text",
+      "field": "topmostSubform[0].CopyA[0].LeftCol[0].f1_6[0]"
+    },
+    {
+      "key": "payer_state",
+      "label": "PAYER'S state or province",
+      "type": "text",
+      "field": "topmostSubform[0].CopyA[0].LeftCol[0].f1_7[0]"
+    },
+    {
+      "key": "payer_country",
+      "label": "PAYER'S country",
+      "type": "text",
+      "field": "topmostSubform[0].CopyA[0].LeftCol[0].f1_8[0]"
+    },
+    {
+      "key": "payer_zip",
+      "label": "PAYER'S ZIP or postal code",
+      "type": "text",
+      "field": "topmostSubform[0].CopyA[0].LeftCol[0].f1_9[0]"
+    },
+    {
+      "key": "payer_tin",
+      "label": "PAYER'S TIN",
+      "type": "text",
+      "field": "topmostSubform[0].CopyA[0].LeftCol[0].f1_10[0]",
+      "required": true
+    },
+    {
+      "key": "recipient_tin",
+      "label": "RECIPIENT'S TIN",
+      "type": "text",
+      "field": "topmostSubform[0].CopyA[0].LeftCol[0].f1_11[0]",
+      "required": true
+    },
+    {
+      "key": "recipient_name",
+      "label": "RECIPIENT'S name",
+      "type": "text",
+      "field": "topmostSubform[0].CopyA[0].LeftCol[0].f1_12[0]",
+      "required": true
+    },
+    {
+      "key": "recipient_street",
+      "label": "RECIPIENT'S street address",
+      "type": "text",
+      "field": "topmostSubform[0].CopyA[0].LeftCol[0].f1_13[0]"
+    },
+    {
+      "key": "recipient_apt",
+      "label": "RECIPIENT'S apt. no.",
+      "type": "text",
+      "field": "topmostSubform[0].CopyA[0].LeftCol[0].f1_14[0]"
+    },
+    {
+      "key": "recipient_city",
+      "label": "RECIPIENT'S city or town",
+      "type": "text",
+      "field": "topmostSubform[0].CopyA[0].LeftCol[0].f1_15[0]"
+    },
+    {
+      "key": "recipient_state",
+      "label": "RECIPIENT'S state or province",
+      "type": "text",
+      "field": "topmostSubform[0].CopyA[0].LeftCol[0].f1_16[0]"
+    },
+    {
+      "key": "recipient_country",
+      "label": "RECIPIENT'S country",
+      "type": "text",
+      "field": "topmostSubform[0].CopyA[0].LeftCol[0].f1_17[0]"
+    },
+    {
+      "key": "recipient_zip",
+      "label": "RECIPIENT'S ZIP or postal code",
+      "type": "text",
+      "field": "topmostSubform[0].CopyA[0].LeftCol[0].f1_18[0]"
+    },
+    {
+      "key": "account_number",
+      "label": "Account number",
+      "type": "text",
+      "field": "topmostSubform[0].CopyA[0].LeftCol[0].f1_19[0]"
+    },
+    {
+      "key": "second_tin_notice",
+      "label": "2nd TIN not.",
+      "type": "checkbox",
+      "field": "topmostSubform[0].CopyA[0].LeftCol[0].c1_2[0]",
+      "on": "1"
+    },
+    {
+      "key": "box1a_nonemployee_comp",
+      "label": "Box 1a — Nonemployee compensation",
+      "type": "text",
+      "field": "topmostSubform[0].CopyA[0].RightCol[0].f1_20[0]"
+    },
+    {
+      "key": "box1b_cash_tips",
+      "label": "Box 1b — Cash tips",
+      "type": "text",
+      "field": "topmostSubform[0].CopyA[0].RightCol[0].Box1b_ReadOrder[0].f1_21[0]"
+    },
+    {
+      "key": "box1c_ttoc",
+      "label": "Box 1c — TTOC",
+      "type": "text",
+      "field": "topmostSubform[0].CopyA[0].RightCol[0].f1_23[0]"
+    },
+    {
+      "key": "box1d_overtime_comp",
+      "label": "Box 1d — Overtime compensation",
+      "type": "text",
+      "field": "topmostSubform[0].CopyA[0].RightCol[0].f1_24[0]"
+    },
+    {
+      "key": "box2_direct_sales",
+      "label": "Box 2 — Payer made $5,000+ direct sales",
+      "type": "checkbox",
+      "field": "topmostSubform[0].CopyA[0].RightCol[0].c1_3[0]",
+      "on": "1"
+    },
+    {
+      "key": "box3_golden_parachute",
+      "label": "Box 3 — Excess golden parachute payments",
+      "type": "text",
+      "field": "topmostSubform[0].CopyA[0].RightCol[0].f1_25[0]"
+    },
+    {
+      "key": "box4_fed_tax_withheld",
+      "label": "Box 4 — Federal income tax withheld",
+      "type": "text",
+      "field": "topmostSubform[0].CopyA[0].RightCol[0].f1_26[0]"
+    },
+    {
+      "key": "box5_state_tax_withheld",
+      "label": "Box 5 — State tax withheld",
+      "type": "text",
+      "field": "topmostSubform[0].CopyA[0].RightCol[0].Box5_ReadOrder[0].f1_27[0]"
+    },
+    {
+      "key": "box5_state_tax_withheld_2",
+      "label": "Box 5 — State tax withheld (2nd state)",
+      "type": "text",
+      "field": "topmostSubform[0].CopyA[0].RightCol[0].Box5_ReadOrder[0].f1_28[0]"
+    },
+    {
+      "key": "box6_state_payer_no",
+      "label": "Box 6 — State/Payer's state no.",
+      "type": "text",
+      "field": "topmostSubform[0].CopyA[0].RightCol[0].Box6_ReadOrder[0].f1_29[0]"
+    },
+    {
+      "key": "box6_state_payer_no_2",
+      "label": "Box 6 — State/Payer's state no. (2nd state)",
+      "type": "text",
+      "field": "topmostSubform[0].CopyA[0].RightCol[0].Box6_ReadOrder[0].f1_30[0]"
+    },
+    {
+      "key": "box7_state_income",
+      "label": "Box 7 — State income",
+      "type": "text",
+      "field": "topmostSubform[0].CopyA[0].RightCol[0].f1_31[0]"
+    },
+    {
+      "key": "box7_state_income_2",
+      "label": "Box 7 — State income (2nd state)",
+      "type": "text",
+      "field": "topmostSubform[0].CopyA[0].RightCol[0].f1_32[0]"
+    }
+  ],
+  "example": {
+    "intro": "IRS Form 1099-NEC — one set of values fills all copies (A / 1 / B / 2).\nNOTE: the downloadable Copy A (black ink) is INFORMATIONAL — it can't be paper-filed.\nFile with the IRS by e-file or the official scannable red-ink form; print Copy B/C for the recipient.\nReplace the mock \"Fictional Studios / Jordan Pike\" data with your own, then Render.",
+    "values": {
+      "calendar_year": "2026",
+      "payer_name": "Fictional Studios LLC",
+      "payer_street": "500 Market St",
+      "payer_room": "Ste 200",
+      "payer_city": "Austin",
+      "payer_state": "TX",
+      "payer_country": "USA",
+      "payer_zip": "78701",
+      "payer_phone": "512-555-0100",
+      "payer_tin": "47-0000000",
+      "recipient_tin": "555-00-1234",
+      "recipient_name": "Jordan Pike",
+      "recipient_street": "88 Cedar Ln",
+      "recipient_city": "Denver",
+      "recipient_state": "CO",
+      "recipient_zip": "80202",
+      "account_number": "NEC-2026-014",
+      "box1a_nonemployee_comp": "24,500.00",
+      "box4_fed_tax_withheld": "0.00",
+      "box6_state_payer_no": "CO 99-9999",
+      "box7_state_income": "24,500.00"
+    },
+    "flatten": true
+  }
+}

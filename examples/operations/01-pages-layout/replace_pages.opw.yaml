@@ -1,0 +1,20 @@
+# replace_pages — Replace pages of the working document with pages from another PDF — the listed pages are removed and the replacement is dropped in where the first of them was. Declare the source PDF under `assets`.
+#
+# Backend: bundled engine — runs with nothing installed.
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+assets:
+  replace_src: input/sample2.pdf
+operations:
+  - replace_pages:
+      from: replace_src
+      pages:
+        - 2
+        - 3
+      from_pages:
+        - 1
+output:
+  file: output/replace_pages.pdf

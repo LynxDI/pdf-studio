@@ -1,0 +1,14 @@
+# fill_field — Set the value of a form (AcroForm) field.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - fill_field:
+      field: sample_field
+      value: X
+output:
+  file: output/fill_field.pdf

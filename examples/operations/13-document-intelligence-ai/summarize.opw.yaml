@@ -1,0 +1,12 @@
+# summarize — Summarize the PDF's text with an LLM and write a Markdown summary. Uses a local model by default (Ollama); requires the pdfStudio.allowAiRequests setting.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# NOT runnable as-is: needs an LLM (Ollama/allowAiRequests off). This example shows the syntax — provide your own input.
+version: 1
+kind: pdf
+inputs:
+  - annual-report-2024.pdf
+operations:
+  - summarize: { style: bullets, to: output/summary.md }
+output:
+  file: output/summary.md

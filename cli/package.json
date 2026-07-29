@@ -1,0 +1,25 @@
+{
+  "name": "@pdf-studio/cli",
+  "version": "0.1.0",
+  "private": true,
+  "description": "opw — the OpenPDF Workflow CLI. Render / validate / compile / inspect .opw.yaml workflows headlessly (CI, cron, servers) via the @pdf-studio/core engine. Same engine as the VS Code extension, no editor.",
+  "license": "AGPL-3.0-or-later",
+  "bin": {
+    "opw": "./dist/index.cjs"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "build": "tsc -b && node ./build.mjs",
+    "clean": "tsc -b --clean"
+  },
+  "dependencies": {
+    "@pdf-studio/core": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.4.0"
+  }
+}

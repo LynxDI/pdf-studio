@@ -1,0 +1,14 @@
+# inspect_text — Map the exact text spans on each page — every span's text, bounding box, font, size, color and bold/italic — to a JSON (or Markdown) report. Read-only. It gives an agent the numbers it otherwise has to guess: the coordinates for a precise redact / crop / stamp / annotate / add_links, and the font/size/color a replace_text should match. Filter with terms and pages to keep the report small.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - inspect_text:
+      to: output/text-spans.json
+      format: both
+output:
+  folder: output/inspect_text

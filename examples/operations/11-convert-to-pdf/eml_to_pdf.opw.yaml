@@ -1,0 +1,13 @@
+# eml_to_pdf — Render an .eml email (headers + body) to a styled PDF. Remote images are blocked by default (email is untrusted); no tracking pixels.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/message.eml
+operations:
+  - eml_to_pdf:
+      engine: auto
+output:
+  file: output/eml_to_pdf.pdf

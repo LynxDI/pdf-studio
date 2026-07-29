@@ -1,0 +1,14 @@
+# delete_pages — Remove the given 1-based pages from the working document.
+#
+# Backend: bundled engine — runs with nothing installed.
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - delete_pages:
+      pages:
+        - 2-3
+output:
+  file: output/delete_pages.pdf

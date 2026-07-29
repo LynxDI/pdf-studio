@@ -1,0 +1,828 @@
+{
+  "id": "w7",
+  "title": "IRS Form W-7 (ITIN Application)",
+  "issuer": "IRS",
+  "category": "Tax",
+  "country": "US",
+  "revision": "2024",
+  "roles": [
+    "applicant"
+  ],
+  "partial": true,
+  "source": {
+    "fields": [
+      {
+        "name": "topmostSubform[0].Page1[0].c1_1[0]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "2"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_1[1]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_2[0]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_3[0]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_4[0]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_5[0]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_01[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_6[0]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_02[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_03[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_7[0]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_8[0]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_9[0]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_04[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_05[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_06[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_07[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_08[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_09[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_10[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_11[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_12[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_13[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_14[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_15[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_16[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Line4_ReadOrder[0].f1_17[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_18[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_19[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_10[0]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_10[1]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "2"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_20[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_21[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_22[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_11[0]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_11[1]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "2"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_11[2]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "3"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_11[3]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "4"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_23[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Issued_ReadOrder[0].f1_24[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Issued_ReadOrder[0].f1_25[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Issued_ReadOrder[0].f1_26[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_27[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_12[0]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_12[1]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "2"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].ITIN[0].f1_28[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].ITIN[0].f1_29[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].ITIN[0].f1_30[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].IRSN[0].f1_31[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].IRSN[0].f1_32[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].IRSN[0].f1_33[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_34[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_35[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_36[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_37[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_38[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_39[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_40[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_41[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_13[0]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_13[1]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "2"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_13[2]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "3"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_42[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_43[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_44[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_45[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_46[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_47[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_48[0]",
+        "type": "Text",
+        "page": 1
+      }
+    ]
+  },
+  "fields": [
+    {
+      "key": "application_type",
+      "label": "Application type",
+      "type": "choice",
+      "options": {
+        "New ITIN": {
+          "field": "topmostSubform[0].Page1[0].c1_1[0]",
+          "on": "2"
+        },
+        "Renew existing ITIN": {
+          "field": "topmostSubform[0].Page1[0].c1_1[1]",
+          "on": "1"
+        }
+      }
+    },
+    {
+      "key": "reason",
+      "label": "Reason for applying (a–h)",
+      "type": "choice",
+      "options": {
+        "a": {
+          "field": "topmostSubform[0].Page1[0].c1_2[0]",
+          "on": "1"
+        },
+        "b": {
+          "field": "topmostSubform[0].Page1[0].c1_3[0]",
+          "on": "1"
+        },
+        "c": {
+          "field": "topmostSubform[0].Page1[0].c1_4[0]",
+          "on": "1"
+        },
+        "d": {
+          "field": "topmostSubform[0].Page1[0].c1_5[0]",
+          "on": "1"
+        },
+        "e": {
+          "field": "topmostSubform[0].Page1[0].c1_6[0]",
+          "on": "1"
+        },
+        "f": {
+          "field": "topmostSubform[0].Page1[0].c1_7[0]",
+          "on": "1"
+        },
+        "g": {
+          "field": "topmostSubform[0].Page1[0].c1_8[0]",
+          "on": "1"
+        },
+        "h": {
+          "field": "topmostSubform[0].Page1[0].c1_9[0]",
+          "on": "1"
+        }
+      },
+      "help": "a=treaty benefit, b=NRA filing return, c=resident alien, d=dependent, e=spouse, f=student/researcher, g=dependent/spouse of visa holder, h=other"
+    },
+    {
+      "key": "reason_d_relationship",
+      "label": "If d: relationship to U.S. citizen/resident",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_01[0]"
+    },
+    {
+      "key": "reason_de_name",
+      "label": "If d/e: name of that U.S. citizen/resident",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_02[0]"
+    },
+    {
+      "key": "reason_de_ssn",
+      "label": "If d/e: SSN/ITIN of that U.S. citizen/resident",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_03[0]"
+    },
+    {
+      "key": "reason_other",
+      "label": "If h: other reason (text)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_04[0]"
+    },
+    {
+      "key": "treaty_country",
+      "label": "Treaty country (a & f)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_05[0]"
+    },
+    {
+      "key": "treaty_article",
+      "label": "Treaty article number (a & f)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_06[0]"
+    },
+    {
+      "key": "first_name",
+      "label": "First name (1a)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_07[0]",
+      "required": true,
+      "from": "applicant.first_name"
+    },
+    {
+      "key": "middle_name",
+      "label": "Middle name (1a)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_08[0]",
+      "from": "applicant.middle_name"
+    },
+    {
+      "key": "last_name",
+      "label": "Last name (1a)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_09[0]",
+      "required": true,
+      "from": "applicant.last_name"
+    },
+    {
+      "key": "birth_first_name",
+      "label": "Name at birth — first (1b)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_10[0]"
+    },
+    {
+      "key": "birth_middle_name",
+      "label": "Name at birth — middle (1b)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_11[0]"
+    },
+    {
+      "key": "birth_last_name",
+      "label": "Name at birth — last (1b)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_12[0]"
+    },
+    {
+      "key": "address_street",
+      "label": "Mailing street address (2)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_13[0]",
+      "from": "applicant.address.street"
+    },
+    {
+      "key": "mailing_city_line",
+      "label": "Mailing city, state/province, country, ZIP (2)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_14[0]"
+    },
+    {
+      "key": "foreign_address_street",
+      "label": "Foreign street address (3)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_15[0]"
+    },
+    {
+      "key": "foreign_city_line",
+      "label": "Foreign city, state/province, country (3)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_16[0]"
+    },
+    {
+      "key": "date_of_birth",
+      "label": "Date of birth (4)",
+      "type": "date",
+      "field": "topmostSubform[0].Page1[0].Line4_ReadOrder[0].f1_17[0]",
+      "format": "MMDDYYYY",
+      "required": true,
+      "from": "applicant.date_of_birth"
+    },
+    {
+      "key": "country_of_birth",
+      "label": "Country of birth (4)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_18[0]",
+      "required": true
+    },
+    {
+      "key": "birth_city_state",
+      "label": "City & state/province of birth (4, optional)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_19[0]"
+    },
+    {
+      "key": "sex",
+      "label": "Sex (5)",
+      "type": "choice",
+      "options": {
+        "Male": {
+          "field": "topmostSubform[0].Page1[0].c1_10[0]",
+          "on": "1"
+        },
+        "Female": {
+          "field": "topmostSubform[0].Page1[0].c1_10[1]",
+          "on": "2"
+        }
+      },
+      "from": "applicant.gender"
+    },
+    {
+      "key": "country_of_citizenship",
+      "label": "Country(ies) of citizenship (6a)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_20[0]",
+      "required": true,
+      "from": "applicant.citizenship_country"
+    },
+    {
+      "key": "foreign_tax_id",
+      "label": "Foreign tax ID number (6b)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_21[0]"
+    },
+    {
+      "key": "visa_info",
+      "label": "U.S. visa type, number, expiration (6c)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_22[0]"
+    },
+    {
+      "key": "id_document",
+      "label": "Identification document (6d)",
+      "type": "choice",
+      "options": {
+        "Passport": {
+          "field": "topmostSubform[0].Page1[0].c1_11[0]",
+          "on": "1"
+        },
+        "Driver's license/State ID": {
+          "field": "topmostSubform[0].Page1[0].c1_11[1]",
+          "on": "2"
+        },
+        "USCIS documentation": {
+          "field": "topmostSubform[0].Page1[0].c1_11[2]",
+          "on": "3"
+        },
+        "Other": {
+          "field": "topmostSubform[0].Page1[0].c1_11[3]",
+          "on": "4"
+        }
+      }
+    },
+    {
+      "key": "id_doc_other",
+      "label": "If Other: which document (6d)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_23[0]"
+    },
+    {
+      "key": "id_issued_by",
+      "label": "Issued by (6d)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Issued_ReadOrder[0].f1_24[0]"
+    },
+    {
+      "key": "id_number",
+      "label": "Document number (6d)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Issued_ReadOrder[0].f1_25[0]"
+    },
+    {
+      "key": "id_exp_date",
+      "label": "Document expiration date (6d)",
+      "type": "date",
+      "field": "topmostSubform[0].Page1[0].Issued_ReadOrder[0].f1_26[0]",
+      "format": "MMDDYYYY"
+    },
+    {
+      "key": "us_entry_date",
+      "label": "Date of entry into the U.S. (6d)",
+      "type": "date",
+      "field": "topmostSubform[0].Page1[0].f1_27[0]",
+      "format": "MMDDYYYY"
+    },
+    {
+      "key": "previously_received",
+      "label": "Previously received ITIN/IRSN? (6e)",
+      "type": "choice",
+      "options": {
+        "No": {
+          "field": "topmostSubform[0].Page1[0].c1_12[0]",
+          "on": "1"
+        },
+        "Yes": {
+          "field": "topmostSubform[0].Page1[0].c1_12[1]",
+          "on": "2"
+        }
+      }
+    },
+    {
+      "key": "previous_itin",
+      "label": "Previous ITIN (6f)",
+      "type": "split",
+      "parts": [
+        {
+          "field": "topmostSubform[0].Page1[0].ITIN[0].f1_28[0]",
+          "take": 3
+        },
+        {
+          "field": "topmostSubform[0].Page1[0].ITIN[0].f1_29[0]",
+          "take": 2
+        },
+        {
+          "field": "topmostSubform[0].Page1[0].ITIN[0].f1_30[0]",
+          "take": 4
+        }
+      ]
+    },
+    {
+      "key": "previous_irsn",
+      "label": "Previous IRSN (6f)",
+      "type": "split",
+      "parts": [
+        {
+          "field": "topmostSubform[0].Page1[0].IRSN[0].f1_31[0]",
+          "take": 3
+        },
+        {
+          "field": "topmostSubform[0].Page1[0].IRSN[0].f1_32[0]",
+          "take": 2
+        },
+        {
+          "field": "topmostSubform[0].Page1[0].IRSN[0].f1_33[0]",
+          "take": 4
+        }
+      ]
+    },
+    {
+      "key": "previous_name_first",
+      "label": "Name ITIN/IRSN was issued under — first (6f)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_34[0]"
+    },
+    {
+      "key": "previous_name_middle",
+      "label": "Name ITIN/IRSN was issued under — middle (6f)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_35[0]"
+    },
+    {
+      "key": "previous_name_last",
+      "label": "Name ITIN/IRSN was issued under — last (6f)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_36[0]"
+    },
+    {
+      "key": "college_or_company",
+      "label": "Name of college/university or company (6g)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_37[0]"
+    },
+    {
+      "key": "college_city_state",
+      "label": "College/company city & state (6g)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_38[0]"
+    },
+    {
+      "key": "length_of_stay",
+      "label": "Length of stay (6g)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_39[0]"
+    },
+    {
+      "key": "phone",
+      "label": "Phone number (sign here)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_40[0]",
+      "from": "applicant.phone_home"
+    },
+    {
+      "key": "delegate_name",
+      "label": "Name of delegate, if applicable",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_41[0]"
+    }
+  ],
+  "example": {
+    "intro": "IRS Form W-7 — Application for an ITIN, a complete self-contained mock-up.\nCopy this, replace the mock \"Lucia Vega\" data with your own, and Render.",
+    "values": {
+      "application_type": "New ITIN",
+      "reason": "d",
+      "reason_d_relationship": "Daughter",
+      "reason_de_name": "Robin Vega",
+      "reason_de_ssn": "555-00-1234",
+      "first_name": "Lucia",
+      "middle_name": "M",
+      "last_name": "Vega",
+      "address_street": "12 Rue Fictif",
+      "mailing_city_line": "Paris, France 75001",
+      "foreign_address_street": "12 Rue Fictif",
+      "foreign_city_line": "Paris, France",
+      "date_of_birth": "03/15/2010",
+      "country_of_birth": "France",
+      "birth_city_state": "Lyon",
+      "sex": "Female",
+      "country_of_citizenship": "France",
+      "id_document": "Passport",
+      "id_issued_by": "France",
+      "id_number": "12AB34567",
+      "id_exp_date": "06/30/2030",
+      "us_entry_date": "09/01/2024",
+      "previously_received": "No",
+      "phone": "33-1-5555-0100"
+    },
+    "flatten": true
+  }
+}

@@ -1,0 +1,17 @@
+# ── Already has a text layer? Just extract it — no OCR ──────────────────────────────
+# The most important lesson of this gallery: when 00-check-first reports a text layer (like
+# input/digital-invoice.pdf at 100%), you do NOT need any OCR engine. extract_markdown with
+# ocr:off reads the EXISTING text directly — instant, lossless, zero extra dependencies.
+# OCR'ing a file that already has text is slower and can only make it worse.
+#
+# This is the common case, and the whole reason you run text_report first.
+
+version: 1
+kind: pdf
+inputs:
+  - input/digital-invoice.pdf
+operations:
+  - extract_markdown:
+      ocr: off # use the existing text layer; never rasterize/re-OCR
+output:
+  file: output/invoice.md

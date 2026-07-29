@@ -1,0 +1,21 @@
+# Split a PDF that concatenates many invoices into one PDF per invoice.
+#
+# split_invoices reads each page's text, detects where each invoice starts
+# (a "Page 1 of N" reset, a header keyword right after a page that ended with a
+# total, or a change of invoice number), groups the pages, and writes one PDF
+# per invoice into the output FOLDER below, named by the detected invoice number
+# (falling back to invoice_0001 …). It also writes _manifest.csv (page ranges +
+# invoice number/vendor/date) there so you can verify the split.
+#
+# The output is a FOLDER (not a single file). To process a different bundle,
+# replace input/invoices-batch.pdf. Scanned bundle with no text layer? add
+# ocr_first: true. Detection wrong? pass explicit start pages, e.g. starts: [1, 3, 4].
+
+version: 1
+kind: pdf
+inputs:
+  - input/invoices-batch.pdf
+operations:
+  - split_invoices: { name: "{invoice_number}" }
+output:
+  folder: output/invoices

@@ -1,0 +1,14 @@
+# set_view_preferences — Control how a PDF opens in a reader — page layout, full-screen/outline mode, initial page & zoom, and window chrome.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - set_view_preferences:
+      page_mode: UseOutlines
+      page_layout: SinglePage
+output:
+  file: output/set_view_preferences.pdf

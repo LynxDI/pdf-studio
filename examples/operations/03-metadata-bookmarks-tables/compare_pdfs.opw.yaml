@@ -1,0 +1,15 @@
+# compare_pdfs — Compare the working document with a second PDF and write a diff report (per-page added/removed/changed text) plus highlighted per-page images. Pages are aligned first, so inserted/deleted pages are detected rather than shifting everything.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - compare_pdfs:
+      against: input/sample2.pdf
+      side_by_side: true
+      to: output/compare
+output:
+  folder: output/compare

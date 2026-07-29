@@ -1,0 +1,17 @@
+# The blank f1040.pdf is included in input/ — this fills it from your data in
+# people.yaml (mock data; replace with your own). Render to produce output/f1040-filled.pdf.
+# IRS Form 1040 — U.S. Individual Income Tax Return (PARTIAL mapping).
+# Fills the identity block — you (name + SSN), your spouse (name + SSN, pulled via
+# relations), your home address — and the Dependents table (from relations.dependents,
+# up to 4 rows). Filing status and the income/tax lines are left for you to complete.
+version: 1
+kind: pdf
+inputs:
+  - input/f1040.pdf
+operations:
+  - fill_form:
+      form: f1040
+      people: people.yaml
+      person: me                 # spouse + dependents come from `me`'s relations
+output:
+  file: output/f1040-filled.pdf

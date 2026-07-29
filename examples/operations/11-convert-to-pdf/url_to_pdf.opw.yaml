@@ -1,0 +1,11 @@
+# url_to_pdf — Fetch a web page and render it to PDF (uses a system Chrome/Edge when present; use inputs: [] and a url param).
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# NOT runnable as-is: needs network access (fetches a live URL). This example shows the syntax — provide your own input.
+version: 1
+kind: pdf
+inputs: []
+operations:
+  - url_to_pdf: { url: "https://en.wikipedia.org/wiki/Portable_Document_Format", engine: chrome }
+output:
+  file: output/pdf-wikipedia-snapshot.pdf

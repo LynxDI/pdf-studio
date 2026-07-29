@@ -1,0 +1,14 @@
+# set_metadata — Set document metadata (title, author, subject, keywords).
+#
+# Backend: bundled engine — runs with nothing installed.
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - set_metadata:
+      title: E2E
+      author: Harness
+output:
+  file: output/set_metadata.pdf

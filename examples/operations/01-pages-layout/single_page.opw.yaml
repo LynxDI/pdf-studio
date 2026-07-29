@@ -1,0 +1,13 @@
+# single_page — Combine every page into one tall single page (stacked top-to-bottom).
+#
+# Backend: bundled engine — runs with nothing installed.
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - single_page:
+      gap: 12
+output:
+  file: output/single_page.pdf

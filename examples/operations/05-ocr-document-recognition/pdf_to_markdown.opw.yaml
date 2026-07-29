@@ -1,0 +1,12 @@
+# pdf_to_markdown — Convert a PDF to a Markdown (.md) file — tables included (pymupdf4llm/markitdown improve quality).
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - pdf_to_markdown: {}
+output:
+  file: output/out.md

@@ -1,0 +1,16 @@
+# One file per page, named for a build pipeline.
+#
+# `burst` is `split` with `every: 1` — the spelling pdftk users expect. `name` controls
+# the filename: {stem} is the input without its extension, {i} the part number ({i:04}
+# zero-pads it), and {start}/{end}/{n} describe the pages a part holds.
+#
+# Without `name` you get part_000001.pdf — fine for a person, useless to a Makefile.
+
+version: 1
+kind: pdf
+inputs:
+  - input/exhibits.pdf
+operations:
+  - burst: { name: "{stem}-page-{i:04}" }
+output:
+  folder: output/pages

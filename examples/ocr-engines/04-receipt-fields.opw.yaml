@@ -1,0 +1,19 @@
+# ── Receipt/invoice → structured fields via a vision model (Qwen3-VL) ───────────────
+# Reads a receipt or invoice IMAGE and extracts TYPED fields — merchant, date, currency,
+# subtotal, tax, total, and line items — to JSON + CSV. Unlike the OCR engines above (which
+# give you text or Markdown), this gives you DATA, ready for expenses or bookkeeping.
+# It rasterizes each page and asks the model to fill a fixed schema.
+#
+# Run 00-check-first as a habit — though extract_receipt reads the page as an IMAGE either
+# way, so it works on scans (like input/receipt.pdf) and on digital receipts alike.
+#
+# Needs: Dependencies view → "Receipt OCR (Qwen3-VL)" (installs Ollama + a local vision
+# model). The endpoint + model come from your pdfStudio.vlmEndpoint / vlmModel settings.
+
+version: 1
+kind: pdf
+inputs:
+  - input/receipt.pdf
+operations:
+  - extract_receipt: {} # endpoint + model come from settings (or $PDFSTUDIO_VLM_*)
+# No `output:` block — extract_receipt writes receipts.json + receipts.csv to output/receipts/.

@@ -1,0 +1,18 @@
+# The same thing, but pointed at a FOLDER.
+#
+# A glob feeds every matched file into one merge, in sorted filename order — regardless of
+# type. Drop a new .docx or .png into input/ and it joins the pack on the next render, with
+# no edit to this file.
+#
+# `input/*` matches every file; use `input/*.{pdf,docx}` style narrowing by listing
+# several globs if you want only some types.
+
+version: 1
+kind: pdf
+inputs:
+  - input/*
+operations:
+  - merge: {}
+  - add_page_numbers: { position: bottom-center }
+output:
+  file: output/q3-board-pack-from-folder.pdf

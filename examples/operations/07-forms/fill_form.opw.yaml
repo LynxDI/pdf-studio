@@ -1,0 +1,14 @@
+# fill_form — Fill a known PDF form (passport, tax, HR…) from your records — friendly keys → real fields, checkboxes/radios, splits. Optionally sign + flatten.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - fill_form:
+      fields:
+        sample_field: Hello E2E
+output:
+  file: output/fill_form.pdf

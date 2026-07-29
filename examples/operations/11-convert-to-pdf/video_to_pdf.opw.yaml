@@ -1,0 +1,12 @@
+# video_to_pdf — Turn a video into a PDF — one page per sampled frame, with a burned-in timestamp. Follow with n_up for a contact sheet. Requires ffmpeg.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# NOT runnable as-is: needs a video input + ffmpeg. This example shows the syntax — provide your own input.
+version: 1
+kind: pdf
+inputs:
+  - lecture.mp4
+operations:
+  - video_to_pdf: { every: 30 }
+output:
+  file: output/lecture-frames.pdf

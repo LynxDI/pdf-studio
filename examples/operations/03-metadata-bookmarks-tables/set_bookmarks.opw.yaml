@@ -1,0 +1,19 @@
+# set_bookmarks — Replace the outline/bookmarks with a given list.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - set_bookmarks:
+      bookmarks:
+        - level: 1
+          title: Intro
+          page: 1
+        - level: 1
+          title: End
+          page: 6
+output:
+  file: output/set_bookmarks.pdf

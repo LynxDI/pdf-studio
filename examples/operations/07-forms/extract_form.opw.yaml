@@ -1,0 +1,13 @@
+# extract_form — Read filled forms back out to JSON + CSV — the inverse of fill_form. One file or a whole folder; re-runs only pick up what's new.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - extract_form:
+      to: output/formdata
+output:
+  folder: output/formdata

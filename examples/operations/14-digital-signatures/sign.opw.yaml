@@ -1,0 +1,12 @@
+# sign — Digitally sign the PDF with a PKCS#12 certificate.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# NOT runnable as-is: needs a PKCS#12 signing certificate. This example shows the syntax — provide your own input.
+version: 1
+kind: pdf
+inputs:
+  - contracts/master-service-agreement.pdf
+operations:
+  - sign: { cert: assets/acme-legal.p12, password: "${CERT_PASSWORD}", field: Signature1, reason: "Approved by Legal" }
+output:
+  file: output/signed-master-service-agreement.pdf

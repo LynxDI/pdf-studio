@@ -1,0 +1,34 @@
+# Page stats — inspect a PDF BEFORE you extract or OCR it.
+#
+# text_report walks every page and writes the numbers you need to choose a strategy:
+# how much of the document already has a text layer, which pages are image-only (the
+# real OCR candidates), which are blank (OCR would return nothing), which are oversized
+# (a rasterize/OCR hazard), what scripts are present — plus per-page stats
+# (size, characters, images, class) and a recommendation.
+#
+# input/mixed-report.pdf is deliberately mixed, the case this op exists for:
+#   pages 1-4, 9  digital text          pages 5-7  scanned certificates (image-only)
+#   page 8        blank scanner artifact page 10    90 × 60 in fold-out (oversized)
+#
+# Render this and open output/page-stats.md — it reports 60% text coverage and tells you
+# to OCR pages 5-7 ONLY, not the whole file. Acting on that:
+#
+#   - ocr: { mode: skip-text, page_range: "5-7" }   # needs the Python backend + Tesseract
+#   - extract_markdown: { to: output/report.md, ocr: off }
+#
+# Swap in your own PDF and re-render to profile it. On a very large document add
+# `sample: 50` (read every 50th page for a fast estimate) or `detail: summary`
+# (drop the per-page table).
+#
+# text_report is a pure diagnostic — it only writes the report (output/page-stats.json +
+# .md) and never touches the PDF, so no `output:` block is needed.
+
+version: 1
+kind: pdf
+inputs:
+  - input/mixed-report.pdf
+operations:
+  - text_report:
+      to: output/page-stats.json
+      format: both # json + a one-screen markdown summary (output/page-stats.md)
+      detail: full # include the per-page stats table

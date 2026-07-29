@@ -1,0 +1,22 @@
+# Compare two PDF revisions and write a diff report + highlighted images.
+#
+# compare_pdfs aligns the pages of the working document (report-v1.pdf) and the
+# `against` PDF (report-v2.pdf) by their text FIRST — so an inserted or deleted
+# page is reported as added/removed instead of shifting every later page. It then
+# writes, into the output FOLDER below:
+#   _report.md     — a per-page unified text diff
+#   _summary.json  — the change set as data (for agents/automation)
+#   change_*.png   — one highlighted image per changed / added / removed page
+#
+# In this sample v2 changes a line on page 2 and inserts a new section → the diff
+# reports 1 changed + 1 added page. Set mode: text to skip images; dpi to change
+# image resolution. Render: open this file and click ▶.
+
+version: 1
+kind: pdf
+inputs:
+  - input/report-v1.pdf
+operations:
+  - compare_pdfs: { against: input/report-v2.pdf }
+output:
+  folder: output/diff

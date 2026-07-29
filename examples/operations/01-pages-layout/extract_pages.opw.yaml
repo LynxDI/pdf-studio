@@ -1,0 +1,16 @@
+# extract_pages — Keep only the given 1-based pages (drops all others).
+#
+# Backend: bundled engine — runs with nothing installed.
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - extract_pages:
+      pages:
+        - 1
+        - 2
+        - 3
+output:
+  file: output/extract_pages.pdf

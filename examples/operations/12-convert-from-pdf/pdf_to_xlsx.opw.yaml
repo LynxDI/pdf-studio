@@ -1,0 +1,13 @@
+# pdf_to_xlsx — Convert a PDF to an Excel spreadsheet (fidelity varies).
+#
+# Backend: LibreOffice — install it and this op lights up (the Dependencies view has the install command).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - pdf_to_xlsx:
+      to: output/out.xlsx
+output:
+  file: output/pdf_to_xlsx.pdf

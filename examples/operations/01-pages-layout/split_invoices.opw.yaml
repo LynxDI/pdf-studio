@@ -1,0 +1,16 @@
+# split_invoices — Split a PDF that concatenates many invoices/receipts into one PDF per invoice, detecting boundaries from the page text and naming each file from the detected invoice number/date/vendor.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - split_invoices:
+      starts:
+        - 1
+        - 3
+        - 5
+output:
+  folder: output/split_invoices

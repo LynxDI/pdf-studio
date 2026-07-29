@@ -1,0 +1,18 @@
+# redact — Permanently remove content in regions.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - redact:
+      page: 1
+      rects:
+        - - 72
+          - 700
+          - 200
+          - 20
+output:
+  file: output/redact.pdf

@@ -1,0 +1,13 @@
+# scale_pages — Resize pages to a target size (A4/Letter/Legal) or by a scale factor.
+#
+# Backend: bundled engine — runs with nothing installed.
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - scale_pages:
+      size: A4
+output:
+  file: output/scale_pages.pdf

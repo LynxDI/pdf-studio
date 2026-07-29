@@ -1,0 +1,12 @@
+# semantic_search — Find passages by meaning, not keywords — a natural-language query over the PDF, using a LOCAL embedding model. Writes a ranked Markdown report with page numbers.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# NOT runnable as-is: needs an embedding model (Ollama/allowAiRequests off). This example shows the syntax — provide your own input.
+version: 1
+kind: pdf
+inputs:
+  - terms-and-conditions.pdf
+operations:
+  - semantic_search: { query: "the refund policy for late cancellations", top_k: 5, to: output/search-results.md }
+output:
+  file: output/terms-and-conditions.pdf

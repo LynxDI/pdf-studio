@@ -1,0 +1,28 @@
+# ── ALWAYS DO THIS FIRST ────────────────────────────────────────────────────────────
+# Before you OCR anything, profile the file. MANY "I need OCR" PDFs already carry a text
+# layer — OCR would be slow, lossy, and pointless on them. `text_report` walks every page
+# and writes the numbers you need to choose (or skip) an engine:
+#   • overall text coverage %      • which pages are image-only (the real OCR candidates)
+#   • which are blank / oversized  • scripts present  • a recommended workflow.
+#
+# This runs it on input/digital-invoice.pdf — a BORN-DIGITAL file. Render it and open
+# output/coverage.md: it reports 100% text coverage and recommends SKIPPING OCR (just
+# extract the existing text). Run the same op on the scans in this folder and you'll get
+# 0% coverage with an "OCR needed" recommendation instead — that's how you decide.
+#
+# Only needs the Python backend (PyMuPDF) — no Tesseract, no model, nothing to install
+# beyond the base engine. To profile every file at once, point `inputs` at input/*.pdf.
+# See also examples/page-stats for one deliberately MIXED document (text + scans + blank).
+
+version: 1
+kind: pdf
+inputs:
+  - input/digital-invoice.pdf
+operations:
+  - text_report:
+      to: output/coverage.md
+      format: both # coverage.md (human summary) + coverage.json (machine-readable)
+      detail: full # include the per-page stats table
+# No `output:` block — text_report is a pure diagnostic: it writes coverage.md + coverage.json
+# and leaves the PDF untouched. (No pointless pass-through copy of the input.)
+

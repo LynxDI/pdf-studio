@@ -1,0 +1,13 @@
+# merge — Combine input documents into one — concatenated end-to-end, or alternating page-by-page with `interleave`.
+#
+# Backend: bundled engine — runs with nothing installed.
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+  - input/sample2.pdf
+operations:
+  - merge: {}
+output:
+  file: output/merge.pdf

@@ -1,0 +1,17 @@
+# split — Split the working document into multiple outputs — by page ranges, every N pages, or by a maximum FILE SIZE so every part fits an upload limit.
+#
+# Backend: bundled engine — runs with nothing installed.
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - split:
+      ranges:
+        - 1-2
+        - 3-4
+        - 5-6
+      name: "{stem}-pages-{start}-to-{end}"
+output:
+  file: output/split.pdf

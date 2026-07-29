@@ -1,0 +1,21 @@
+# The blank i9.pdf is included in input/ — this fills it from your data in
+# people.yaml (mock data; replace with your own). Render to produce output/i9-filled.pdf.
+# USCIS Form I-9 — Employment Eligibility Verification (Section 1, PARTIAL mapping).
+# Fills the employee's Section 1: name, address (State via the native dropdown), date of
+# birth (formatted for the MM/DD/YYYY box), digit-only SSN, email, and phone. Pick your
+# attestation with `citizenship_status`. Section 2 (employer) is not filled.
+version: 1
+kind: pdf
+inputs:
+  - input/i9.pdf
+operations:
+  - fill_form:
+      form: i9
+      people: people.yaml
+      person: me
+      values:
+        citizenship_status: "U.S. citizen"
+        # options: U.S. citizen | Noncitizen national |
+        #          Lawful permanent resident | Alien authorized to work
+output:
+  file: output/i9-filled.pdf

@@ -1,0 +1,12 @@
+# replace_image — Replace an embedded image object.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# NOT runnable as-is: needs a specific embedded image object (page/object_name). This example shows the syntax — provide your own input.
+version: 1
+kind: pdf
+inputs:
+  - company-brochure.pdf
+operations:
+  - replace_image: { selector: { page: 1, object_name: Im0 }, image: assets/new-logo.png }
+output:
+  file: output/brochure-rebranded.pdf

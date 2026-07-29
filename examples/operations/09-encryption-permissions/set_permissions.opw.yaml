@@ -1,0 +1,16 @@
+# set_permissions — Restrict permissions (print/copy/modify) via an owner password.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - set_permissions:
+      owner_password: owner123
+      allow:
+        print: true
+        copy: false
+output:
+  file: output/set_permissions.pdf

@@ -1,0 +1,19 @@
+# Batch: run this workflow over EVERY PDF matching the glob, one output per input.
+#
+# A glob in `inputs` (`*`, `?`, or `**`) turns on batch mode — the operations below
+# run once per matched file, independently. The output must be per-input: here an
+# `output.folder`, so each input/report-X.pdf becomes output/processed/report-X.pdf.
+# (You could instead template a file: `output: { file: "output/{stem}-processed.pdf" }`.)
+#
+# Drop more PDFs into input/ and re-render — they're all processed. A file that fails
+# to render is skipped and reported, not fatal. Render: open this file and click ▶.
+
+version: 1
+kind: pdf
+inputs:
+  - "input/*.pdf"
+operations:
+  - add_page_numbers: { format: "Page {n} of {total}", position: bottom-right }
+  - watermark: { text: PROCESSED, opacity: 0.10 }
+output:
+  folder: output/processed

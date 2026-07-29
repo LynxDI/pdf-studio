@@ -1,0 +1,48 @@
+# Alternate the pages of two PDFs, then print them two-to-a-sheet.
+#
+# `merge` normally CONCATENATES: all of A, then all of B. Set `interleave` and it
+# round-robins instead — A p1, B p1, A p2, B p2, … That's how you put a document
+# beside its translation for study, compare a before/after revision page by page,
+# or rejoin a duplex scan whose fronts and backs landed in two separate files.
+#
+#   - interleave: {}              is exactly
+#   - merge: { interleave: true }
+#
+# ORDER comes from `inputs`. Listing story-en.pdf first puts English on every odd
+# page. It works for three or more inputs too (A1 B1 C1 A2 B2 C2 …).
+#
+# UNEVEN LENGTHS: story-it.pdf here is one page shorter on purpose. Each input keeps
+# its own slot in every round — the short one contributes a BLANK once it runs out —
+# so English page 3 still lands opposite the Italian slot instead of sliding over and
+# pairing with itself.
+#
+# ─────────────────────────────────────────────────────────────────────────────
+# ABOUT `n_up` AND "2 PAGES PER SHEET"
+#
+# n_up builds its sheet from the FIRST source page's size and divides THAT into
+# cells. With cols: 2, rows: 1 you get a 612x792 (portrait Letter) sheet holding two
+# half-width pages — NOT a landscape sheet. It's the right page ORDER for reading
+# side by side, but for real 2-up printing you usually want either:
+#
+#   * your printer dialog's own "2 pages per sheet" (best quality — it scales to the
+#     paper you're actually feeding), or
+#   * `scale_pages` before n_up to normalize mixed page sizes first.
+#
+# Delete the n_up line below to get just the alternating PDF.
+# ─────────────────────────────────────────────────────────────────────────────
+#
+# Runs fully offline in the bundled pdf-lib backend (no Python needed). Point `inputs`
+# at your own files, or regenerate the samples with
+# your own two PDFs. Validate after every edit, then
+# "PDF Studio: Render Workflow" (or the ▶ in the sidebar).
+
+version: 1
+kind: pdf
+inputs:
+  - input/story-en.pdf
+  - input/story-it.pdf
+operations:
+  - interleave: {}
+  - n_up: { cols: 2, rows: 1 }
+output:
+  file: output/bilingual.pdf

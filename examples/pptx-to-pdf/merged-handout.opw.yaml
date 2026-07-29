@@ -1,0 +1,23 @@
+# Every PowerPoint deck in a folder → ONE merged PDF.
+#
+# `merge` reads ALL the inputs together, so the glob feeds a SINGLE run instead of
+# one run per file — and `office_to_pdf` is applied to each deck first, so merge
+# receives converted PDFs. Decks are stacked in SORTED FILENAME ORDER, which is why
+# the samples are named 01-, 02-, 03-. Rename them and the lecture order changes.
+#
+# The whole course as one file to read on a tablet. Add `n_up` for printable handouts:
+#
+#   - n_up: { per_sheet: 4 }        # 4 slides per page
+#   - add_page_numbers: {}
+#
+# Needs LibreOffice — see the Dependencies view for the install command.
+
+version: 1
+kind: pdf
+inputs:
+  - input/*.pptx
+operations:
+  - office_to_pdf: { from: pptx }
+  - merge: {}
+output:
+  file: output/algorithms-course.pdf

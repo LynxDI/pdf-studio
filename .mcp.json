@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "pdf-studio": {
+      "command": "node",
+      "args": ["mcp/dist/index.js"]
+    }
+  }
+}

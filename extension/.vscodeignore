@@ -1,0 +1,28 @@
+# Ship the bundle, not the build. The source is AGPL and published in full at
+# github.com/LynxDI/pdf-studio — this list is about vsix SIZE and cleanliness,
+# not secrecy: per-file tsc output (.js, .d.ts, .js.map) is redundant next to
+# the esbuild bundle, and tests/harnesses have no business in an installed
+# extension. LICENSE, NOTICE and THIRD-PARTY-LICENSES.txt are deliberately NOT
+# excluded; they ship, and the last two are required to (MIT / Apache-2.0 §4a).
+src/**
+build.mjs
+tsconfig.json
+tsconfig.test.json
+tsconfig.tsbuildinfo
+.vscode-test.mjs
+vitest.config.ts
+node_modules/**
+dist-test/**
+.vscode-test/**
+scripts/**
+**/*.vsix
+**/__pycache__/**
+
+# dist/ holds BOTH the esbuild runtime bundles AND per-file tsc output
+# (.js / .d.ts / .js.map). Ignore all of it, then allowlist ONLY the four
+# runtime artifacts the extension actually loads.
+dist/**
+!dist/extension.js
+!dist/webview/preview.js
+!dist/webview/pdf.worker.js
+!dist/mcp/index.cjs

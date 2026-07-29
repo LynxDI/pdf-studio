@@ -1,0 +1,16 @@
+# tag_pdf — Auto-tag an untagged PDF for accessibility: build a REAL structure tree (StructTreeRoot) with reading-order marked content so screen readers can navigate it. Text blocks become headings (H1–H3, inferred from font size) and paragraphs; image XObjects become tagged figures with alt text. Sets MarkInfo/Marked and, optionally, the document title and default language — turning a check_accessibility "untagged" fail into a pass. Best on text documents (single-column reading order); scan/image-only PDFs should be OCR'd first, and complex tables/lists are flattened to paragraphs. Needs the Python backend.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - tag_pdf:
+      lang: en-US
+      title: Quarterly Report
+      alt:
+        - Bar chart of quarterly revenue
+output:
+  file: output/tag_pdf.pdf

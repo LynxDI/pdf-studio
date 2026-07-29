@@ -1,0 +1,20 @@
+# ── Scan → Markdown via Marker (Surya OCR + layout models) ──────────────────────────
+# Highest-quality scan-to-Markdown. Marker re-reads the page IMAGES with Surya OCR + layout
+# models, reconstructing headings, reading order, and TABLES — best for scanned books,
+# reports, and complex multi-column layouts. Slow on CPU (minutes per page); accurate.
+# Gives you Markdown text, not a searchable PDF (use 01 for that) or typed data (use 04).
+#
+# ALWAYS run 00-check-first first. input/scanned-table.pdf is image-only and contains a
+# table — the case Marker shines on. Render 03 on the SAME file to compare with PaddleOCR-VL.
+#
+# Needs: Dependencies view → "Marker (Surya OCR)". First run downloads the models (a few GB).
+
+version: 1
+kind: pdf
+inputs:
+  - input/scanned-table.pdf
+operations:
+  - extract_markdown:
+      engine: marker # Surya OCR + layout; best on scans/tables, slow on CPU
+output:
+  file: output/table-marker.md

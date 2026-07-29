@@ -1,0 +1,15 @@
+# render_pages — Render pages to images — raster (PNG/JPG) or vector (SVG). This makes a picture OF each page; extract_images pulls the images embedded IN it.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - render_pages:
+      to: output/render
+      dpi: 100
+      format: png
+output:
+  folder: output/render

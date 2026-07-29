@@ -1,0 +1,14 @@
+# replace_text — Find text and replace it in place — re-date a template, fix a recurring typo, swap an entity name across a whole folder. `find` is literal by default, or a regular expression with regex: true (dates, IDs, order numbers). Matches within a line; the replacement lands on the original baseline in the original size and color.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - replace_text:
+      find: Introduction
+      replace: Overview
+output:
+  file: output/replace_text.pdf

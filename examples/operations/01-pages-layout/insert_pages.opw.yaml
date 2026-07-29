@@ -1,0 +1,16 @@
+# insert_pages — Insert another PDF's pages into the working document at a given position. Declare the source PDF under `assets` and reference it by name.
+#
+# Backend: bundled engine — runs with nothing installed.
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+assets:
+  insert_src: input/sample2.pdf
+operations:
+  - insert_pages:
+      from: insert_src
+      at: 2
+output:
+  file: output/insert_pages.pdf

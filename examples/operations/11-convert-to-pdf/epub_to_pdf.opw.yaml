@@ -1,0 +1,12 @@
+# epub_to_pdf — Convert an EPUB ebook to PDF. Bundled PyMuPDF renders it by default; Calibre (engine: calibre) paginates better when installed.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# NOT runnable as-is: needs an .epub input (not generated here). This example shows the syntax — provide your own input.
+version: 1
+kind: pdf
+inputs:
+  - novel.epub
+operations:
+  - epub_to_pdf: { engine: auto }
+output:
+  file: output/novel.pdf

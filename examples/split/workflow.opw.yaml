@@ -1,0 +1,25 @@
+# Split ONE pdf into MULTIPLE pdf files, by page ranges.
+#
+# `split` slices the working document into independent output PDFs. Each entry
+# in `ranges` (1-based, inclusive) becomes one file. Because it emits many
+# files, the output is a FOLDER (not a single `file:`). The parts are written
+# as part_000001.pdf, part_000002.pdf, … in the order the ranges are listed
+# (zero-padded so they sort in page order).
+#
+# To split evenly instead of by explicit ranges, delete the `ranges` line and
+# use `every` — e.g. `- split: { every: 5 }` writes one file per 5 pages.
+#
+# Runs fully offline in the bundled pdf-lib backend (no Python needed).
+# Replace input/document.pdf with your file. Validate after every edit, then
+# run "PDF Studio: Render Workflow" (or the ▶ in the sidebar).
+
+version: 1
+kind: pdf
+inputs:
+  - input/document.pdf
+operations:
+  - split: { ranges: ["1-3", "4-4", "5-10"] }
+  # Alternatively, split every N pages instead of by explicit ranges:
+  # - split: { every: 5 }
+output:
+  folder: output/parts

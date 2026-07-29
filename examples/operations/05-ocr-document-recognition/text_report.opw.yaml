@@ -1,0 +1,15 @@
+# text_report — Diagnose text coverage and page stats before extracting/OCR'ing: per-page size, char and image counts, which pages are image-only vs blank vs oversized, scripts present, and a recommended workflow — so you OCR only the pages that need it, or skip OCR entirely.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - text_report:
+      to: output/coverage.json
+      format: both
+      detail: full
+output:
+  folder: output/text_report

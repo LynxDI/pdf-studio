@@ -1,0 +1,336 @@
+{
+  "id": "w4",
+  "title": "IRS Form W-4 (Employee's Withholding Certificate)",
+  "issuer": "Internal Revenue Service",
+  "category": "Employment",
+  "country": "US",
+  "roles": [
+    "applicant"
+  ],
+  "source": {
+    "fields": [
+      {
+        "name": "topmostSubform[0].Page1[0].Step1a[0].f1_01[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Step1a[0].f1_02[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Step1a[0].f1_03[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Step1a[0].f1_04[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_05[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_1[0]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_1[1]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "2"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_1[2]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "3"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_2[0]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Step3_ReadOrder[0].f1_06[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Step3_ReadOrder[0].f1_07[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_08[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_09[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_10[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_11[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_3[0]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_12[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_13[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_14[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page3[0].f3_01[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Page3[0].f3_02[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Page3[0].f3_03[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Page3[0].f3_04[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Page3[0].f3_05[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Page3[0].f3_06[0]",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "topmostSubform[0].Page4[0].f4_01[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].Page4[0].f4_02[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].Page4[0].f4_03[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].Page4[0].f4_04[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].Page4[0].f4_05[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].Page4[0].f4_06[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].Page4[0].f4_07[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].Page4[0].f4_08[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].Page4[0].f4_09[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].Page4[0].f4_10[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].Page4[0].f4_11[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].Page4[0].f4_12[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].Page4[0].f4_13[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].Page4[0].f4_14[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].Page4[0].f4_15[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].Page4[0].f4_16[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].Page4[0].f4_17[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].Page4[0].f4_18[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].Page4[0].f4_19[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].Page4[0].f4_20[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].Page4[0].f4_21[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].Page4[0].f4_22[0]",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "topmostSubform[0].Page4[0].f4_23[0]",
+        "type": "Text",
+        "page": 4
+      }
+    ]
+  },
+  "fields": [
+    {
+      "key": "first_name",
+      "label": "First name and middle initial",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Step1a[0].f1_01[0]",
+      "template": "{applicant.first_name} {applicant.middle_name}",
+      "required": true
+    },
+    {
+      "key": "last_name",
+      "label": "Last name",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Step1a[0].f1_02[0]",
+      "from": "applicant.last_name",
+      "required": true
+    },
+    {
+      "key": "address_street",
+      "label": "Address",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Step1a[0].f1_03[0]",
+      "from": "applicant.address.street"
+    },
+    {
+      "key": "city_state_zip",
+      "label": "City, state, and ZIP code",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Step1a[0].f1_04[0]",
+      "template": "{applicant.address.city}, {applicant.address.state} {applicant.address.zip}"
+    },
+    {
+      "key": "ssn",
+      "label": "Social Security Number",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_05[0]",
+      "from": "applicant.ssn",
+      "digits": true,
+      "required": true
+    },
+    {
+      "key": "filing_status",
+      "label": "Filing status",
+      "type": "choice",
+      "options": {
+        "Single": {
+          "field": "topmostSubform[0].Page1[0].c1_1[0]",
+          "on": "1"
+        },
+        "Married filing jointly": {
+          "field": "topmostSubform[0].Page1[0].c1_1[1]",
+          "on": "2"
+        },
+        "Head of household": {
+          "field": "topmostSubform[0].Page1[0].c1_1[2]",
+          "on": "3"
+        }
+      }
+    }
+  ],
+  "tags": [
+    "tax",
+    "irs",
+    "withholding",
+    "onboarding"
+  ],
+  "partial": true
+}

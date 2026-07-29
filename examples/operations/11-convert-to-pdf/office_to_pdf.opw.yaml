@@ -1,0 +1,12 @@
+# office_to_pdf — Convert an Office document (docx/xlsx/pptx/odt) to PDF. Requires LibreOffice.
+#
+# Backend: LibreOffice — install it and this op lights up (the Dependencies view has the install command).
+# NOT runnable as-is: needs a .docx input + LibreOffice. This example shows the syntax — provide your own input.
+version: 1
+kind: pdf
+inputs:
+  - decks/investor-pitch.pptx
+operations:
+  - office_to_pdf: { from: pptx }
+output:
+  file: output/investor-pitch.pdf

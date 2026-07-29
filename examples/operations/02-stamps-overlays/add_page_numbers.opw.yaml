@@ -1,0 +1,14 @@
+# add_page_numbers — Stamp page numbers onto every page.
+#
+# Backend: bundled engine — runs with nothing installed.
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - add_page_numbers:
+      format: Page {n} of {total}
+      position: bottom-right
+output:
+  file: output/add_page_numbers.pdf

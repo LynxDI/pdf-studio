@@ -1,0 +1,134 @@
+// Project scaffolding — seed a runnable OpenPDF Workflow project.
+//
+// A fresh folder gets a workflow.opw.yaml plus two real sample input PDFs, so
+// "Render Workflow" produces output on the first click with nothing to install.
+// The layout matches the OPW spec:
+//
+//     workflow.opw.yaml
+//     input/{sample_a.pdf, sample_b.pdf}
+//     output/            (rendered here)
+
+import * as vscode from "vscode";
+import * as path from "node:path";
+import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
+import { serializeWorkflow, parseWorkflow, OPW_VERSION } from "@pdf-studio/core";
+import { workspaceRoot } from "./project.js";
+
+const SAMPLE_WORKFLOW = parseWorkflow(
+  JSON.stringify({
+    version: OPW_VERSION,
+    kind: "pdf",
+    inputs: ["input/sample_a.pdf", "input/sample_b.pdf"],
+    operations: [
+      { merge: {} },
+      { watermark: { text: "DRAFT", opacity: 0.12 } },
+      { set_metadata: { title: "PDF Studio Sample", author: "PDF Studio" } },
+    ],
+    output: { file: "output/sample_final.pdf" },
+  }),
+);
+
+/** Scaffold a sample project into the workspace root (or a chosen folder). */
+export async function initProject(root?: string): Promise<vscode.Uri | undefined> {
+  const target = root ?? workspaceRoot();
+  if (!target) {
+    void vscode.window.showErrorMessage("PDF Studio: open a folder first.");
+    return undefined;
+  }
+  const wf = vscode.Uri.file(path.join(target, "workflow.opw.yaml"));
+  const inputDir = path.join(target, "input");
+
+  // Don't clobber an existing workflow.
+  if (await exists(wf)) {
+    const open = "Open Workflow";
+    void vscode.window.showInformationMessage("PDF Studio: workflow.opw.yaml already exists.", open).then((c) => {
+      if (c === open) void vscode.window.showTextDocument(wf);
+    });
+    return wf;
+  }
+
+  await vscode.workspace.fs.createDirectory(vscode.Uri.file(inputDir));
+  await vscode.workspace.fs.createDirectory(vscode.Uri.file(path.join(target, "output")));
+
+  // Seed a .gitignore so build artifacts and the (potentially sensitive) semantic-search
+  // embedding cache don't get committed. Merge, don't clobber an existing one.
+  const giUri = vscode.Uri.file(path.join(target, ".gitignore"));
+  let gi = "";
+  try {
+    gi = new TextDecoder().decode(await vscode.workspace.fs.readFile(giUri));
+  } catch {
+    /* no .gitignore yet */
+  }
+  const giLines = gi.split(/\r?\n/);
+  // Records files hold PII; the semantic-search cache and rendered PDFs are build
+  // artifacts — none of them should be committed.
+  const wantIgnore = ["people.yaml", "*.people.yaml", ".pdf-cache/", "output/*.pdf"].filter((p) => !giLines.includes(p));
+  if (wantIgnore.length) {
+    const body = (gi && !gi.endsWith("\n") ? gi + "\n" : gi) + wantIgnore.join("\n") + "\n";
+    await writeBytes(giUri, new TextEncoder().encode(body));
+  }
+
+  // Git is the undo stack here, so tell git how to treat the binaries it will track:
+  // input PDFs are committed (output/ is ignored above), and without this a stray
+  // core.autocrlf or a text-ish heuristic can corrupt one on checkout. Merge, don't clobber.
+  const gaUri = vscode.Uri.file(path.join(target, ".gitattributes"));
+  let ga = "";
+  try {
+    ga = new TextDecoder().decode(await vscode.workspace.fs.readFile(gaUri));
+  } catch {
+    /* no .gitattributes yet */
+  }
+  if (!/^\s*\*\.pdf\s/m.test(ga)) {
+    const note =
+      "# PDFs are binary build inputs/artifacts — never line-ending converted or text-merged.\n" +
+      "# Using Git LFS instead? Swap the line below for:\n" +
+      "#   *.pdf filter=lfs diff=lfs merge=lfs -text\n" +
+      "*.pdf binary\n";
+    await writeBytes(gaUri, new TextEncoder().encode((ga && !ga.endsWith("\n") ? ga + "\n" : ga) + note));
+  }
+
+  await writeBytes(vscode.Uri.file(path.join(inputDir, "sample_a.pdf")), await samplePdf("Sample A", 2, rgb(0.15, 0.35, 0.65)));
+  await writeBytes(vscode.Uri.file(path.join(inputDir, "sample_b.pdf")), await samplePdf("Sample B", 3, rgb(0.65, 0.25, 0.2)));
+
+  const yaml =
+    "# OpenPDF Workflow (OPW) — the source of truth. Edit this file; the engine renders the PDF.\n" +
+    "# Run: PDF Studio: Render Workflow (or the ▶ in the sidebar). Validate after every edit.\n" +
+    "# Docs: see CLAUDE.md in this folder.\n\n" +
+    serializeWorkflow(SAMPLE_WORKFLOW);
+  await writeBytes(wf, new TextEncoder().encode(yaml));
+
+  return wf;
+}
+
+/** A titled sample PDF with `pages` pages. */
+async function samplePdf(title: string, pages: number, color: ReturnType<typeof rgb>): Promise<Uint8Array> {
+  const doc = await PDFDocument.create();
+  const font = await doc.embedFont(StandardFonts.HelveticaBold);
+  const body = await doc.embedFont(StandardFonts.Helvetica);
+  for (let i = 0; i < pages; i++) {
+    const page = doc.addPage([612, 792]);
+    page.drawText(title, { x: 72, y: 700, size: 36, font, color });
+    page.drawText(`page ${i + 1} of ${pages}`, { x: 72, y: 660, size: 16, font: body, color: rgb(0.3, 0.3, 0.3) });
+    page.drawText("Generated by PDF Studio — edit workflow.opw.yaml to transform this.", {
+      x: 72,
+      y: 620,
+      size: 12,
+      font: body,
+      color: rgb(0.45, 0.45, 0.45),
+    });
+  }
+  return doc.save();
+}
+
+async function exists(uri: vscode.Uri): Promise<boolean> {
+  try {
+    await vscode.workspace.fs.stat(uri);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function writeBytes(uri: vscode.Uri, bytes: Uint8Array): Promise<void> {
+  await vscode.workspace.fs.writeFile(uri, bytes);
+}

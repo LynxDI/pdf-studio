@@ -1,0 +1,28 @@
+# Variables & conditionals — one workflow, many jobs.
+#
+# `vars:` declares scalar values; reference them with ${name} in operation params
+# and the output path. Edit the values here to re-target the workflow, or override
+# them at run time (the runner's `vars` option) without touching the file.
+#
+# A whole-value ref like `size: "${mark_size}"` keeps the variable's TYPE (a number
+# stays a number); an embedded ref like `"${client} report"` is string-interpolated.
+# Quote every ${...} reference — an unquoted ${ starts a YAML flow-map.
+# Vars are file-local — they never read environment variables.
+#
+# A `when:` guard runs an op only when its predicate is true, over document facts
+# (pages, pdf_version, encrypted, tagged, size_kb) and your vars.
+version: 1
+vars:
+  client: acme
+  label: CONFIDENTIAL
+  mark_size: 9
+inputs:
+  - input/report.pdf
+operations:
+  - watermark: { text: "${label}" }
+  - set_metadata: { title: "${client} report", author: "${client}" }
+  - stamp: { text: "Prepared for ${client}", x: 40, y: 20, size: "${mark_size}" }
+  - add_page_numbers: { format: "Page {n} of {total}", position: bottom-right }
+    when: "pages > 1"
+output:
+  file: "output/${client}-report.pdf"

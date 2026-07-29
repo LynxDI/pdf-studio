@@ -1,0 +1,13 @@
+# insert_blank — Insert a blank page at a 1-based position.
+#
+# Backend: bundled engine — runs with nothing installed.
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - insert_blank:
+      at: 2
+output:
+  file: output/insert_blank.pdf

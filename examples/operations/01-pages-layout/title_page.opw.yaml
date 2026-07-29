@@ -1,0 +1,18 @@
+# title_page — Draw a title/cover page and insert it at the front. An e-reader takes its thumbnail from page 1 — pair with set_metadata, which is where the library title comes from.
+#
+# Backend: bundled engine — runs with nothing installed.
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - title_page:
+      title: Operations Sample
+      subtitle: Reference Edition
+      author: PDF Studio
+      date: 2026-07-28
+      background: "#F5F2EA"
+      color: "#1B2A41"
+output:
+  file: output/title_page.pdf

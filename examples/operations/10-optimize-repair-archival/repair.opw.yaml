@@ -1,0 +1,12 @@
+# repair — Repair / rewrite a structurally-broken PDF.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - repair: {}
+output:
+  file: output/repair.pdf

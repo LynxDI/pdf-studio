@@ -1,0 +1,13 @@
+# convert_colors — Convert the whole document's color space with Ghostscript — to grayscale (for cheap B&W printing), CMYK (for a commercial press), or RGB (for screen). Keeps text and vector art as vectors (unlike recolor, which rasterizes). Needs Ghostscript installed.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - convert_colors:
+      mode: gray
+output:
+  file: output/convert_colors.pdf

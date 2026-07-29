@@ -1,0 +1,770 @@
+{
+  "id": "ds82",
+  "title": "U.S. Passport Renewal (DS-82)",
+  "issuer": "U.S. Department of State",
+  "category": "Passport",
+  "country": "US",
+  "roles": [
+    "applicant"
+  ],
+  "source": {
+    "fields": [
+      {
+        "name": "Most Recent",
+        "type": "RadioButton",
+        "page": 1,
+        "on_states": [
+          "YES_1"
+        ]
+      },
+      {
+        "name": "Most Recent",
+        "type": "RadioButton",
+        "page": 1,
+        "on_states": [
+          "NO_1"
+        ]
+      },
+      {
+        "name": "16 Years",
+        "type": "RadioButton",
+        "page": 1,
+        "on_states": [
+          "YES"
+        ]
+      },
+      {
+        "name": "16 Years",
+        "type": "RadioButton",
+        "page": 1,
+        "on_states": [
+          "NO_2"
+        ]
+      },
+      {
+        "name": "Less Than 15",
+        "type": "RadioButton",
+        "page": 1,
+        "on_states": [
+          "YES"
+        ]
+      },
+      {
+        "name": "Less Than 15",
+        "type": "RadioButton",
+        "page": 1,
+        "on_states": [
+          "NO"
+        ]
+      },
+      {
+        "name": "Damaged",
+        "type": "RadioButton",
+        "page": 1,
+        "on_states": [
+          "YES"
+        ]
+      },
+      {
+        "name": "Damaged",
+        "type": "RadioButton",
+        "page": 1,
+        "on_states": [
+          "NO"
+        ]
+      },
+      {
+        "name": "Not Limited",
+        "type": "RadioButton",
+        "page": 1,
+        "on_states": [
+          "YES"
+        ]
+      },
+      {
+        "name": "Not Limited",
+        "type": "RadioButton",
+        "page": 1,
+        "on_states": [
+          "NO"
+        ]
+      },
+      {
+        "name": "Name Changed",
+        "type": "RadioButton",
+        "page": 1,
+        "on_states": [
+          "YES"
+        ]
+      },
+      {
+        "name": "Name Changed",
+        "type": "RadioButton",
+        "page": 1,
+        "on_states": [
+          "NO"
+        ]
+      },
+      {
+        "name": "Selection",
+        "type": "CheckBox",
+        "page": 5,
+        "on_states": [
+          "Book"
+        ]
+      },
+      {
+        "name": "Selection",
+        "type": "CheckBox",
+        "page": 5,
+        "on_states": [
+          "Yes"
+        ]
+      },
+      {
+        "name": "Selection",
+        "type": "CheckBox",
+        "page": 5,
+        "on_states": [
+          "Both"
+        ]
+      },
+      {
+        "name": "Regular or Large Book",
+        "type": "CheckBox",
+        "page": 5,
+        "on_states": [
+          "Regular"
+        ]
+      },
+      {
+        "name": "Regular or Large Book",
+        "type": "CheckBox",
+        "page": 5,
+        "on_states": [
+          "Large"
+        ]
+      },
+      {
+        "name": "App Name Last",
+        "type": "Text",
+        "page": 5
+      },
+      {
+        "name": "App First",
+        "type": "Text",
+        "page": 5
+      },
+      {
+        "name": "App Middle",
+        "type": "Text",
+        "page": 5
+      },
+      {
+        "name": "App DOB MM",
+        "type": "Text",
+        "page": 5
+      },
+      {
+        "name": "App DOB DD",
+        "type": "Text",
+        "page": 5
+      },
+      {
+        "name": "App DOB YYYY",
+        "type": "Text",
+        "page": 5
+      },
+      {
+        "name": "App Place of Birth",
+        "type": "Text",
+        "page": 5
+      },
+      {
+        "name": "Gender",
+        "type": "CheckBox",
+        "page": 5,
+        "on_states": [
+          "M"
+        ]
+      },
+      {
+        "name": "Gender",
+        "type": "CheckBox",
+        "page": 5,
+        "on_states": [
+          "F"
+        ]
+      },
+      {
+        "name": "App SSN 1",
+        "type": "Text",
+        "page": 5
+      },
+      {
+        "name": "App SSN 2",
+        "type": "Text",
+        "page": 5
+      },
+      {
+        "name": "App SSN 3",
+        "type": "Text",
+        "page": 5
+      },
+      {
+        "name": "App Email",
+        "type": "Text",
+        "page": 5
+      },
+      {
+        "name": "App Phone 1",
+        "type": "Text",
+        "page": 5
+      },
+      {
+        "name": "App Phone 2",
+        "type": "Text",
+        "page": 5
+      },
+      {
+        "name": "App Phone 3",
+        "type": "Text",
+        "page": 5
+      },
+      {
+        "name": "App Mailing Address Line 1",
+        "type": "Text",
+        "page": 5
+      },
+      {
+        "name": "App Mailing Address Line 2",
+        "type": "Text",
+        "page": 5
+      },
+      {
+        "name": "App Mailing Address City",
+        "type": "Text",
+        "page": 5
+      },
+      {
+        "name": "App Mailing Address State",
+        "type": "Text",
+        "page": 5
+      },
+      {
+        "name": "App Mailing Address Zip Code",
+        "type": "Text",
+        "page": 5
+      },
+      {
+        "name": "App Mailing Address Country",
+        "type": "Text",
+        "page": 5
+      },
+      {
+        "name": "App List all other name you have used",
+        "type": "Text",
+        "page": 5
+      },
+      {
+        "name": "App List all other names you have used 2",
+        "type": "Text",
+        "page": 5
+      },
+      {
+        "name": "Your name as printed on your most recent U.S. passport book and/or passport card",
+        "type": "Text",
+        "page": 5
+      },
+      {
+        "name": "Most recent U.S. passport book number",
+        "type": "Text",
+        "page": 5
+      },
+      {
+        "name": "Book Issue Date mm/dd/yyyy",
+        "type": "Text",
+        "page": 5
+      },
+      {
+        "name": "Most recent U.S. passport card number",
+        "type": "Text",
+        "page": 5
+      },
+      {
+        "name": "Card Issue Date mm/dd/yyyy",
+        "type": "Text",
+        "page": 5
+      },
+      {
+        "name": "Changed by Marriage",
+        "type": "CheckBox",
+        "page": 5,
+        "on_states": [
+          "Yes"
+        ]
+      },
+      {
+        "name": "Changed by Court Order",
+        "type": "CheckBox",
+        "page": 5,
+        "on_states": [
+          "Yes"
+        ]
+      },
+      {
+        "name": "Name Change Place",
+        "type": "Text",
+        "page": 5
+      },
+      {
+        "name": "Name Change Date (mm/dd/yyyy)",
+        "type": "Text",
+        "page": 5
+      },
+      {
+        "name": "Name of Applicant (Last, First, Middle) 2",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "Date of Birth 2",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "Height",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "Hair Color",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "Eye Color",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "Occupation",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "Employer or School",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "Additional Contact Phone Numbers",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "Additional # 1",
+        "type": "CheckBox",
+        "page": 6,
+        "on_states": [
+          "Home"
+        ]
+      },
+      {
+        "name": "Additional # 1",
+        "type": "CheckBox",
+        "page": 6,
+        "on_states": [
+          "Cell"
+        ]
+      },
+      {
+        "name": "Additional Contact Phone Numbers 2",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "Additional # 2",
+        "type": "CheckBox",
+        "page": 6,
+        "on_states": [
+          "Home"
+        ]
+      },
+      {
+        "name": "Additional # 2",
+        "type": "CheckBox",
+        "page": 6,
+        "on_states": [
+          "Yes"
+        ]
+      },
+      {
+        "name": "Additional # 1",
+        "type": "CheckBox",
+        "page": 6,
+        "on_states": [
+          "Work"
+        ]
+      },
+      {
+        "name": "Additional # 1",
+        "type": "CheckBox",
+        "page": 6,
+        "on_states": [
+          "Other"
+        ]
+      },
+      {
+        "name": "Additional # 2",
+        "type": "CheckBox",
+        "page": 6,
+        "on_states": [
+          "Work"
+        ]
+      },
+      {
+        "name": "Additional # 2",
+        "type": "CheckBox",
+        "page": 6,
+        "on_states": [
+          "Other"
+        ]
+      },
+      {
+        "name": "Permanent Address Street",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "Perm Apartment/Unit",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "Permanent Address City",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "Permanent Address State",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "Permanent Address Zip Code",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "Permanent Address Country",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "Emergency Contact Name",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "Emergency Contact Address",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "Emerg Apartment/Unit",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "Emergency Contact City",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "Emerg State",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "Emergency Contact Zip Code",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "Emergency Contact Country",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "Emergency Contact Email",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "Emergency Contact Phone",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "Relationship to Applicant",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "Travel Departure Date",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "Travel Return Date",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "Countries to be visited",
+        "type": "Text",
+        "page": 6
+      },
+      {
+        "name": "Clear",
+        "type": "Button",
+        "page": 6
+      }
+    ]
+  },
+  "fields": [
+    {
+      "key": "last_name",
+      "label": "Last name",
+      "type": "text",
+      "field": "App Name Last",
+      "from": "applicant.last_name",
+      "required": true
+    },
+    {
+      "key": "first_name",
+      "label": "First name",
+      "type": "text",
+      "field": "App First",
+      "from": "applicant.first_name",
+      "required": true
+    },
+    {
+      "key": "middle_name",
+      "label": "Middle name",
+      "type": "text",
+      "field": "App Middle",
+      "from": "applicant.middle_name"
+    },
+    {
+      "key": "date_of_birth",
+      "label": "Date of birth",
+      "type": "date",
+      "from": "applicant.date_of_birth",
+      "required": true,
+      "parts": [
+        {
+          "field": "App DOB MM",
+          "part": "month"
+        },
+        {
+          "field": "App DOB DD",
+          "part": "day"
+        },
+        {
+          "field": "App DOB YYYY",
+          "part": "year"
+        }
+      ]
+    },
+    {
+      "key": "sex",
+      "label": "Sex",
+      "type": "choice",
+      "field": "Gender",
+      "options": {
+        "Male": {
+          "on": "M"
+        },
+        "Female": {
+          "on": "F"
+        }
+      },
+      "from": "applicant.gender"
+    },
+    {
+      "key": "place_of_birth",
+      "label": "Place of birth",
+      "type": "text",
+      "field": "App Place of Birth",
+      "from": "applicant.place_of_birth"
+    },
+    {
+      "key": "ssn",
+      "label": "Social Security Number",
+      "type": "split",
+      "from": "applicant.ssn",
+      "required": true,
+      "parts": [
+        {
+          "field": "App SSN 1",
+          "take": 3
+        },
+        {
+          "field": "App SSN 2",
+          "take": 2
+        },
+        {
+          "field": "App SSN 3",
+          "take": 4
+        }
+      ]
+    },
+    {
+      "key": "email",
+      "label": "Email",
+      "type": "text",
+      "field": "App Email",
+      "from": "applicant.email"
+    },
+    {
+      "key": "phone",
+      "label": "Phone",
+      "type": "split",
+      "from": "applicant.phone_home",
+      "parts": [
+        {
+          "field": "App Phone 1",
+          "take": 3
+        },
+        {
+          "field": "App Phone 2",
+          "take": 3
+        },
+        {
+          "field": "App Phone 3",
+          "take": 4
+        }
+      ]
+    },
+    {
+      "key": "address_street",
+      "label": "Mailing street",
+      "type": "text",
+      "field": "App Mailing Address Line 1",
+      "from": "applicant.address.street"
+    },
+    {
+      "key": "address_line2",
+      "label": "Mailing address line 2",
+      "type": "text",
+      "field": "App Mailing Address Line 2",
+      "from": "applicant.address.line2"
+    },
+    {
+      "key": "address_city",
+      "label": "City",
+      "type": "text",
+      "field": "App Mailing Address City",
+      "from": "applicant.address.city"
+    },
+    {
+      "key": "address_state",
+      "label": "State",
+      "type": "text",
+      "field": "App Mailing Address State",
+      "from": "applicant.address.state"
+    },
+    {
+      "key": "address_zip",
+      "label": "ZIP code",
+      "type": "text",
+      "field": "App Mailing Address Zip Code",
+      "from": "applicant.address.zip"
+    },
+    {
+      "key": "address_country",
+      "label": "Country",
+      "type": "text",
+      "field": "App Mailing Address Country",
+      "from": "applicant.address.country"
+    },
+    {
+      "key": "book_size",
+      "label": "Book size",
+      "type": "choice",
+      "field": "Regular or Large Book",
+      "options": {
+        "Regular": {
+          "on": "Regular"
+        },
+        "Large": {
+          "on": "Large"
+        }
+      }
+    },
+    {
+      "key": "occupation",
+      "label": "Occupation",
+      "type": "text",
+      "field": "Occupation",
+      "from": "applicant.occupation"
+    },
+    {
+      "key": "employer_or_school",
+      "label": "Employer or school",
+      "type": "text",
+      "field": "Employer or School",
+      "from": "applicant.employer"
+    },
+    {
+      "key": "height",
+      "label": "Height",
+      "type": "text",
+      "field": "Height",
+      "from": "applicant.height"
+    },
+    {
+      "key": "hair_color",
+      "label": "Hair color",
+      "type": "text",
+      "field": "Hair Color",
+      "from": "applicant.hair_color"
+    },
+    {
+      "key": "eye_color",
+      "label": "Eye color",
+      "type": "text",
+      "field": "Eye Color",
+      "from": "applicant.eye_color"
+    },
+    {
+      "key": "emergency_contact_name",
+      "label": "Emergency contact name",
+      "type": "text",
+      "field": "Emergency Contact Name",
+      "from": "applicant.emergency_contact.name"
+    },
+    {
+      "key": "emergency_contact_phone",
+      "label": "Emergency contact phone",
+      "type": "text",
+      "field": "Emergency Contact Phone",
+      "from": "applicant.emergency_contact.phone"
+    },
+    {
+      "key": "emergency_contact_relationship",
+      "label": "Emergency contact relationship",
+      "type": "text",
+      "field": "Relationship to Applicant",
+      "from": "applicant.emergency_contact.relationship"
+    }
+  ],
+  "tags": [
+    "passport",
+    "travel",
+    "renewal",
+    "state department"
+  ]
+}

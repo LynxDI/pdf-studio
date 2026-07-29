@@ -1,0 +1,22 @@
+# Every PowerPoint deck in a folder → its OWN PDF.
+#
+# A glob in `inputs` runs the whole workflow once per matched file, so three decks
+# produce three PDFs. `{stem}` is the input filename without its extension, so
+# 01-intro-to-algorithms.pptx → output/01-intro-to-algorithms.pdf. Use
+# `output: { folder: output }` instead if you don't need to control the name.
+#
+#   input/*.pptx      every deck in input/   (add ** to recurse: input/**/*.pptx)
+#
+# Needs LibreOffice — the Dependencies view in the sidebar detects it and offers the
+# install command. Nothing is uploaded; the conversion runs on your machine.
+#
+# Validate after every edit, then "PDF Studio: Render Workflow" (or the play button in the sidebar).
+
+version: 1
+kind: pdf
+inputs:
+  - input/*.pptx
+operations:
+  - office_to_pdf: { from: pptx }
+output:
+  file: output/{stem}.pdf

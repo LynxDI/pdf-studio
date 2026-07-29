@@ -1,0 +1,40 @@
+# De-identify a document — permanently REMOVE personal identifiers so the file is
+# safe to share: cross out / hide a name, a street address, an email, a phone number,
+# an SSN, and an IP address.
+#
+# `auto_redact` finds and PERMANENTLY DELETES matching content — it is NOT a black
+# rectangle drawn on top; the underlying text is actually gone:
+#   • text:     literal strings — here, the person's name and street address.
+#   • patterns: named PII presets — email, phone, ssn, ipv4
+#               (also available: credit_card, ein, iban).
+#   • regex:    add your own patterns for anything a preset doesn't cover.
+#
+# SAFETY — do this every time:
+#   1. Dry-run FIRST. Uncomment `preview: true` below: it writes a report of exactly
+#      WHAT would be removed (page, text, position) and changes nothing. Verify every
+#      match before you trust the output. The render note also flags any rule that
+#      matched NOTHING — if a pattern shows 0 hits, fix it before relying on it.
+#   2. `rasterize: true` flattens the result to an image-only PDF, so nothing hidden
+#      (an off-page copy, the original text layer, metadata) can survive. The output
+#      is no longer selectable/searchable — the safest thing to hand out. Drop it if
+#      you need the redacted PDF to stay searchable.
+#
+# Runs on the Python backend (PyMuPDF) — see docs/python-setup.md. Regenerate the
+# sample input. Validate after every
+# edit, then "PDF Studio: Render Workflow" (or the ▶ in the sidebar).
+
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - auto_redact:
+      text:
+        - "Jane Whitfield"                                 # the name
+        - "742 Evergreen Terrace, Springfield, IL 62704"   # the street address
+      patterns: ["email", "phone", "ssn", "ipv4"]          # structured PII (IP, email, …)
+      ignore_case: true
+      rasterize: true          # flatten to image → nothing hidden can survive
+      # preview: true          # ← uncomment to DRY-RUN: writes a report, redacts nothing
+output:
+  file: output/sample-deidentified.pdf

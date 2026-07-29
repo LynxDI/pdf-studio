@@ -1,0 +1,17 @@
+# crop — Crop pages to a rectangle (points, origin bottom-left).
+#
+# Backend: bundled engine — runs with nothing installed.
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - crop:
+      box:
+        - 72
+        - 72
+        - 468
+        - 648
+output:
+  file: output/crop.pdf

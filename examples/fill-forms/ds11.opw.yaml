@@ -1,0 +1,97 @@
+# The blank ds11.pdf is included in input/ — this fills it from your data in
+# people.yaml (mock data; replace with your own). Render to produce output/ds11-filled.pdf.
+# DS-11 — U.S. Passport Application (first-time), FULLY filled from one self-contained file.
+#
+# Passport data is mostly form-specific (parents at birth, spouse, physical description,
+# travel), so this example puts everything inline under `values:` instead of a shared
+# people.yaml. Copy this file, replace the mock "Morgan Rivera" data with your own, and
+# render. (Every value is unquoted — YAML keeps them as strings as-is.)
+#
+# See the full field list any time: form_fields MCP tool, or the PDF Fill sidebar catalog.
+version: 1
+kind: pdf
+inputs:
+  - input/ds11.pdf                   # download the blank DS-11 from eforms.state.gov
+operations:
+  - fill_form:
+      form: ds11
+      values:
+        # --- Applicant ---
+        last_name: Rivera
+        first_name: Morgan
+        middle_name: A
+        date_of_birth: 08/14/1995
+        sex: Female                  # Male | Female
+        place_of_birth: Chicago, IL, USA
+        ssn: 987-65-4324             # SSA-reserved "example" SSN (987-65-432x), never a real person
+        email: morgan.rivera@example.com
+        phone: 206-555-0142
+        address_street: 500 Oak Ave
+        address_line2: Apt 4B
+        address_city: Seattle
+        address_state: WA
+        address_zip: 98101
+        address_country: USA
+        occupation: Nurse
+        employer_or_school: City General Hospital
+        height: 5'7"
+        hair_color: Brown
+        eye_color: Hazel
+        name_of_applicant_2: Rivera, Morgan A     # page-2 header (Last, First, Middle)
+        date_of_birth_2: 08/14/1995
+        # --- Passport type (1) + prior-passport history (21) ---
+        applying_for: Both           # Book | Card | Both
+        book_size: Regular           # Regular | Large
+        ever_applied: Yes            # have you ever been issued a U.S. passport?
+        previous_passport_book_name: Morgan A Rivera
+        book_status: In my possession   # Submitting | Stolen | Lost | In my possession
+        # --- Marriage (11) ---
+        ever_married: Yes            # Yes fills the spouse block below
+        # --- Additional contact phone (12) ---
+        additional_phone_type: Cell  # Home | Work | Cell | Other
+        additional_contact_phone: 206-555-0155
+        # --- Travel plans (18) --- leave these out and Countries auto-fills "none"
+        travel_departure_date: 07/10/2026
+        travel_return_date: 07/24/2026
+        countries_to_visit: France, Italy
+        # --- Permanent address (19) --- (if different from mailing)
+        permanent_address_street: 500 Oak Ave
+        permanent_address_city: Seattle
+        permanent_address_state: WA
+        permanent_address_zip: 98101
+        # --- Parents at birth (10) ---
+        parent1_name: Carlos         # first and middle name at parent's birth
+        parent1_last_name: Rivera
+        parent1_dob: 11/22/1966
+        parent1_place_of_birth: Houston, TX, USA
+        parent1_sex: Male
+        parent1_us_citizen: Yes
+        parent2_name: Rosa M
+        parent2_last_name: Delgado
+        parent2_dob: 04/10/1968
+        parent2_place_of_birth: Miami, FL, USA
+        parent2_sex: Female
+        parent2_us_citizen: Yes
+        # --- Spouse (11) ---
+        spouse_name: Rivera, Sam J   # Last, First, Middle
+        spouse_dob: 03/02/1994
+        spouse_place_of_birth: Denver, CO, USA
+        spouse_us_citizen: Yes
+        # --- Emergency contact (20) ---
+        emergency_contact_name: Jamie Rivera
+        emergency_contact_phone: 206-555-0199
+        emergency_contact_relationship: Sibling
+        emergency_contact_address: 88 Pine St
+        emergency_contact_city: Seattle
+        emergency_contact_state: WA
+        emergency_contact_zip: 98104
+      flatten: true                  # bake a locked, print-ready final. RECOMMENDED for these
+                                     # XFA gov forms: leaving them editable makes some viewers
+                                     # render live fields oddly (e.g. spaces shown as "&");
+                                     # flattening bakes the correct text. Comment out to review first.
+  # DS-11 pages 1-4 are instructions you don't submit — keep only the two form pages (5 & 6).
+  # Comment this out to keep the full document.
+  - extract_pages:
+      pages: [5, 6]
+output:
+  file: output/ds11-filled.pdf

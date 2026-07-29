@@ -1,0 +1,13 @@
+# encrypt — Password-protect the PDF with AES-256. Put this last.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - encrypt:
+      user_password: test123
+output:
+  file: output/encrypt.pdf

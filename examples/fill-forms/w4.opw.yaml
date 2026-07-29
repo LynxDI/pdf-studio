@@ -1,0 +1,20 @@
+# The blank w4.pdf is included in input/ — this fills it from your data in
+# people.yaml (mock data; replace with your own). Render to produce output/w4-filled.pdf.
+# IRS Form W-4 — Employee's Withholding Certificate (PARTIAL mapping).
+# Fills Step 1: name, address ("City, state, ZIP" composed), digit-only SSN, and your
+# filing status. Steps 2-4 (multiple jobs, dependents credit, adjustments) are personal
+# calculations left for you to enter.
+version: 1
+kind: pdf
+inputs:
+  - input/w4.pdf
+operations:
+  - fill_form:
+      form: w4
+      people: people.yaml
+      person: me
+      values:
+        filing_status: "Married filing jointly"
+        # options: Single | Married filing jointly | Head of household
+output:
+  file: output/w4-filled.pdf

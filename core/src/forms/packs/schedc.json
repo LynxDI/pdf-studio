@@ -1,0 +1,1027 @@
+{
+  "id": "schedc",
+  "title": "IRS Schedule C (Profit or Loss From Business)",
+  "issuer": "IRS",
+  "category": "Tax",
+  "country": "US",
+  "revision": "2025",
+  "roles": [
+    "applicant"
+  ],
+  "partial": true,
+  "source": {
+    "fields": [
+      {
+        "name": "topmostSubform[0].Page1[0].f1_1[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_2[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_3[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].BComb[0].f1_4[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_5[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].DComb[0].f1_6[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_7[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_8[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_1[0]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_1[1]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "2"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_1[2]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "3"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_9[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_2[0]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "Yes"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_2[1]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "No"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_3[0]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_4[0]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "Yes"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_4[1]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "No"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_5[0]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "Yes"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_5[1]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "No"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Line1_ReadOrder[0].c1_6[0]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_10[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_11[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_12[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_13[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_14[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_15[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_16[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Lines8-17[0].f1_17[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Lines8-17[0].f1_18[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Lines8-17[0].f1_19[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Lines8-17[0].f1_20[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Lines8-17[0].f1_21[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Lines8-17[0].f1_22[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Lines8-17[0].f1_23[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Lines8-17[0].f1_24[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Lines8-17[0].f1_25[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Lines8-17[0].f1_26[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Lines8-17[0].f1_27[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Lines18-27[0].f1_28[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Lines18-27[0].f1_29[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Lines18-27[0].f1_30[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Lines18-27[0].f1_31[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Lines18-27[0].f1_32[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Lines18-27[0].f1_33[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Lines18-27[0].f1_34[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Lines18-27[0].f1_35[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Lines18-27[0].f1_36[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Lines18-27[0].f1_37[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Lines18-27[0].f1_38[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Lines18-27[0].f1_40[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Lines18-27[0].f1_39[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_41[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_42[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Line30_ReadOrder[0].f1_43[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].Line30_ReadOrder[0].f1_44[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_45[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].f1_46[0]",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_7[0]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page1[0].c1_7[1]",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "2"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].c2_1[0]",
+        "type": "CheckBox",
+        "page": 2,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].c2_2[0]",
+        "type": "CheckBox",
+        "page": 2,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].c2_3[0]",
+        "type": "CheckBox",
+        "page": 2,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].c2_4[0]",
+        "type": "CheckBox",
+        "page": 2,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].c2_4[1]",
+        "type": "CheckBox",
+        "page": 2,
+        "on_states": [
+          "2"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].f2_1[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].f2_2[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].f2_3[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].f2_4[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].f2_5[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].f2_6[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].f2_7[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].f2_8[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].f2_9[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].f2_10[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].f2_11[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].f2_12[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].f2_13[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].f2_14[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].c2_5[0]",
+        "type": "CheckBox",
+        "page": 2,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].c2_5[1]",
+        "type": "CheckBox",
+        "page": 2,
+        "on_states": [
+          "2"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].c2_6[0]",
+        "type": "CheckBox",
+        "page": 2,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].c2_6[1]",
+        "type": "CheckBox",
+        "page": 2,
+        "on_states": [
+          "2"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].c2_7[0]",
+        "type": "CheckBox",
+        "page": 2,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].c2_7[1]",
+        "type": "CheckBox",
+        "page": 2,
+        "on_states": [
+          "2"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].c2_8[0]",
+        "type": "CheckBox",
+        "page": 2,
+        "on_states": [
+          "1"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].c2_8[1]",
+        "type": "CheckBox",
+        "page": 2,
+        "on_states": [
+          "2"
+        ]
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].PartVTable[0].Item1[0].f2_15[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].PartVTable[0].Item1[0].f2_16[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].PartVTable[0].Item2[0].f2_17[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].PartVTable[0].Item2[0].f2_18[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].PartVTable[0].Item3[0].f2_19[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].PartVTable[0].Item3[0].f2_20[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].PartVTable[0].Item4[0].f2_21[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].PartVTable[0].Item4[0].f2_22[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].PartVTable[0].Item5[0].f2_23[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].PartVTable[0].Item5[0].f2_24[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].PartVTable[0].Item6[0].f2_25[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].PartVTable[0].Item6[0].f2_26[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].PartVTable[0].Item7[0].f2_27[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].PartVTable[0].Item7[0].f2_28[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].PartVTable[0].Item8[0].f2_29[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].PartVTable[0].Item8[0].f2_30[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].PartVTable[0].Item9[0].f2_31[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].PartVTable[0].Item9[0].f2_32[0]",
+        "type": "Text",
+        "page": 2
+      },
+      {
+        "name": "topmostSubform[0].Page2[0].f2_33[0]",
+        "type": "Text",
+        "page": 2
+      }
+    ]
+  },
+  "fields": [
+    {
+      "key": "proprietor_name",
+      "label": "Name of proprietor",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_1[0]",
+      "required": true,
+      "from": "applicant.full_name"
+    },
+    {
+      "key": "ssn",
+      "label": "Social security number (SSN)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_2[0]",
+      "required": true,
+      "from": "applicant.ssn"
+    },
+    {
+      "key": "principal_business",
+      "label": "A — Principal business or profession",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_3[0]",
+      "required": true
+    },
+    {
+      "key": "business_code",
+      "label": "B — Business code (6 digits, see instructions)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].BComb[0].f1_4[0]",
+      "digits": true
+    },
+    {
+      "key": "business_name",
+      "label": "C — Business name (blank if none)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_5[0]"
+    },
+    {
+      "key": "ein",
+      "label": "D — Employer ID number (EIN)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].DComb[0].f1_6[0]",
+      "digits": true,
+      "from": "applicant.ein"
+    },
+    {
+      "key": "business_address",
+      "label": "E — Business address",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_7[0]"
+    },
+    {
+      "key": "business_city_state_zip",
+      "label": "E — City, state, ZIP",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_8[0]"
+    },
+    {
+      "key": "accounting_method",
+      "label": "F — Accounting method",
+      "type": "choice",
+      "options": {
+        "Cash": {
+          "field": "topmostSubform[0].Page1[0].c1_1[0]",
+          "on": "1"
+        },
+        "Accrual": {
+          "field": "topmostSubform[0].Page1[0].c1_1[1]",
+          "on": "2"
+        },
+        "Other": {
+          "field": "topmostSubform[0].Page1[0].c1_1[2]",
+          "on": "3"
+        }
+      }
+    },
+    {
+      "key": "accounting_method_other",
+      "label": "F — If Other, specify",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_9[0]"
+    },
+    {
+      "key": "material_participation",
+      "label": "G — Materially participated in the business?",
+      "type": "choice",
+      "options": {
+        "Yes": {
+          "field": "topmostSubform[0].Page1[0].c1_2[0]",
+          "on": "Yes"
+        },
+        "No": {
+          "field": "topmostSubform[0].Page1[0].c1_2[1]",
+          "on": "No"
+        }
+      }
+    },
+    {
+      "key": "started_business",
+      "label": "H — Started or acquired this business this year",
+      "type": "checkbox",
+      "field": "topmostSubform[0].Page1[0].c1_3[0]",
+      "on": "1"
+    },
+    {
+      "key": "payments_require_1099",
+      "label": "I — Made payments requiring Form(s) 1099?",
+      "type": "choice",
+      "options": {
+        "Yes": {
+          "field": "topmostSubform[0].Page1[0].c1_4[0]",
+          "on": "Yes"
+        },
+        "No": {
+          "field": "topmostSubform[0].Page1[0].c1_4[1]",
+          "on": "No"
+        }
+      }
+    },
+    {
+      "key": "filed_required_1099",
+      "label": "J — Did/will you file required Form(s) 1099?",
+      "type": "choice",
+      "options": {
+        "Yes": {
+          "field": "topmostSubform[0].Page1[0].c1_5[0]",
+          "on": "Yes"
+        },
+        "No": {
+          "field": "topmostSubform[0].Page1[0].c1_5[1]",
+          "on": "No"
+        }
+      }
+    },
+    {
+      "key": "statutory_employee",
+      "label": "Line 1 — Statutory employee (W-2 box checked)",
+      "type": "checkbox",
+      "field": "topmostSubform[0].Page1[0].Line1_ReadOrder[0].c1_6[0]",
+      "on": "1"
+    },
+    {
+      "key": "line1_gross_receipts",
+      "label": "1 — Gross receipts or sales",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_10[0]"
+    },
+    {
+      "key": "line2_returns",
+      "label": "2 — Returns and allowances",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_11[0]"
+    },
+    {
+      "key": "line3_net_receipts",
+      "label": "3 — Subtract line 2 from line 1",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_12[0]"
+    },
+    {
+      "key": "line4_cogs",
+      "label": "4 — Cost of goods sold",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_13[0]"
+    },
+    {
+      "key": "line5_gross_profit",
+      "label": "5 — Gross profit",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_14[0]"
+    },
+    {
+      "key": "line6_other_income",
+      "label": "6 — Other income",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_15[0]"
+    },
+    {
+      "key": "line7_gross_income",
+      "label": "7 — Gross income",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_16[0]"
+    },
+    {
+      "key": "line8_advertising",
+      "label": "8 — Advertising",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Lines8-17[0].f1_17[0]"
+    },
+    {
+      "key": "line9_car_truck",
+      "label": "9 — Car and truck expenses",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Lines8-17[0].f1_18[0]"
+    },
+    {
+      "key": "line10_commissions",
+      "label": "10 — Commissions and fees",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Lines8-17[0].f1_19[0]"
+    },
+    {
+      "key": "line11_contract_labor",
+      "label": "11 — Contract labor",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Lines8-17[0].f1_20[0]"
+    },
+    {
+      "key": "line12_depletion",
+      "label": "12 — Depletion",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Lines8-17[0].f1_21[0]"
+    },
+    {
+      "key": "line13_depreciation",
+      "label": "13 — Depreciation and section 179",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Lines8-17[0].f1_22[0]"
+    },
+    {
+      "key": "line14_employee_benefits",
+      "label": "14 — Employee benefit programs",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Lines8-17[0].f1_23[0]"
+    },
+    {
+      "key": "line15_insurance",
+      "label": "15 — Insurance (other than health)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Lines8-17[0].f1_24[0]"
+    },
+    {
+      "key": "line16a_mortgage_interest",
+      "label": "16a — Interest: mortgage (paid to banks)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Lines8-17[0].f1_25[0]"
+    },
+    {
+      "key": "line16b_other_interest",
+      "label": "16b — Interest: other",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Lines8-17[0].f1_26[0]"
+    },
+    {
+      "key": "line17_legal_professional",
+      "label": "17 — Legal and professional services",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Lines8-17[0].f1_27[0]"
+    },
+    {
+      "key": "line18_office_expense",
+      "label": "18 — Office expense",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Lines18-27[0].f1_28[0]"
+    },
+    {
+      "key": "line19_pension_profit_sharing",
+      "label": "19 — Pension and profit-sharing plans",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Lines18-27[0].f1_29[0]"
+    },
+    {
+      "key": "line20a_rent_vehicles",
+      "label": "20a — Rent/lease: vehicles, machinery, equipment",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Lines18-27[0].f1_30[0]"
+    },
+    {
+      "key": "line20b_rent_other",
+      "label": "20b — Rent/lease: other business property",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Lines18-27[0].f1_31[0]"
+    },
+    {
+      "key": "line21_repairs",
+      "label": "21 — Repairs and maintenance",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Lines18-27[0].f1_32[0]"
+    },
+    {
+      "key": "line22_supplies",
+      "label": "22 — Supplies",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Lines18-27[0].f1_33[0]"
+    },
+    {
+      "key": "line23_taxes_licenses",
+      "label": "23 — Taxes and licenses",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Lines18-27[0].f1_34[0]"
+    },
+    {
+      "key": "line24a_travel",
+      "label": "24a — Travel",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Lines18-27[0].f1_35[0]"
+    },
+    {
+      "key": "line24b_meals",
+      "label": "24b — Deductible meals",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Lines18-27[0].f1_36[0]"
+    },
+    {
+      "key": "line25_utilities",
+      "label": "25 — Utilities",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Lines18-27[0].f1_37[0]"
+    },
+    {
+      "key": "line26_wages",
+      "label": "26 — Wages (less employment credits)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Lines18-27[0].f1_38[0]"
+    },
+    {
+      "key": "line27a_energy_efficient",
+      "label": "27a — Energy efficient commercial bldgs deduction",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Lines18-27[0].f1_40[0]"
+    },
+    {
+      "key": "line27b_other_expenses",
+      "label": "27b — Other expenses (from line 48)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Lines18-27[0].f1_39[0]"
+    },
+    {
+      "key": "line28_total_expenses",
+      "label": "28 — Total expenses",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_41[0]"
+    },
+    {
+      "key": "line29_tentative_profit",
+      "label": "29 — Tentative profit or (loss)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_42[0]"
+    },
+    {
+      "key": "line30_home_sqft_total",
+      "label": "30 — Simplified method: total sq ft of home",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Line30_ReadOrder[0].f1_43[0]"
+    },
+    {
+      "key": "line30_home_sqft_business",
+      "label": "30 — Simplified method: sq ft used for business",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].Line30_ReadOrder[0].f1_44[0]"
+    },
+    {
+      "key": "line30_home_expense",
+      "label": "30 — Expenses for business use of your home",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_45[0]"
+    },
+    {
+      "key": "line31_net_profit",
+      "label": "31 — Net profit or (loss)",
+      "type": "text",
+      "field": "topmostSubform[0].Page1[0].f1_46[0]"
+    },
+    {
+      "key": "at_risk",
+      "label": "32 — If a loss, your investment",
+      "type": "choice",
+      "options": {
+        "All investment is at risk": {
+          "field": "topmostSubform[0].Page1[0].c1_7[0]",
+          "on": "1"
+        },
+        "Some investment is not at risk": {
+          "field": "topmostSubform[0].Page1[0].c1_7[1]",
+          "on": "2"
+        }
+      }
+    }
+  ],
+  "example": {
+    "intro": "IRS Schedule C — Profit or Loss From Business (sole proprietor), a self-contained mock-up.\nPairs with 1099-NEC: income reported to you on a 1099-NEC goes on line 1 here.\nReplace the fictional \"Jordan Pike\" data with your own, then Render.\nNOTE: page 2 (Part III cost of goods, Part IV vehicle, Part V other expenses) is not mapped yet.",
+    "values": {
+      "proprietor_name": "Jordan Pike",
+      "ssn": "555-00-1234",
+      "principal_business": "Freelance graphic design",
+      "business_code": "541430",
+      "business_name": "Pike Design",
+      "ein": "47-0000000",
+      "business_address": "88 Cedar Ln",
+      "business_city_state_zip": "Denver, CO 80202",
+      "accounting_method": "Cash",
+      "material_participation": "Yes",
+      "payments_require_1099": "No",
+      "line1_gross_receipts": "24,500.00",
+      "line3_net_receipts": "24,500.00",
+      "line5_gross_profit": "24,500.00",
+      "line7_gross_income": "24,500.00",
+      "line8_advertising": "600.00",
+      "line18_office_expense": "1,200.00",
+      "line22_supplies": "450.00",
+      "line25_utilities": "900.00",
+      "line28_total_expenses": "3,150.00",
+      "line29_tentative_profit": "21,350.00",
+      "line31_net_profit": "21,350.00",
+      "at_risk": "All investment is at risk"
+    },
+    "flatten": true
+  }
+}

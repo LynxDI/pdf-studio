@@ -1,0 +1,17 @@
+# OpenPDF Workflow (OPW) — the source of truth. Edit this file; the engine renders the PDF.
+# Pipeline: parse → Validator → Optimizer → Execution Plan → Renderer Adapter → output/*.pdf
+# Run: "PDF Studio: Render Workflow" (or the ▶ in the sidebar). Validate after every edit.
+
+version: 1
+kind: pdf
+inputs:
+  - input/sample_a.pdf
+  - input/sample_b.pdf
+operations:
+  - merge: {}
+  - delete_pages: { pages: [2] }
+  - rotate_pages: { pages: [1], degrees: 90 }
+  - watermark: { text: DRAFT, opacity: 0.12 }
+  - set_metadata: { title: PDF Studio Sample, author: PDF Studio }
+output:
+  file: output/sample_final.pdf

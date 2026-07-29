@@ -1,0 +1,13 @@
+# html_to_pdf — Render an HTML file to PDF (uses a system Chrome/Edge for high fidelity when present).
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/page.html
+operations:
+  - html_to_pdf:
+      engine: auto
+output:
+  file: output/html_to_pdf.pdf

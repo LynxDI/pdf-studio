@@ -1,0 +1,13 @@
+# pdf_to_html — Convert a PDF to an HTML document (fidelity varies).
+#
+# Backend: LibreOffice — install it and this op lights up (the Dependencies view has the install command).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - pdf_to_html:
+      to: output/out.html
+output:
+  file: output/pdf_to_html.pdf

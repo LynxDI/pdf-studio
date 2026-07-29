@@ -1,0 +1,22 @@
+# The blank w9.pdf is included in input/ — this fills it from your data in
+# people.yaml (mock data; replace with your own). Render to produce output/w9-filled.pdf.
+# IRS Form W-9 — Request for Taxpayer Identification Number.
+# Fills your name, address (with "City, state, ZIP" composed from your record), and
+# splits the SSN across its boxes. `tax_classification` is form-specific — most
+# individuals choose "Individual/sole proprietor". (Provide `ein` in people.yaml to fill
+# the EIN boxes instead of / in addition to the SSN.)
+version: 1
+kind: pdf
+inputs:
+  - input/w9.pdf
+operations:
+  - fill_form:
+      form: w9
+      people: people.yaml
+      person: me
+      values:
+        tax_classification: "Individual/sole proprietor"
+        # options: Individual/sole proprietor | C corporation | S corporation |
+        #          Partnership | Trust/estate | LLC | Other
+output:
+  file: output/w9-filled.pdf

@@ -1,0 +1,13 @@
+# images_to_pdf — Build a PDF from image inputs (one page per image). PNG/JPEG run on the bundled engine; WEBP/TIFF/GIF/BMP/SVG/PSD need the Python backend, and HEIC (iPhone photos) also needs pillow-heif.
+#
+# Backend: bundled engine — runs with nothing installed.
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/photo.png
+  - input/photo2.png
+operations:
+  - images_to_pdf: {}
+output:
+  file: output/images_to_pdf.pdf

@@ -1,0 +1,13 @@
+# extract_markdown — Extract page content as Markdown, tables included (pymupdf4llm or markitdown improve quality). OCR control via `ocr`.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - extract_markdown:
+      to: output/doc.md
+output:
+  file: output/extract_markdown.pdf

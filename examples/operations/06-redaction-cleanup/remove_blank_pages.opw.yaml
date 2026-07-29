@@ -1,0 +1,12 @@
+# remove_blank_pages — Detect and delete blank pages.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - remove_blank_pages: {}
+output:
+  file: output/remove_blank_pages.pdf

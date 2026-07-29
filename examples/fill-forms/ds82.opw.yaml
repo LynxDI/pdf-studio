@@ -1,0 +1,20 @@
+# The blank ds82.pdf is included in input/ — this fills it from your data in
+# people.yaml (mock data; replace with your own). Render to produce output/ds82-filled.pdf.
+# DS-82 — U.S. Passport RENEWAL (by mail).
+# Renewals don't ask for parents, so this fills just the applicant's personal section
+# (name, DOB, SSN, sex, mailing address, contact, physical description, emergency
+# contact). Your most-recent passport book/card numbers are form-specific — add them
+# under `values:` or fill them in the rendered PDF.
+version: 1
+kind: pdf
+inputs:
+  - input/ds82.pdf
+operations:
+  - fill_form:
+      form: ds82
+      people: people.yaml
+      person: me
+      values:
+        book_size: Regular        # Regular | Large
+output:
+  file: output/ds82-filled.pdf

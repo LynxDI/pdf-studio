@@ -1,0 +1,12 @@
+# timestamp — Add an RFC-3161 trusted document timestamp from a TSA.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# NOT runnable as-is: needs a network TSA server. This example shows the syntax — provide your own input.
+version: 1
+kind: pdf
+inputs:
+  - signed-invoice-2024.pdf
+operations:
+  - timestamp: { tsa_url: "http://timestamp.digicert.com" }
+output:
+  file: output/timestamped-invoice-2024.pdf

@@ -1,0 +1,20 @@
+# highlight — Find text and MARK it — highlight, underline, strikeout, squiggly or a box — anywhere it appears. Same matcher as auto_redact (literal strings, regexes, PII presets, case/whole-word) but it marks instead of destroying. The marks are real PDF annotations: readable by `extract_annotations`, removable by `remove_annotations`.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - highlight:
+      text:
+        - Introduction
+      patterns:
+        - email
+      style: highlight
+      color: "#ffd400"
+      ignore_case: true
+      note: flagged for review
+output:
+  file: output/highlight.pdf

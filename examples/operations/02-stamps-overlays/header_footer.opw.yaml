@@ -1,0 +1,23 @@
+# header_footer — Add running headers and/or footers — up to six text slots (top & bottom × left/center/right) — with page-number, date and legal Bates-number tokens. For continuous Bates numbering across many files, `merge` them first.
+#
+# Backend: bundled engine — runs with nothing installed.
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - header_footer:
+      header:
+        center: Quarterly Report
+      footer:
+        left: "{date}"
+        center: Page {n} of {total}
+        right: "{bates}"
+      date: 2026-07-25
+      bates:
+        prefix: ACME-
+        start: 1
+        digits: 6
+output:
+  file: output/header_footer.pdf

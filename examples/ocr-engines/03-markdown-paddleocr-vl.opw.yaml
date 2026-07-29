@@ -1,0 +1,20 @@
+# ── Scan → Markdown via PaddleOCR-VL (Baidu's 0.9B doc-parsing VLM) ─────────────────
+# A compact vision-language document parser — strong on scans, tables, and formulas, and
+# CPU-capable at a fraction of Marker's size. Runs in its OWN venv (kept apart from the
+# PyMuPDF/Marker stack). A good local alternative when you want VLM-quality layout parsing
+# without a big model or a GPU. Gives you Markdown text.
+#
+# ALWAYS run 00-check-first first. Same input as 02 (input/scanned-table.pdf) on purpose —
+# render both and compare the Markdown each engine produces on the identical scan.
+#
+# Needs: Dependencies view → "PaddleOCR-VL". First run downloads the ~0.9B model.
+
+version: 1
+kind: pdf
+inputs:
+  - input/scanned-table.pdf
+operations:
+  - extract_markdown:
+      engine: paddleocr-vl # local 0.9B doc parser; CPU-capable, strong on tables/formulas
+output:
+  file: output/table-paddleocr.md

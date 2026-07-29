@@ -1,0 +1,24 @@
+# Merge every PDF in a folder into ONE file — without listing them.
+#
+# A glob in `inputs` (input/*.pdf) hands ALL matching files to a single `merge`, in
+# SORTED FILENAME ORDER. So name files so they sort the way you want them stacked
+# (01-cover, 02-summary, 03-details, 04-appendix). This is also why `split` zero-pads its
+# parts (part_000001.pdf) — a split → edit → re-merge then round-trips in page order.
+#
+#   input/*.pdf   → every .pdf in input/ (add ** to recurse: input/**/*.pdf)
+#
+# To merge SPECIFIC files in an EXACT order instead, list them:
+#   inputs: [ front.pdf, body.pdf, back.pdf ]
+#
+# Runs fully offline in the bundled pdf-lib backend (no Python needed). Point `inputs` at
+# your own folder of PDFs — they are merged in sorted filename order.
+# Validate after every edit, then "PDF Studio: Render Workflow" (or the ▶ in the sidebar).
+
+version: 1
+kind: pdf
+inputs:
+  - input/*.pdf
+operations:
+  - merge: {}
+output:
+  file: output/merged.pdf

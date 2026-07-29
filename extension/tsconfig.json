@@ -1,0 +1,13 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "types": ["node", "vscode"],
+    "skipLibCheck": true
+  },
+  "references": [{ "path": "../core" }],
+  "include": ["src/**/*.ts"],
+  "exclude": ["dist", "dist-test", "node_modules", "src/test/**", "src/__tests__/**"]
+}

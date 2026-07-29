@@ -1,0 +1,13 @@
+# pdf_to_epub — Convert a PDF to a reflowable EPUB ebook (for Kindle / e-readers). Uses Calibre when installed, else a bundled text-to-EPUB builder.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - pdf_to_epub:
+      to: output/out.epub
+output:
+  file: output/pdf_to_epub.pdf

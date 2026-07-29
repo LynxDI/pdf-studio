@@ -1,0 +1,815 @@
+{
+  "id": "i9",
+  "title": "USCIS Form I-9 (Employment Eligibility Verification)",
+  "issuer": "USCIS",
+  "category": "Employment",
+  "country": "US",
+  "roles": [
+    "applicant"
+  ],
+  "source": {
+    "fields": [
+      {
+        "name": "Last Name (Family Name)",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "First Name Given Name",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "Employee Middle Initial (if any)",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "Employee Other Last Names Used (if any)",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "Address Street Number and Name",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "Apt Number (if any)",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "City or Town",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "State",
+        "type": "ComboBox",
+        "page": 1
+      },
+      {
+        "name": "ZIP Code",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "Date of Birth mmddyyyy",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "US Social Security Number",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "Employees E-mail Address",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "Telephone Number",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "CB_1",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "On"
+        ]
+      },
+      {
+        "name": "CB_2",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "On"
+        ]
+      },
+      {
+        "name": "CB_3",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "On"
+        ]
+      },
+      {
+        "name": "3 A lawful permanent resident Enter USCIS or ANumber",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "CB_4",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "On"
+        ]
+      },
+      {
+        "name": "Exp Date mmddyyyy",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "USCIS ANumber",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "Form I94 Admission Number",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "Foreign Passport Number and Country of IssuanceRow1",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "Signature of Employee",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "Today's Date mmddyyy",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "Document Title 1",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "Issuing Authority 1",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "Document Number 0 (if any)",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "Expiration Date if any",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "Document Title 2 If any",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "Issuing Authority_2",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "Document Number If any_2",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "List A.  Document 2. Expiration Date (if any)",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "List A.   Document Title 3.  If any",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "List A. Document 3.  Enter Issuing Authority",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "List A.  Document 3 Number.  If any",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "Document Number if any_3",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "List B Document 1 Title",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "List B Issuing Authority 1",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "List B Document Number 1",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "List B Expiration Date 1",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "List C Document Title 1",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "List C Issuing Authority 1",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "List C Document Number 1",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "List C Expiration Date 1",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "Additional Information",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "CB_Alt",
+        "type": "CheckBox",
+        "page": 1,
+        "on_states": [
+          "Yes"
+        ]
+      },
+      {
+        "name": "FirstDayEmployed mmddyyyy",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "Last Name First Name and Title of Employer or Authorized Representative",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "Signature of Employer or AR",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "S2 Todays Date mmddyyyy",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "Employers Business or Org Name",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "Employers Business or Org Address",
+        "type": "Text",
+        "page": 1
+      },
+      {
+        "name": "Last Name Family Name from Section 1",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "First Name Given Name from Section 1",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "Middle initial if any from Section 1",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "Signature of Preparer or Translator 0",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "Sig Date mmddyyyy 0",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "Preparer or Translator Last Name (Family Name) 0",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "Preparer or Translator First Name (Given Name) 0",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "PT Middle Initial 0",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "Preparer or Translator Address (Street Number and Name) 0",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "Preparer or Translator City or Town 0",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "Preparer State 0",
+        "type": "ComboBox",
+        "page": 3
+      },
+      {
+        "name": "Zip Code 0",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "Signature of Preparer or Translator 1",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "Sig Date mmddyyyy 1",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "Preparer or Translator Last Name (Family Name) 1",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "Preparer or Translator Last Name (Family Name) 1",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "PT Middle Initial 1",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "Preparer or Translator Address (Street Number and Name) 1",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "Preparer or Translator City or Town 1",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "Preparer State 1",
+        "type": "ComboBox",
+        "page": 3
+      },
+      {
+        "name": "Zip Code 1",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "Signature of Preparer or Translator 2",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "Sig Date mmddyyyy 2",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "Preparer or Translator Last Name (Family Name) 2",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "Preparer or Translator First Name (Given Name) 2",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "PT Middle Initial 2",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "Preparer or Translator Address (Street Number and Name) 2",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "Preparer or Translator City or Town 2",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "Preparer State 2",
+        "type": "ComboBox",
+        "page": 3
+      },
+      {
+        "name": "Zip Code 2",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "Signature of Preparer or Translator 3",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "Sig Date mmddyyyy 3",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "Preparer or Translator Last Name (Family Name) 3",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "Preparer or Translator First Name (Given Name) 3",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "PT Middle Initial 3",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "Preparer or Translator Address (Street Number and Name) 3",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "Preparer or Translator City or Town 3",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "Preparer State 3",
+        "type": "ComboBox",
+        "page": 3
+      },
+      {
+        "name": "Zip Code 3",
+        "type": "Text",
+        "page": 3
+      },
+      {
+        "name": "Last Name Family Name from Section 1-2",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "First Name Given Name from Section 1-2",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "Middle initial if any from Section 1-2",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "Date of Rehire 0",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "Last Name 0",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "First Name 0",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "Middle Initial 0",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "Document Title 0",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "Document Number 0",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "Expiration Date 0",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "Name of Emp or Auth Rep 0",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "Signature of Emp Rep 0",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "Todays Date 0",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "Addtl Info 0",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "CB_Alt_0",
+        "type": "CheckBox",
+        "page": 4,
+        "on_states": [
+          "Yes"
+        ]
+      },
+      {
+        "name": "Date of Rehire 1",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "Last Name 1",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "First Name 1",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "Middle Initial 1",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "Document Title 1",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "Document Number 1",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "Expiration Date 1",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "Name of Emp or Auth Rep 1",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "Signature of Emp Rep 1",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "Todays Date 1",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "Addtl Info 1",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "CB_Alt_1",
+        "type": "CheckBox",
+        "page": 4,
+        "on_states": [
+          "Yes"
+        ]
+      },
+      {
+        "name": "Date of Rehire 2",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "Last Name 2",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "First Name 2",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "Middle Initial 2",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "Document Title 2",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "Document Number 2",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "Expiration Date 2",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "Name of Emp or Auth Rep 2",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "Signature of Emp Rep 2",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "Todays Date 2",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "Addtl Info 2",
+        "type": "Text",
+        "page": 4
+      },
+      {
+        "name": "CB_Alt_2",
+        "type": "CheckBox",
+        "page": 4,
+        "on_states": [
+          "Yes"
+        ]
+      }
+    ]
+  },
+  "fields": [
+    {
+      "key": "last_name",
+      "label": "Last name (family name)",
+      "type": "text",
+      "field": "Last Name (Family Name)",
+      "from": "applicant.last_name",
+      "required": true
+    },
+    {
+      "key": "first_name",
+      "label": "First name (given name)",
+      "type": "text",
+      "field": "First Name Given Name",
+      "from": "applicant.first_name",
+      "required": true
+    },
+    {
+      "key": "middle_initial",
+      "label": "Middle initial",
+      "type": "text",
+      "field": "Employee Middle Initial (if any)",
+      "from": "applicant.middle_name"
+    },
+    {
+      "key": "other_last_names",
+      "label": "Other last names used",
+      "type": "text",
+      "field": "Employee Other Last Names Used (if any)"
+    },
+    {
+      "key": "address_street",
+      "label": "Address (street number and name)",
+      "type": "text",
+      "field": "Address Street Number and Name",
+      "from": "applicant.address.street"
+    },
+    {
+      "key": "apt",
+      "label": "Apt number",
+      "type": "text",
+      "field": "Apt Number (if any)",
+      "from": "applicant.address.apt"
+    },
+    {
+      "key": "city",
+      "label": "City or town",
+      "type": "text",
+      "field": "City or Town",
+      "from": "applicant.address.city"
+    },
+    {
+      "key": "state",
+      "label": "State",
+      "type": "dropdown",
+      "field": "State",
+      "from": "applicant.address.state"
+    },
+    {
+      "key": "zip",
+      "label": "ZIP code",
+      "type": "text",
+      "field": "ZIP Code",
+      "from": "applicant.address.zip"
+    },
+    {
+      "key": "date_of_birth",
+      "label": "Date of birth (MM/DD/YYYY)",
+      "type": "date",
+      "field": "Date of Birth mmddyyyy",
+      "format": "MM/DD/YYYY",
+      "from": "applicant.date_of_birth"
+    },
+    {
+      "key": "ssn",
+      "label": "U.S. Social Security Number",
+      "type": "text",
+      "field": "US Social Security Number",
+      "from": "applicant.ssn",
+      "digits": true,
+      "maxlen": 9
+    },
+    {
+      "key": "email",
+      "label": "Email address",
+      "type": "text",
+      "field": "Employees E-mail Address",
+      "from": "applicant.email"
+    },
+    {
+      "key": "phone",
+      "label": "Telephone number",
+      "type": "text",
+      "field": "Telephone Number",
+      "from": "applicant.phone_home"
+    },
+    {
+      "key": "citizenship_status",
+      "label": "Citizenship / immigration status",
+      "type": "choice",
+      "options": {
+        "U.S. citizen": {
+          "field": "CB_1",
+          "on": "On"
+        },
+        "Noncitizen national": {
+          "field": "CB_2",
+          "on": "On"
+        },
+        "Lawful permanent resident": {
+          "field": "CB_3",
+          "on": "On"
+        },
+        "Alien authorized to work": {
+          "field": "CB_4",
+          "on": "On"
+        }
+      }
+    }
+  ],
+  "tags": [
+    "employment",
+    "uscis",
+    "onboarding",
+    "i-9"
+  ],
+  "partial": true
+}

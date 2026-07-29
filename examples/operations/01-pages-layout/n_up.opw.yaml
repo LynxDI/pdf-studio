@@ -1,0 +1,14 @@
+# n_up — Place multiple source pages onto each output page in a grid (N-up).
+#
+# Backend: bundled engine — runs with nothing installed.
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - n_up:
+      cols: 2
+      rows: 1
+output:
+  file: output/n_up.pdf

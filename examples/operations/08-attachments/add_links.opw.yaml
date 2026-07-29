@@ -1,0 +1,15 @@
+# add_links — Make URLs clickable and add explicit links — the inverse of extract_links. By default it auto-detects bare URLs printed in the page text (http/https/ftp/www) that were never made clickable and lays a link over each. Also add explicit links by text search: link a phrase to a URL, or to another page (goto).
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - add_links:
+      links:
+        - find: Introduction
+          url: https://example.com/intro
+output:
+  file: output/add_links.pdf

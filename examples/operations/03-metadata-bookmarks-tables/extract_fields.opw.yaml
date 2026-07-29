@@ -1,0 +1,13 @@
+# extract_fields — Export form fields (page/name/type/value) to CSV.
+#
+# Backend: optional backend — needs the Python backend or a system tool (see docs/python-setup.md).
+# Runnable: uses the included input/ files. Hit Render, or swap in your own file.
+version: 1
+kind: pdf
+inputs:
+  - input/sample.pdf
+operations:
+  - extract_fields:
+      to: output/fields.csv
+output:
+  file: output/extract_fields.pdf
